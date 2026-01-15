@@ -22,7 +22,19 @@ export default function Home() {
 
   const spreads = getAllSpreads();
 
+  // 更新剩余次数
+  useEffect(() => {
+    setRemainingCount(getRemainingReadings());
+  }, []);
+
   const handleSpreadSelect = (spread: Spread) => {
+    // 检查是否可以进行占卜
+    const check = canPerformReading();
+    if (!check.allowed) {
+      alert(check.reason || '无法进行占卜');
+      return;
+    }
+
     setSelectedSpread(spread);
     setStep('select-cards');
   };
@@ -37,9 +49,42 @@ export default function Home() {
     setStep('reveal-cards');
   };
 
-  const handleRevealComplete = () => {
-    setStep('show-result');
-    // TODO: Call AI API for interpretation
+  const handleRevealComplete = async () => {
+    setStep('interpreting');
+    setInterpretError('');
+
+    try {
+      // 调用 AI 解读 API
+      const response = await fetch('/api/interpret', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          drawnCards,
+          spreadName: selectedSpread?.name,
+          question: question || undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || '解读失败');
+      }
+
+      setInterpretation(data.interpretation);
+
+      // 记录本次占卜（消耗一次额度）
+      recordReading();
+      setRemainingCount(getRemainingReadings());
+
+      setStep('show-result');
+    } catch (error) {
+      console.error('AI interpretation error:', error);
+      setInterpretError(error instanceof Error ? error.message : '解读服务暂时不可用');
+      setStep('show-result');
+    }
   };
 
   const handleReset = () => {
@@ -47,6 +92,31 @@ export default function Home() {
     setSelectedSpread(null);
     setDrawnCards([]);
     setQuestion('');
+    setInterpretation('');
+    setInterpretError('');
+  };
+
+  const handleCopyInterpretation = () => {
+    if (!interpretation) return;
+
+    const copyText = `【塔罗占卜解读】
+
+牌阵：${selectedSpread?.name}
+${question ? `问题：${question}\n` : ''}
+抽牌结果：
+${drawnCards.map(dc => `  ${dc.position}：${dc.card.name}（${dc.isReversed ? '逆位' : '正位'}）`).join('\n')}
+
+解读：
+${interpretation}
+
+---
+由 AI 智能解读`;
+
+    navigator.clipboard.writeText(copyText).then(() => {
+      alert('解读内容已复制到剪贴板');
+    }).catch(() => {
+      alert('复制失败，请手动选择复制');
+    });
   };
 
   return (
@@ -70,7 +140,7 @@ export default function Home() {
             {/* Usage Info */}
             <div className="mt-12 text-center">
               <p className="text-sm text-text-secondary">
-                今日剩余占卜次数：<span className="font-medium text-accent">3 / 3</span>
+                今日剩余占卜次数：<span className="font-medium text-accent">{remainingCount} / 3</span>
               </p>
             </div>
           </div>
@@ -94,6 +164,16 @@ export default function Home() {
 
       {step === 'reveal-cards' && (
         <CardReveal drawnCards={drawnCards} onComplete={handleRevealComplete} />
+      )}
+
+      {step === 'interpreting' && (
+        <div className="min-h-screen flex items-center justify-center p-8">
+          <div className="text-center">
+            <div className="mb-4 text-6xl animate-spin-slow">✧</div>
+            <h2 className="text-2xl font-serif mb-2 text-text-primary">正在为你解读...</h2>
+            <p className="text-text-secondary">AI 正在深入分析你的牌面</p>
+          </div>
+        </div>
       )}
 
       {step === 'show-result' && (
@@ -127,21 +207,39 @@ export default function Home() {
               </div>
             )}
 
-            {/* 占位符 - AI 解读将在后续实现 */}
+            {/* AI 解读 */}
             <div className="bg-background rounded-lg p-6 mb-8">
               <h3 className="text-lg font-medium text-text-primary mb-4">AI 解读</h3>
-              <p className="text-text-secondary leading-relaxed">
-                AI 解读功能即将推出。目前这是演示版本，展示了完整的用户流程：
-                选择牌阵 → 选牌 → 输入问题 → 翻牌展示 → 查看解读。
-              </p>
-              <p className="text-text-secondary leading-relaxed mt-4">
-                下一步将集成大模型 API（OpenAI、Claude、Gemini 等）
-                来提供个性化的塔罗牌解读。
-              </p>
+
+              {interpretError ? (
+                <div className="text-red-600">
+                  <p className="font-medium mb-2">解读失败</p>
+                  <p className="text-sm">{interpretError}</p>
+                  <p className="text-sm mt-4 text-text-secondary">
+                    请检查环境变量配置，或稍后重试。
+                  </p>
+                </div>
+              ) : interpretation ? (
+                <div className="text-text-secondary leading-relaxed whitespace-pre-wrap">
+                  {interpretation}
+                </div>
+              ) : (
+                <p className="text-text-secondary leading-relaxed">
+                  正在加载解读结果...
+                </p>
+              )}
             </div>
 
             {/* 操作按钮 */}
             <div className="flex gap-4 justify-center">
+              {interpretation && !interpretError && (
+                <button
+                  onClick={handleCopyInterpretation}
+                  className="px-8 py-3 border border-accent text-accent rounded-lg font-medium hover:bg-accent/10 transition-colors"
+                >
+                  复制解读
+                </button>
+              )}
               <button
                 onClick={handleReset}
                 className="px-8 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-colors shadow-lg"

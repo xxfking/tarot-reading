@@ -29,6 +29,9 @@ export default {
         DEFAULT: "8px",
         lg: "12px",
       },
+      animation: {
+        'spin-slow': 'spin 4s linear infinite',
+      },
     },
   },
   plugins: [],

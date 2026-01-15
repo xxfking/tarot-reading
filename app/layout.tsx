@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Lora, Inter } from "next/font/google";
 import "./globals.css";
+
+const lora = Lora({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
+});
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-  title: "塔罗占卜 - 在线塔罗牌解读",
-  description: "简洁优雅的在线塔罗牌占卜，支持多种牌阵，AI 智能解读",
+  title: "塔罗占卜 - 神秘解读之旅",
+  description: "沉浸式塔罗牌占卜体验，AI 智能解读，探索命运的奥秘",
   openGraph: {
     title: "塔罗占卜",
-    description: "在线塔罗牌 AI 解读",
+    description: "神秘的塔罗牌 AI 解读",
   },
 };
 
@@ -23,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={inter.className}>
+      <body className={`${lora.variable} ${inter.variable} font-sans bg-background text-text-primary antialiased`}>
         {children}
       </body>
     </html>

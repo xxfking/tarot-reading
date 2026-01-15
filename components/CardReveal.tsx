@@ -28,26 +28,37 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
   }, [revealedCount, drawnCards.length, onComplete]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-4xl w-full">
-        <h2 className="text-3xl font-serif mb-12 text-text-primary text-center">
+    <div className="min-h-screen flex items-center justify-center p-8 bg-background">
+      <div className="max-w-5xl w-full">
+        <h2 className="text-4xl font-display mb-4 text-text-primary text-center">
           你的牌面
         </h2>
+        <p className="text-center text-text-secondary font-sans mb-12">
+          牌面即将揭晓
+        </p>
 
         <div className="flex flex-wrap justify-center gap-6">
           {drawnCards.map((drawnCard, index) => (
             <motion.div
               key={index}
-              initial={{ rotateY: 180 }}
-              animate={{ rotateY: index < revealedCount ? 0 : 180 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="relative"
+              initial={{ rotateY: 180, opacity: 0, scale: 0.8 }}
+              animate={{
+                rotateY: index < revealedCount ? 0 : 180,
+                opacity: 1,
+                scale: 1
+              }}
+              transition={{
+                duration: 0.8,
+                ease: [0.43, 0.13, 0.23, 0.96],
+                delay: index * 0.1
+              }}
+              className="relative group"
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="w-32 md:w-40 aspect-[2/3]">
+              <div className="w-36 md:w-44 aspect-[2/3]">
                 {/* 牌背 */}
                 <div
-                  className="absolute w-full h-full rounded-lg overflow-hidden shadow-lg"
+                  className="absolute w-full h-full rounded-md overflow-hidden shadow-md"
                   style={{
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
@@ -63,7 +74,7 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
 
                 {/* 牌面 */}
                 <div
-                  className="absolute w-full h-full rounded-lg overflow-hidden shadow-xl border-2 border-accent"
+                  className="absolute w-full h-full rounded-md overflow-hidden shadow-md border border-border"
                   style={{ backfaceVisibility: 'hidden' }}
                 >
                   <div className={drawnCard.isReversed ? 'rotate-180' : ''} style={{ width: '100%', height: '100%' }}>
@@ -75,22 +86,22 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                     />
                   </div>
                   {/* 正逆位标识 */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-accent/90 text-white text-xs py-1 text-center font-medium">
+                  <div className="absolute bottom-0 left-0 right-0 bg-accent text-white text-xs py-2 text-center font-sans font-medium">
                     {drawnCard.isReversed ? '逆位' : '正位'}
                   </div>
                 </div>
               </div>
 
               {/* 位置标签 */}
-              <div className="text-center mt-3 text-sm text-text-secondary">
+              <div className="text-center mt-4 text-base text-text-primary font-sans">
                 {drawnCard.position}
               </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center mt-12 text-text-secondary">
-          正在为你解读...
+        <div className="text-center mt-16 text-text-secondary font-sans">
+          正在准备解读
         </div>
       </div>
     </div>

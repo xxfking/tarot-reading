@@ -16,41 +16,50 @@ export default function QuestionInput({ onSubmit, onSkip }: QuestionInputProps) 
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-2xl w-full bg-surface rounded-lg p-8 md:p-12 shadow-lg border border-border">
-        <h2 className="text-3xl font-serif mb-4 text-text-primary text-center">
-          你在想什么问题？
-        </h2>
-        <p className="text-text-secondary text-center mb-8">
-          告诉我你抽牌时思考的问题，我会根据牌面为你解答。也可以跳过此步骤获得通用解读。
-        </p>
+    <div className="min-h-screen flex items-center justify-center p-8 bg-background">
+      <div className="max-w-2xl w-full">
+        <div className="bg-surface border border-border rounded-lg p-10 md:p-12 shadow-sm">
+          <h2 className="text-4xl font-display mb-4 text-text-primary text-center">
+            你在想什么问题？
+          </h2>
 
-        <div className="mb-6">
-          <textarea
-            value={question}
-            onChange={(e) => setQuestion(e.target.value.slice(0, maxLength))}
-            placeholder="在此输入你的问题..."
-            className="w-full h-32 px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent resize-none bg-background text-text-primary"
-            maxLength={maxLength}
-          />
-          <div className="text-right text-sm text-text-secondary mt-2">
-            {question.length} / {maxLength}
+          <p className="text-text-secondary text-center mb-10 font-sans text-base leading-relaxed max-w-md mx-auto">
+            告诉我你抽牌时思考的问题，我会根据牌面为你解答
+            <br />
+            <span className="text-sm">也可以跳过此步骤获得通用解读</span>
+          </p>
+
+          <div className="mb-8">
+            <textarea
+              value={question}
+              onChange={(e) => setQuestion(e.target.value.slice(0, maxLength))}
+              placeholder="在此输入你的问题..."
+              className="w-full h-40 px-6 py-4 border-2 border-border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent resize-none bg-background text-text-primary font-sans text-base transition-all placeholder:text-text-secondary"
+              maxLength={maxLength}
+            />
+
+            <div className="flex justify-end items-center mt-2">
+              <span className="text-sm text-text-secondary font-sans">
+                {question.length} / {maxLength}
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div className="flex gap-4 justify-center">
-          <button
-            onClick={onSkip}
-            className="px-6 py-3 border border-border rounded-lg text-text-secondary hover:border-accent hover:text-accent transition-colors"
-          >
-            跳过
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="px-8 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-colors shadow-lg"
-          >
-            开始解读
-          </button>
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={onSkip}
+              className="px-8 py-3 border-2 border-border hover:border-accent rounded-md text-text-secondary hover:text-accent transition-all font-sans"
+            >
+              跳过
+            </button>
+
+            <button
+              onClick={handleSubmit}
+              className="px-10 py-3 bg-accent text-white hover:bg-accent/90 rounded-md font-sans font-medium transition-all shadow-sm"
+            >
+              开始解读
+            </button>
+          </div>
         </div>
       </div>
     </div>

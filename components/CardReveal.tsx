@@ -28,9 +28,9 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
   }, [revealedCount, drawnCards.length, onComplete]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-background">
+    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-subtle">
       <div className="max-w-5xl w-full">
-        <h2 className="text-4xl font-display mb-4 text-text-primary text-center">
+        <h2 className="text-4xl font-display mb-4 text-text-primary text-center font-semibold">
           你的牌面
         </h2>
         <p className="text-center text-text-secondary font-sans mb-12">

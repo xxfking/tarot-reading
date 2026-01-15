@@ -123,11 +123,18 @@ ${interpretation}
   return (
     <main className="min-h-screen">
       {step === 'select-spread' && (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 md:p-8 bg-background">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-subtle">
           <div className="w-full max-w-6xl">
             {/* Header */}
-            <div className="text-center mb-16 md:mb-20">
-              <h1 className="text-5xl md:text-6xl font-display mb-5 text-text-primary tracking-tight">
+            <div className="text-center mb-16 md:mb-20 relative">
+              {/* 装饰性细线 */}
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-12 h-px bg-accent opacity-30"></div>
+                <div className="w-2 h-2 rounded-full bg-accent opacity-40 mx-4"></div>
+                <div className="w-12 h-px bg-accent opacity-30"></div>
+              </div>
+
+              <h1 className="text-5xl md:text-6xl font-display mb-5 text-text-primary tracking-tight font-semibold">
                 塔罗占卜
               </h1>
               <p className="text-text-secondary text-base md:text-lg font-sans max-w-xl mx-auto leading-relaxed">
@@ -168,7 +175,7 @@ ${interpretation}
       )}
 
       {step === 'interpreting' && (
-        <div className="min-h-screen flex items-center justify-center p-8 bg-background">
+        <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-subtle">
           <div className="text-center">
             {/* 简单的加载指示器 */}
             <div className="relative w-16 h-16 mx-auto mb-8">
@@ -176,7 +183,7 @@ ${interpretation}
               <div className="absolute inset-0 border-4 border-accent rounded-full border-t-transparent animate-spin"></div>
             </div>
 
-            <h2 className="text-4xl font-display mb-4 text-text-primary">
+            <h2 className="text-4xl font-display mb-4 text-text-primary font-semibold">
               正在解读中
             </h2>
 
@@ -188,11 +195,11 @@ ${interpretation}
       )}
 
       {step === 'show-result' && (
-        <div className="min-h-screen flex flex-col items-center p-6 md:p-8 py-12 md:py-16 bg-background">
+        <div className="min-h-screen flex flex-col items-center p-6 md:p-8 py-12 md:py-16 bg-gradient-subtle">
           <div className="max-w-5xl w-full">
             {/* 标题 */}
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-4xl md:text-5xl font-display mb-3 text-text-primary">
+              <h2 className="text-4xl md:text-5xl font-display mb-3 text-text-primary font-semibold">
                 解读结果
               </h2>
               <p className="text-text-secondary font-sans text-sm md:text-base">
@@ -203,7 +210,7 @@ ${interpretation}
             {/* 抽到的牌 - 带图片和含义 */}
             <div className="mb-12 md:mb-16 space-y-8 md:space-y-12">
               {drawnCards.map((drawnCard, index) => (
-                <div key={index} className="bg-surface border border-border rounded-lg p-6 md:p-8 shadow-sm">
+                <div key={index} className="bg-white border border-border rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow">
                   <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                     {/* 左侧：塔罗牌图片 */}
                     <div className="flex-shrink-0">
@@ -229,7 +236,7 @@ ${interpretation}
                         </h3>
                         <span className={`inline-block px-4 py-1.5 rounded-md text-sm font-sans font-medium ${
                           drawnCard.isReversed
-                            ? 'bg-accent-muted/10 text-accent-muted border border-accent-muted/30'
+                            ? 'bg-accent-cool/10 text-accent-cool border border-accent-cool/30'
                             : 'bg-accent/10 text-accent border border-accent/30'
                         }`}>
                           {drawnCard.isReversed ? '逆位' : '正位'}
@@ -276,19 +283,19 @@ ${interpretation}
 
             {/* 用户问题 */}
             {question && (
-              <div className="mb-8 md:mb-12 p-6 md:p-8 bg-surface border border-border rounded-lg">
-                <h3 className="text-sm md:text-base font-sans font-semibold text-text-secondary mb-3 md:mb-4 uppercase tracking-wide">
+              <div className="mb-8 md:mb-12 p-6 md:p-8 bg-white border border-border rounded-lg shadow-md">
+                <h3 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-3 md:mb-4 uppercase tracking-wider">
                   你的问题
                 </h3>
-                <p className="text-text-primary font-display text-lg md:text-xl leading-relaxed">
+                <p className="text-text-primary font-serif text-lg md:text-xl leading-relaxed">
                   "{question}"
                 </p>
               </div>
             )}
 
             {/* AI 解读 */}
-            <div className="bg-surface border border-border rounded-lg p-6 md:p-10 mb-12 md:mb-16">
-              <h3 className="text-xl md:text-2xl font-display text-text-primary mb-5 md:mb-6 pb-3 md:pb-4 border-b border-border">
+            <div className="bg-white border border-border rounded-lg p-6 md:p-10 mb-12 md:mb-16 shadow-lg">
+              <h3 className="text-xl md:text-2xl font-display text-text-primary mb-5 md:mb-6 pb-3 md:pb-4 border-b border-border/50 font-semibold">
                 AI 智能解读
               </h3>
 

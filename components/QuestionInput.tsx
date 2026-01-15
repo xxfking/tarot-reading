@@ -16,17 +16,17 @@ export default function QuestionInput({ onSubmit, onSkip }: QuestionInputProps) 
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-background">
+    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-subtle">
       <div className="max-w-2xl w-full">
-        <div className="bg-surface border border-border rounded-lg p-10 md:p-12 shadow-sm">
-          <h2 className="text-4xl font-display mb-4 text-text-primary text-center">
+        <div className="bg-white border border-border rounded-lg p-10 md:p-12 shadow-lg">
+          <h2 className="text-4xl font-display mb-4 text-text-primary text-center font-semibold">
             你在想什么问题？
           </h2>
 
           <p className="text-text-secondary text-center mb-10 font-sans text-base leading-relaxed max-w-md mx-auto">
             告诉我你抽牌时思考的问题，我会根据牌面为你解答
             <br />
-            <span className="text-sm">也可以跳过此步骤获得通用解读</span>
+            <span className="text-sm opacity-70">也可以跳过此步骤获得通用解读</span>
           </p>
 
           <div className="mb-8">
@@ -34,12 +34,12 @@ export default function QuestionInput({ onSubmit, onSkip }: QuestionInputProps) 
               value={question}
               onChange={(e) => setQuestion(e.target.value.slice(0, maxLength))}
               placeholder="在此输入你的问题..."
-              className="w-full h-40 px-6 py-4 border-2 border-border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent resize-none bg-background text-text-primary font-sans text-base transition-all placeholder:text-text-secondary"
+              className="w-full h-40 px-6 py-4 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent resize-none bg-surface text-text-primary font-sans text-base transition-all placeholder:text-text-secondary/50"
               maxLength={maxLength}
             />
 
-            <div className="flex justify-end items-center mt-2">
-              <span className="text-sm text-text-secondary font-sans">
+            <div className="flex justify-end items-center mt-3">
+              <span className="text-xs text-text-secondary font-sans tracking-wide">
                 {question.length} / {maxLength}
               </span>
             </div>
@@ -48,14 +48,14 @@ export default function QuestionInput({ onSubmit, onSkip }: QuestionInputProps) 
           <div className="flex gap-4 justify-center">
             <button
               onClick={onSkip}
-              className="px-8 py-3 border-2 border-border hover:border-accent rounded-md text-text-secondary hover:text-accent transition-all font-sans"
+              className="px-8 py-3 border border-border hover:border-accent rounded-md text-text-secondary hover:text-accent transition-all font-sans hover:shadow-md"
             >
               跳过
             </button>
 
             <button
               onClick={handleSubmit}
-              className="px-10 py-3 bg-accent text-white hover:bg-accent/90 rounded-md font-sans font-medium transition-all shadow-sm"
+              className="px-10 py-3 bg-accent text-white hover:bg-accent/90 rounded-md font-sans font-medium transition-all shadow-md hover:shadow-lg"
             >
               开始解读
             </button>

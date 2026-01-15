@@ -9,23 +9,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#F0E7DA",
-        surface: "#E3E4E0",
+        background: "#FFFFFF",
+        surface: "#FAFAFA",
         text: {
-          primary: "#2a2a2a",
-          secondary: "#6a6a6a",
+          primary: "#2A2A2A",
+          secondary: "#757575",
         },
         accent: {
-          DEFAULT: "#BA494B",
-          soft: "#E5CBC1",
-          muted: "#A6B4B3",
+          DEFAULT: "#6B7AA1",
+          warm: "#C4A786",
+          cool: "#8B9DC3",
         },
-        border: "#A6B4B3",
+        border: "#E8E8E8",
       },
       fontFamily: {
-        display: ["Lora", "Georgia", "serif"],
-        serif: ["Lora", "Georgia", "serif"],
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        display: ["Playfair Display", "Georgia", "serif"],
+        serif: ["Crimson Text", "Georgia", "serif"],
+        sans: ["Outfit", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
       },
       spacing: {
         base: "8px",
@@ -66,8 +66,9 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-rose': 'linear-gradient(135deg, #BA494B 0%, #d86568 100%)',
-        'gradient-soft': 'linear-gradient(135deg, #E5CBC1 0%, #f0ddd4 100%)',
+        'gradient-mist': 'linear-gradient(135deg, #6B7AA1 0%, #8B9DC3 100%)',
+        'gradient-warm': 'linear-gradient(135deg, #C4A786 0%, #D4B896 100%)',
+        'gradient-subtle': 'linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%)',
       },
     },
   },

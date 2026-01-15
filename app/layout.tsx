@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Lora, Inter } from "next/font/google";
+import { Playfair_Display, Crimson_Text, Outfit } from "next/font/google";
 import "./globals.css";
 
-const lora = Lora({
-  weight: ["400", "500", "600", "700"],
+const playfair = Playfair_Display({
+  weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
 });
 
-const inter = Inter({
+const crimson = Crimson_Text({
+  weight: ["400", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
+});
+
+const outfit = Outfit({
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
@@ -31,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={`${lora.variable} ${inter.variable} font-sans bg-background text-text-primary antialiased`}>
+      <body className={`${playfair.variable} ${crimson.variable} ${outfit.variable} font-sans bg-background text-text-primary antialiased`}>
         {children}
       </body>
     </html>

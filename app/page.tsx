@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Spread, DrawnCard } from '@/lib/types';
 import { getAllSpreads } from '@/lib/spreads';
 import SpreadSelector from '@/components/SpreadSelector';
-import CardSelection from '@/components/CardSelection';
+import CircularCardSelection from '@/components/CircularCardSelection';
 import QuestionInput from '@/components/QuestionInput';
 import CardReveal from '@/components/CardReveal';
 
@@ -74,7 +74,7 @@ export default function Home() {
       )}
 
       {step === 'select-cards' && selectedSpread && (
-        <CardSelection
+        <CircularCardSelection
           spread={selectedSpread}
           onComplete={handleCardsSelected}
           onBack={() => setStep('select-spread')}

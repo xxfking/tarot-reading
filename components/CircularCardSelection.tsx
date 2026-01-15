@@ -25,24 +25,21 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
   // 缓慢旋转动画
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotation(prev => (prev + 0.1) % 360);
-    }, 50); // 每50ms旋转0.1度，完整旋转需要约3分钟
+      setRotation(prev => (prev + 0.05) % 360);
+    }, 50); // 更慢的旋转速度
 
     return () => clearInterval(interval);
   }, []);
 
   const handleCardClick = (index: number) => {
     if (selectedIndices.includes(index)) {
-      // 取消选择
       setSelectedIndices(selectedIndices.filter(i => i !== index));
     } else if (selectedIndices.length < spread.cardCount) {
-      // 添加选择
       setSelectedIndices([...selectedIndices, index]);
     }
   };
 
   const handleConfirm = () => {
-    // 将选中的牌转换为 DrawnCard 格式
     const drawnCards: DrawnCard[] = selectedIndices.map((cardIndex, positionIndex) => ({
       card: shuffledCards[cardIndex],
       position: spread.positions[positionIndex],
@@ -54,60 +51,69 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
 
   const isComplete = selectedIndices.length === spread.cardCount;
   const totalCards = 78;
-  const radius = 280; // 圆圈半径
+
+  // 扇形参数
+  const radius = 450; // 圆圈半径
+  const spreadAngle = 280; // 扇形展开角度（280度）
+  const startAngle = -140; // 起始角度
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-background">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-background overflow-hidden">
       {/* Header */}
-      <div className="mb-8 text-center">
+      <div className="mb-6 text-center z-20 relative">
         <button
           onClick={onBack}
           className="text-text-secondary hover:text-accent transition-colors mb-4 inline-block"
         >
           ← 返回
         </button>
-        <h2 className="text-3xl font-serif mb-2 text-text-primary">
+        <h2 className="text-2xl md:text-3xl font-serif mb-2 text-text-primary">
           {spread.name}
         </h2>
-        <p className="text-text-secondary mb-4">
-          将鼠标悬停并点击选择你感应到的牌
+        <p className="text-text-secondary text-sm md:text-base mb-2">
+          静心感受，选择与你有共鸣的牌
         </p>
         <div className="text-accent font-medium text-lg">
-          已选择：{selectedIndices.length} / {spread.cardCount}
+          {selectedIndices.length} / {spread.cardCount}
         </div>
       </div>
 
-      {/* Circular Card Layout */}
-      <div className="relative flex-1 flex items-center justify-center">
+      {/* Card Fan Layout */}
+      <div className="relative flex-1 flex items-center justify-center w-full">
         <div
           className="relative"
           style={{
-            width: `${radius * 2 + 120}px`,
-            height: `${radius * 2 + 120}px`,
+            width: '100%',
+            maxWidth: '900px',
+            height: '500px',
           }}
         >
-          {/* 中心提示 */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10 pointer-events-none">
-            <div className="text-6xl mb-4 text-accent/20">✧</div>
-            <p className="text-text-secondary text-sm">
-              感受能量
-            </p>
+          {/* 中心神秘符号 */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-0 pointer-events-none">
+            <div className="text-8xl text-accent/10">✧</div>
           </div>
 
-          {/* 旋转的牌圈 */}
+          {/* 旋转的扇形牌堆 */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-100"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{
               transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
               width: `${radius * 2}px`,
               height: `${radius * 2}px`,
+              transition: 'transform 0.05s linear',
             }}
           >
             {shuffledCards.map((card, index) => {
-              const angle = (index / totalCards) * 360;
+              // 计算每张牌的角度
+              const angle = startAngle + (index / (totalCards - 1)) * spreadAngle;
               const isSelected = selectedIndices.includes(index);
               const isHovered = hoveredIndex === index;
               const selectionOrder = selectedIndices.indexOf(index) + 1;
+
+              // 根据位置调整 z-index，中间的牌在最上层
+              const middleIndex = totalCards / 2;
+              const distanceFromMiddle = Math.abs(index - middleIndex);
+              const baseZIndex = totalCards - Math.floor(distanceFromMiddle);
 
               return (
                 <button
@@ -116,56 +122,68 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   disabled={!isSelected && selectedIndices.length >= spread.cardCount}
-                  className="absolute top-1/2 left-1/2 cursor-pointer focus:outline-none group"
+                  className="absolute top-1/2 left-1/2 cursor-pointer focus:outline-none group transition-all duration-300"
                   style={{
                     transform: `
                       translate(-50%, -50%)
                       rotate(${angle}deg)
                       translateY(-${radius}px)
                       rotate(-${angle + rotation}deg)
-                      ${isHovered ? 'scale(1.3)' : isSelected ? 'scale(1.15)' : 'scale(1)'}
+                      ${isHovered ? 'translateY(-30px) scale(1.1)' : isSelected ? 'translateY(-20px) scale(1.05)' : ''}
                     `,
-                    transition: 'transform 0.3s ease',
-                    zIndex: isHovered ? 100 : isSelected ? 50 : index,
+                    zIndex: isHovered ? 1000 : isSelected ? 500 + selectionOrder : baseZIndex,
                   }}
                 >
-                  {/* 卡牌 */}
+                  {/* 竖版塔罗牌 */}
                   <div
                     className={`
-                      w-12 h-18 md:w-14 md:h-21 rounded shadow-lg
+                      w-28 h-[10.5rem] md:w-36 md:h-[13.5rem] rounded-lg
                       transition-all duration-300
                       ${isSelected
-                        ? 'ring-2 ring-accent bg-accent/20'
-                        : 'bg-surface hover:shadow-2xl'
+                        ? 'ring-4 ring-accent shadow-2xl'
+                        : isHovered
+                        ? 'shadow-2xl ring-2 ring-accent/50'
+                        : 'shadow-lg'
                       }
                       ${!isSelected && selectedIndices.length >= spread.cardCount
-                        ? 'opacity-30'
+                        ? 'opacity-40 cursor-not-allowed'
                         : ''
                       }
-                      border-2 border-border
                     `}
                   >
-                    {/* 卡背设计 */}
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center">
-                        <div className={`${isHovered || isSelected ? 'text-accent' : 'text-text-secondary'} transition-colors`}>
-                          <div className="text-xl">✧</div>
-                        </div>
+                    {/* 卡背设计 - 为图片预留空间 */}
+                    <div className={`
+                      w-full h-full rounded-lg border-2 transition-colors
+                      ${isSelected
+                        ? 'border-accent bg-gradient-to-br from-accent/20 to-accent/5'
+                        : 'border-border bg-surface'
+                      }
+                      flex flex-col items-center justify-center p-4
+                    `}>
+                      {/* 简单的占位图案 - 后续替换为图片 */}
+                      <div className={`
+                        flex-1 flex flex-col items-center justify-center
+                        ${isHovered || isSelected ? 'text-accent' : 'text-text-secondary'}
+                        transition-colors duration-300
+                      `}>
+                        <div className="text-4xl mb-3">✧</div>
+                        <div className="text-xs font-serif tracking-wider opacity-60">TAROT</div>
+                        <div className="mt-3 text-2xl">✧</div>
                       </div>
                     </div>
                   </div>
 
-                  {/* 选择序号 */}
+                  {/* 选择序号标记 */}
                   {isSelected && (
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white text-sm font-bold shadow-xl border-2 border-white">
                       {selectionOrder}
                     </div>
                   )}
 
                   {/* 悬停提示 */}
-                  {isHovered && !isSelected && (
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-accent">
-                      点击选择
+                  {isHovered && !isSelected && selectedIndices.length < spread.cardCount && (
+                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 bg-accent/90 text-white text-xs rounded-full shadow-lg">
+                      点击抽取
                     </div>
                   )}
                 </button>
@@ -177,19 +195,19 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
 
       {/* Confirm Button */}
       {isComplete && (
-        <div className="mt-8 mb-8 text-center animate-fadeIn">
+        <div className="mt-6 mb-8 text-center z-20 animate-fadeIn">
           <button
             onClick={handleConfirm}
-            className="bg-accent text-white px-10 py-4 rounded-lg font-medium hover:bg-accent/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+            className="bg-accent text-white px-12 py-4 rounded-lg font-medium text-lg hover:bg-accent/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
           >
             确认选择
           </button>
         </div>
       )}
 
-      {/* 提示文字 */}
-      <div className="mt-4 text-center text-sm text-text-secondary max-w-md">
-        <p>牌阵在缓慢旋转，当你感受到某张牌的召唤时，点击它。</p>
+      {/* 底部提示 */}
+      <div className="mb-4 text-center text-sm text-text-secondary max-w-md z-20">
+        <p>牌阵在缓缓旋转，静心感受，让直觉引导你的选择</p>
       </div>
 
       <style jsx>{`

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { DrawnCard } from '@/lib/types';
 import { motion } from 'framer-motion';
 
@@ -46,33 +47,35 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
               <div className="w-32 md:w-40 aspect-[2/3]">
                 {/* 牌背 */}
                 <div
-                  className="absolute w-full h-full rounded-lg border-2 border-border bg-surface flex items-center justify-center"
+                  className="absolute w-full h-full rounded-lg overflow-hidden shadow-lg"
                   style={{
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)',
                   }}
                 >
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">✧</div>
-                    <div className="text-xs text-text-secondary font-serif">Tarot</div>
-                  </div>
+                  <Image
+                    src="/cards/card-back.jpg"
+                    alt="Tarot Card Back"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
 
                 {/* 牌面 */}
                 <div
-                  className="absolute w-full h-full rounded-lg border-2 border-accent bg-surface p-4 flex flex-col items-center justify-center"
+                  className="absolute w-full h-full rounded-lg overflow-hidden shadow-xl border-2 border-accent"
                   style={{ backfaceVisibility: 'hidden' }}
                 >
-                  <div className={`text-center ${drawnCard.isReversed ? 'rotate-180' : ''}`}>
-                    <div className="text-2xl mb-2">🂠</div>
-                    <div className="text-sm font-serif text-text-primary mb-1">
-                      {drawnCard.card.name}
-                    </div>
-                    <div className="text-xs text-text-secondary">
-                      {drawnCard.card.nameEn}
-                    </div>
+                  <div className={drawnCard.isReversed ? 'rotate-180' : ''} style={{ width: '100%', height: '100%' }}>
+                    <Image
+                      src={drawnCard.card.imageUrl}
+                      alt={drawnCard.card.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="absolute bottom-2 text-xs text-accent">
+                  {/* 正逆位标识 */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-accent/90 text-white text-xs py-1 text-center font-medium">
                     {drawnCard.isReversed ? '逆位' : '正位'}
                   </div>
                 </div>

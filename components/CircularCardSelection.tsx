@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { TarotCard, Spread, DrawnCard } from '@/lib/types';
 import { tarotCards, isReversed } from '@/lib/tarot-data';
 
@@ -26,7 +27,7 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
   useEffect(() => {
     const interval = setInterval(() => {
       setRotation(prev => (prev + 0.05) % 360);
-    }, 50); // 更慢的旋转速度
+    }, 50);
 
     return () => clearInterval(interval);
   }, []);
@@ -53,9 +54,9 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
   const totalCards = 78;
 
   // 扇形参数
-  const radius = 450; // 圆圈半径
-  const spreadAngle = 280; // 扇形展开角度（280度）
-  const startAngle = -140; // 起始角度
+  const radius = 450;
+  const spreadAngle = 280;
+  const startAngle = -140;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-background overflow-hidden">
@@ -104,13 +105,11 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
             }}
           >
             {shuffledCards.map((card, index) => {
-              // 计算每张牌的角度
               const angle = startAngle + (index / (totalCards - 1)) * spreadAngle;
               const isSelected = selectedIndices.includes(index);
               const isHovered = hoveredIndex === index;
               const selectionOrder = selectedIndices.indexOf(index) + 1;
 
-              // 根据位置调整 z-index，中间的牌在最上层
               const middleIndex = totalCards / 2;
               const distanceFromMiddle = Math.abs(index - middleIndex);
               const baseZIndex = totalCards - Math.floor(distanceFromMiddle);
@@ -137,7 +136,7 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                   {/* 竖版塔罗牌 */}
                   <div
                     className={`
-                      w-28 h-[10.5rem] md:w-36 md:h-[13.5rem] rounded-lg
+                      w-28 h-[10.5rem] md:w-36 md:h-[13.5rem] rounded-lg overflow-hidden
                       transition-all duration-300
                       ${isSelected
                         ? 'ring-4 ring-accent shadow-2xl'
@@ -151,25 +150,15 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                       }
                     `}
                   >
-                    {/* 卡背设计 - 为图片预留空间 */}
-                    <div className={`
-                      w-full h-full rounded-lg border-2 transition-colors
-                      ${isSelected
-                        ? 'border-accent bg-gradient-to-br from-accent/20 to-accent/5'
-                        : 'border-border bg-surface'
-                      }
-                      flex flex-col items-center justify-center p-4
-                    `}>
-                      {/* 简单的占位图案 - 后续替换为图片 */}
-                      <div className={`
-                        flex-1 flex flex-col items-center justify-center
-                        ${isHovered || isSelected ? 'text-accent' : 'text-text-secondary'}
-                        transition-colors duration-300
-                      `}>
-                        <div className="text-4xl mb-3">✧</div>
-                        <div className="text-xs font-serif tracking-wider opacity-60">TAROT</div>
-                        <div className="mt-3 text-2xl">✧</div>
-                      </div>
+                    {/* 使用真实卡背图片 */}
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/cards/card-back.jpg"
+                        alt="Tarot Card Back"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 7rem, 9rem"
+                      />
                     </div>
                   </div>
 

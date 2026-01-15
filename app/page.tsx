@@ -1,20 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Spread, DrawnCard } from '@/lib/types';
 import { getAllSpreads } from '@/lib/spreads';
 import SpreadSelector from '@/components/SpreadSelector';
 import CircularCardSelection from '@/components/CircularCardSelection';
 import QuestionInput from '@/components/QuestionInput';
 import CardReveal from '@/components/CardReveal';
+import { canPerformReading, recordReading, getRemainingReadings } from '@/lib/rate-limit';
 
-type Step = 'select-spread' | 'select-cards' | 'input-question' | 'reveal-cards' | 'show-result';
+type Step = 'select-spread' | 'select-cards' | 'input-question' | 'reveal-cards' | 'interpreting' | 'show-result';
 
 export default function Home() {
   const [step, setStep] = useState<Step>('select-spread');
   const [selectedSpread, setSelectedSpread] = useState<Spread | null>(null);
   const [drawnCards, setDrawnCards] = useState<DrawnCard[]>([]);
   const [question, setQuestion] = useState<string>('');
+  const [interpretation, setInterpretation] = useState<string>('');
+  const [interpretError, setInterpretError] = useState<string>('');
+  const [remainingCount, setRemainingCount] = useState(3);
 
   const spreads = getAllSpreads();
 

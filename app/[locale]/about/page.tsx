@@ -2,12 +2,35 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { locales } from '@/i18n';
 
-export const metadata: Metadata = {
-  title: 'About Tarot Cards - History, Meanings & AI Reading Guide',
-  description: 'Discover the origins of tarot cards, 78 Major & Minor Arcana meanings, tarot reading methods and spread interpretations. Professional AI-powered online tarot platform for love, career, and life guidance.',
-  keywords: ['tarot cards', 'tarot card meanings', 'tarot history', 'Major Arcana', 'Minor Arcana', 'tarot reading methods', 'AI tarot', 'how to read tarot cards', 'tarot card guide'],
-};
+// Generate static params for all locales
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+// Generate metadata based on locale
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (locale === 'zh') {
+    return {
+      title: '关于塔罗牌 - 历史、含义与AI解读指南',
+      description: '探索塔罗牌的起源，了解78张大小阿卡纳的含义、塔罗占卜方法和牌阵解读技巧。专业AI驱动的在线塔罗平台，提供爱情、事业和人生指引。',
+      keywords: ['塔罗牌', '塔罗牌含义', '塔罗历史', '大阿卡纳', '小阿卡纳', '塔罗占卜方法', 'AI塔罗', '如何解读塔罗牌', '塔罗牌指南'],
+    };
+  }
+
+  return {
+    title: 'About Tarot Cards - History, Meanings & AI Reading Guide',
+    description: 'Discover the origins of tarot cards, 78 Major & Minor Arcana meanings, tarot reading methods and spread interpretations. Professional AI-powered online tarot platform for love, career, and life guidance.',
+    keywords: ['tarot cards', 'tarot card meanings', 'tarot history', 'Major Arcana', 'Minor Arcana', 'tarot reading methods', 'AI tarot', 'how to read tarot cards', 'tarot card guide'],
+  };
+}
 
 export default async function AboutPage({
   params,

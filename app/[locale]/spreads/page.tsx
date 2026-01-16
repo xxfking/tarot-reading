@@ -3,12 +3,35 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { getAllSpreads } from '@/lib/spreads';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { locales } from '@/i18n';
 
-export const metadata: Metadata = {
-  title: 'Tarot Spreads Guide - 5 Classic Tarot Card Layouts Explained',
-  description: 'Complete guide to 5 classic tarot spreads: Single Card, Three Card, Holy Triangle, Celtic Cross, and Time Flow. Learn usage methods, suitable scenarios, and interpretation techniques for accurate AI tarot readings.',
-  keywords: ['tarot spreads', 'single card reading', 'three card spread', 'holy triangle tarot', 'Celtic cross spread', 'time flow spread', 'tarot reading methods', 'tarot layouts', 'AI tarot spreads'],
-};
+// Generate static params for all locales
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+// Generate metadata based on locale
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (locale === 'zh') {
+    return {
+      title: '塔罗牌阵指南 - 5种经典塔罗牌布局详解',
+      description: '完整介绍5种经典塔罗牌阵：单牌、三牌阵、圣三角、凯尔特十字和时间之流。学习使用方法、适用场景和解读技巧，获得准确的AI塔罗占卜。',
+      keywords: ['塔罗牌阵', '单牌占卜', '三牌阵', '圣三角塔罗', '凯尔特十字牌阵', '时间之流牌阵', '塔罗占卜方法', '塔罗布局', 'AI塔罗牌阵'],
+    };
+  }
+
+  return {
+    title: 'Tarot Spreads Guide - 5 Classic Tarot Card Layouts Explained',
+    description: 'Complete guide to 5 classic tarot spreads: Single Card, Three Card, Holy Triangle, Celtic Cross, and Time Flow. Learn usage methods, suitable scenarios, and interpretation techniques for accurate AI tarot readings.',
+    keywords: ['tarot spreads', 'single card reading', 'three card spread', 'holy triangle tarot', 'Celtic cross spread', 'time flow spread', 'tarot reading methods', 'tarot layouts', 'AI tarot spreads'],
+  };
+}
 
 export default async function SpreadsPage({
   params,

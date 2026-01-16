@@ -9,7 +9,7 @@ import CircularCardSelection from '@/components/CircularCardSelection';
 import QuestionInput from '@/components/QuestionInput';
 import CardReveal from '@/components/CardReveal';
 import HistorySidebar from '@/components/HistorySidebar';
-import { canPerformReading, recordReading, getRemainingReadings } from '@/lib/rate-limit';
+import { canPerformReading, recordReading, getRemainingReadings, DAILY_LIMIT } from '@/lib/rate-limit';
 import { saveToHistory } from '@/lib/history';
 
 type Step = 'select-spread' | 'select-cards' | 'input-question' | 'reveal-cards' | 'interpreting' | 'show-result';
@@ -158,7 +158,7 @@ ${interpretation}
             {/* Usage Info */}
             <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
               <p className="text-sm md:text-base text-text-secondary font-sans">
-                今日剩余占卜次数：<span className="font-semibold text-accent ml-1 text-base">{remainingCount} / 3</span>
+                今日剩余占卜次数：<span className="font-semibold text-accent ml-1 text-base">{remainingCount} / {DAILY_LIMIT}</span>
               </p>
               <button
                 onClick={() => setIsHistoryOpen(true)}

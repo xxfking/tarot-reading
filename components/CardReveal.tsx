@@ -41,9 +41,9 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
           {drawnCards.map((drawnCard, index) => (
             <motion.div
               key={index}
-              initial={{ rotateY: 180, opacity: 0, scale: 0.8 }}
+              initial={{ rotateY: 0, opacity: 0, scale: 0.8 }}
               animate={{
-                rotateY: index < revealedCount ? 0 : 180,
+                rotateY: index < revealedCount ? 180 : 0,
                 opacity: 1,
                 scale: 1
               }}
@@ -61,7 +61,6 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                   className="absolute w-full h-full rounded-md overflow-hidden shadow-md"
                   style={{
                     backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)',
                   }}
                 >
                   <Image
@@ -77,7 +76,10 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                 {/* 牌面 */}
                 <div
                   className="absolute w-full h-full rounded-md overflow-hidden shadow-md border border-border"
-                  style={{ backfaceVisibility: 'hidden' }}
+                  style={{
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                  }}
                 >
                   <div className={drawnCard.isReversed ? 'rotate-180 w-full h-full' : 'w-full h-full'}>
                     <div className="relative w-full h-full">

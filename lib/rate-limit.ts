@@ -9,7 +9,7 @@ interface RateLimitRecord {
 }
 
 const STORAGE_KEY = 'tarot_rate_limit';
-const DAILY_LIMIT = 10; // 修改为每天10次（可以改为任意数字）
+export const DAILY_LIMIT = 10; // 修改为每天10次（可以改为任意数字）
 const COOLDOWN_MS = 30 * 1000; // 30 秒
 
 // 获取今天的开始时间（UTC 0点）

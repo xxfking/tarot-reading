@@ -115,6 +115,50 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
               height: '720px',
             }}
           >
+          {/* 中心的神秘之眼 */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+            <div className="relative w-32 h-32 md:w-40 md:h-40">
+              {/* 外圈光晕 */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-yellow/20 to-accent/30 blur-xl animate-pulse"></div>
+
+              {/* 眼睛主体 */}
+              <div className="relative w-full h-full flex items-center justify-center">
+                {/* 眼白 */}
+                <div className="relative w-28 h-16 md:w-32 md:h-20 bg-gradient-to-br from-white to-gray-100 rounded-full shadow-2xl overflow-hidden">
+                  {/* 虹膜 */}
+                  <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 shadow-inner"
+                    style={{
+                      animation: 'eyeMove 4s ease-in-out infinite',
+                    }}
+                  >
+                    {/* 瞳孔 */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full bg-black shadow-lg">
+                      {/* 高光 */}
+                      <div className="absolute top-1 left-1 w-2 h-2 bg-white rounded-full opacity-80"></div>
+                    </div>
+
+                    {/* 虹膜纹理 */}
+                    <div className="absolute inset-0 opacity-30">
+                      {[...Array(8)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute top-1/2 left-1/2 w-full h-0.5 bg-blue-950"
+                          style={{
+                            transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
+                            transformOrigin: 'center',
+                          }}
+                        ></div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 眼睑阴影 */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-gray-400/20 to-transparent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* 旋转的扇形牌堆 */}
           <div
@@ -204,6 +248,21 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
           </div>
         </div>
       </div>
+
+      {/* 眼睛动画样式 */}
+      <style jsx>{`
+        @keyframes eyeMove {
+          0%, 100% {
+            transform: translate(-50%, -50%);
+          }
+          25% {
+            transform: translate(-48%, -50%);
+          }
+          75% {
+            transform: translate(-52%, -50%);
+          }
+        }
+      `}</style>
     </div>
   );
 }

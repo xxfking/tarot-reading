@@ -81,17 +81,20 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                     transform: 'rotateY(180deg)',
                   }}
                 >
-                  <div className={drawnCard.isReversed ? 'rotate-180 w-full h-full' : 'w-full h-full'}>
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={drawnCard.card.imageUrl}
-                        alt={drawnCard.card.name}
-                        fill
-                        sizes="(max-width: 768px) 144px, 176px"
-                        className="object-cover"
-                        priority
-                      />
-                    </div>
+                  <div
+                    className="relative w-full h-full"
+                    style={{
+                      transform: drawnCard.isReversed ? 'rotate(180deg)' : 'none'
+                    }}
+                  >
+                    <Image
+                      src={drawnCard.card.imageUrl}
+                      alt={drawnCard.card.name}
+                      fill
+                      sizes="(max-width: 768px) 144px, 176px"
+                      className="object-cover"
+                      priority
+                    />
                   </div>
                   {/* 正逆位标识 */}
                   <div className="absolute bottom-0 left-0 right-0 bg-accent text-white text-xs py-2 text-center font-sans font-medium">

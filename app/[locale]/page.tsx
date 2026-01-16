@@ -259,14 +259,14 @@ ${interpretation}
                             ? 'bg-accent-cool/10 text-accent-cool border border-accent-cool/30'
                             : 'bg-accent/10 text-accent border border-accent/30'
                         }`}>
-                          {drawnCard.isReversed ? '逆位' : '正位'}
+                          {drawnCard.isReversed ? t('result.reversed') : t('result.upright')}
                         </span>
                       </div>
 
-                      {/* 关键词 */}
+                      {/* Keywords */}
                       <div className="mb-5 md:mb-6">
                         <h4 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-2 md:mb-3 uppercase tracking-wide">
-                          关键词
+                          {t('result.keywords')}
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {(drawnCard.isReversed
@@ -283,10 +283,10 @@ ${interpretation}
                         </div>
                       </div>
 
-                      {/* 牌义描述 */}
+                      {/* Card Meaning */}
                       <div>
                         <h4 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-2 md:mb-3 uppercase tracking-wide">
-                          牌义
+                          {t('result.meaning')}
                         </h4>
                         <p className="text-sm md:text-base text-text-primary font-sans leading-relaxed">
                           {drawnCard.isReversed
@@ -301,11 +301,11 @@ ${interpretation}
               ))}
             </div>
 
-            {/* 用户问题 */}
+            {/* User Question */}
             {question && (
               <div className="mb-8 md:mb-12 p-6 md:p-8 bg-white border border-border rounded-lg shadow-md">
                 <h3 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-3 md:mb-4 uppercase tracking-wider">
-                  你的问题
+                  {t('result.yourQuestion')}
                 </h3>
                 <p className="text-text-primary font-serif text-lg md:text-xl leading-relaxed">
                   "{question}"
@@ -313,18 +313,18 @@ ${interpretation}
               </div>
             )}
 
-            {/* 解读结果 */}
+            {/* Interpretation Result */}
             <div className="bg-white border border-border rounded-lg p-6 md:p-10 mb-12 md:mb-16 shadow-lg">
               <h3 className="text-xl md:text-2xl font-display text-text-primary mb-5 md:mb-6 pb-3 md:pb-4 border-b border-border/50 font-semibold">
-                结果解析
+                {t('result.interpretation')}
               </h3>
 
               {interpretError ? (
                 <div className="text-center p-6 md:p-8">
-                  <p className="text-red-600 font-sans font-semibold text-base md:text-lg mb-2">解读失败</p>
+                  <p className="text-red-600 font-sans font-semibold text-base md:text-lg mb-2">{t('result.failed')}</p>
                   <p className="text-text-secondary text-xs md:text-sm mb-3 md:mb-4">{interpretError}</p>
                   <p className="text-text-secondary text-xs font-sans">
-                    请检查环境变量配置，或稍后重试
+                    {t('result.checkConfig')}
                   </p>
                 </div>
               ) : interpretation ? (
@@ -340,7 +340,7 @@ ${interpretation}
               ) : (
                 <div className="text-center py-10 md:py-12">
                   <div className="inline-block animate-spin-slow text-3xl md:text-4xl text-accent mb-3 md:mb-4">◐</div>
-                  <p className="text-text-secondary font-sans text-sm md:text-base">正在加载解读结果...</p>
+                  <p className="text-text-secondary font-sans text-sm md:text-base">{t('common.loading')}</p>
                 </div>
               )}
             </div>
@@ -352,7 +352,7 @@ ${interpretation}
                   onClick={handleCopyInterpretation}
                   className="px-6 md:px-8 py-2.5 md:py-3 border-2 border-accent text-accent hover:bg-accent hover:text-white rounded-md font-sans font-medium transition-all text-sm md:text-base"
                 >
-                  复制解读
+                  {t('result.copyReading')}
                 </button>
               )}
 
@@ -360,7 +360,7 @@ ${interpretation}
                 onClick={handleReset}
                 className="px-8 md:px-10 py-2.5 md:py-3 bg-accent text-white hover:bg-accent/90 rounded-md font-sans font-medium transition-all shadow-sm text-sm md:text-base"
               >
-                重新抽牌
+                {t('result.readAgain')}
               </button>
             </div>
           </div>
@@ -370,20 +370,20 @@ ${interpretation}
       {/* 历史记录侧边栏 */}
       <HistorySidebar isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)} />
 
-      {/* 页脚导航 */}
+      {/* Footer Navigation */}
       {step === 'select-spread' && (
         <footer className="border-t border-border mt-16">
           <div className="max-w-5xl mx-auto px-6 py-8 text-center">
             <div className="flex flex-wrap justify-center gap-6 mb-4 text-sm font-sans">
-              <Link href="/about" className="text-text-secondary hover:text-accent transition-colors">
-                关于塔罗牌
+              <Link href="about" className="text-text-secondary hover:text-accent transition-colors">
+                {t('footer.about')}
               </Link>
-              <Link href="/spreads" className="text-text-secondary hover:text-accent transition-colors">
-                牌阵介绍
+              <Link href="spreads" className="text-text-secondary hover:text-accent transition-colors">
+                {t('footer.spreads')}
               </Link>
             </div>
             <p className="text-text-secondary text-xs font-sans">
-              © 2026 塔罗占卜 | AI智能在线塔罗牌解读平台
+              {t('footer.copyright')}
             </p>
           </div>
         </footer>

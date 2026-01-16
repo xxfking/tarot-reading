@@ -19,11 +19,12 @@
     "clickToSelect": "点击选择"
   },
   "questionInput": {
-    "title": "你的问题",
-    "subtitle": "说出你的心声，让塔罗为你指引",
-    "placeholder": "你想了解什么？（可选）\n\n例如：\n- 我目前的感情会有进一步发展吗？\n- 我应该接受这个新的工作机会吗？\n- 我的事业发展应该注意什么？",
+    "title": "你在想什么问题？",
+    "subtitle": "告诉我你抽牌时思考的问题，我会根据牌面为你解答",
+    "skipHint": "也可以跳过此步骤获得通用解读",
+    "placeholder": "在此输入你的问题...",
     "skip": "跳过",
-    "submit": "继续"
+    "submit": "开始解读"
   },
   "cardReveal": {
     "title": "你的牌面",

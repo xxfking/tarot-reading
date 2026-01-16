@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { DrawnCard } from '@/lib/types';
 import { motion } from 'framer-motion';
 
@@ -11,18 +12,19 @@ interface CardRevealProps {
 }
 
 export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) {
+  const t = useTranslations();
   const [revealedCount, setRevealedCount] = useState(0);
 
   useEffect(() => {
     if (revealedCount < drawnCards.length) {
       const timer = setTimeout(() => {
         setRevealedCount(revealedCount + 1);
-      }, 1200); // 增加到1.2秒，让动画更从容
+      }, 1200);
       return () => clearTimeout(timer);
     } else if (revealedCount === drawnCards.length) {
       const timer = setTimeout(() => {
         onComplete();
-      }, 1500); // 增加最后停留时间
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [revealedCount, drawnCards.length, onComplete]);
@@ -31,10 +33,10 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
     <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-subtle">
       <div className="max-w-5xl w-full">
         <h2 className="text-4xl font-display mb-4 text-text-primary text-center font-semibold">
-          你的牌面
+          {t('cardReveal.title')}
         </h2>
         <p className="text-center text-text-secondary font-sans mb-12">
-          牌面即将揭晓
+          {t('cardReveal.subtitle')}
         </p>
 
         <div className="flex flex-wrap justify-center gap-6">
@@ -63,7 +65,7 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                     className="w-full h-full relative"
                     style={{ transformStyle: 'preserve-3d' }}
                   >
-                    {/* 牌背 */}
+                    {/* Card Back */}
                     <div
                       className="absolute inset-0 w-full h-full rounded-md overflow-hidden shadow-md"
                       style={{
@@ -81,7 +83,7 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                       />
                     </div>
 
-                    {/* 牌面 */}
+                    {/* Card Front */}
                     <div
                       className="absolute inset-0 w-full h-full rounded-md overflow-hidden shadow-md border border-border"
                       style={{
@@ -105,15 +107,15 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                           priority
                         />
                       </div>
-                      {/* 正逆位标识 */}
+                      {/* Upright/Reversed Badge */}
                       <div className="absolute bottom-0 left-0 right-0 bg-accent text-white text-xs py-2 text-center font-sans font-medium z-10">
-                        {drawnCard.isReversed ? '逆位' : '正位'}
+                        {drawnCard.isReversed ? t('result.reversed') : t('result.upright')}
                       </div>
                     </div>
                   </motion.div>
                 </motion.div>
 
-                {/* 位置标签 */}
+                {/* Position Label */}
                 <div className="text-center mt-4 text-base text-text-primary font-sans">
                   {drawnCard.position}
                 </div>
@@ -123,7 +125,7 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
         </div>
 
         <div className="text-center mt-16 text-text-secondary font-sans">
-          正在准备解读
+          {t('cardReveal.preparing')}
         </div>
       </div>
     </div>

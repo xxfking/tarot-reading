@@ -20,10 +20,11 @@
   },
   "questionInput": {
     "title": "Your Question",
-    "subtitle": "Speak your heart, let the cards guide you",
-    "placeholder": "What would you like to know? (Optional)\n\nFor example:\n- Will my current relationship develop further?\n- Should I accept this new job opportunity?\n- What should I focus on in my career development?",
+    "subtitle": "Tell me what question you're thinking about when drawing the cards, and I'll interpret based on the reading",
+    "skipHint": "You can also skip this step for a general reading",
+    "placeholder": "Enter your question here...",
     "skip": "Skip",
-    "submit": "Continue"
+    "submit": "Begin Reading"
   },
   "cardReveal": {
     "title": "Your Cards",

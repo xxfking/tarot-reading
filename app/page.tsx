@@ -310,10 +310,10 @@ ${interpretation}
               </div>
             )}
 
-            {/* AI 解读 */}
+            {/* 解读结果 */}
             <div className="bg-white border border-border rounded-lg p-6 md:p-10 mb-12 md:mb-16 shadow-lg">
               <h3 className="text-xl md:text-2xl font-display text-text-primary mb-5 md:mb-6 pb-3 md:pb-4 border-b border-border/50 font-semibold">
-                AI 智能解读
+                结果解析
               </h3>
 
               {interpretError ? (
@@ -326,8 +326,12 @@ ${interpretation}
                 </div>
               ) : interpretation ? (
                 <div className="prose max-w-none">
-                  <div className="text-text-primary font-sans text-sm md:text-base leading-loose whitespace-pre-wrap">
-                    {interpretation}
+                  <div className="text-text-primary font-sans text-sm md:text-base leading-relaxed whitespace-pre-line space-y-4">
+                    {interpretation.split('\n\n').map((paragraph, index) => (
+                      <p key={index} className="mb-4 last:mb-0">
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </div>
               ) : (

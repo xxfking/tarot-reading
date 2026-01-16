@@ -197,15 +197,17 @@ ${item.interpretation}
                   </div>
                 </div>
 
-                {/* AI 解读 */}
+                {/* 结果解析 */}
                 <div className="mb-6">
                   <div className="text-xs text-text-secondary font-sans font-semibold mb-3">
-                    AI 解读
+                    结果解析
                   </div>
-                  <div className="p-4 bg-background rounded-lg">
-                    <p className="text-sm text-text-primary font-sans leading-relaxed whitespace-pre-wrap">
-                      {selectedItem.interpretation}
-                    </p>
+                  <div className="p-4 bg-background rounded-lg space-y-3">
+                    {selectedItem.interpretation.split('\n\n').map((paragraph, index) => (
+                      <p key={index} className="text-sm text-text-primary font-sans leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </div>
 
@@ -305,15 +307,17 @@ ${item.interpretation}
                 </div>
               </div>
 
-              {/* AI 解读 */}
+              {/* 结果解析 */}
               <div className="mb-6">
                 <div className="text-xs text-text-secondary font-sans font-semibold mb-3">
-                  AI 解读
+                  结果解析
                 </div>
-                <div className="p-4 bg-background rounded-lg">
-                  <p className="text-sm text-text-primary font-sans leading-relaxed whitespace-pre-wrap">
-                    {selectedItem.interpretation}
-                  </p>
+                <div className="p-4 bg-background rounded-lg space-y-3">
+                  {selectedItem.interpretation.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="text-sm text-text-primary font-sans leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
               </div>
 

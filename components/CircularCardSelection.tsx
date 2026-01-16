@@ -55,7 +55,8 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
 
   // 完整圆盘参数 - 增大半径以更好展示
   const radius = 280;
-  const spreadAngle = 360;
+  // 让卡牌均匀分布在整个360度，头尾相接无间隙
+  const angleStep = 360 / totalCards; // 每张卡片占据的角度
   const startAngle = 0;
 
   return (
@@ -171,7 +172,7 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
             }}
           >
             {shuffledCards.map((card, index) => {
-              const angle = startAngle + (index / (totalCards - 1)) * spreadAngle;
+              const angle = startAngle + index * angleStep;
               const isSelected = selectedIndices.includes(index);
               const isHovered = hoveredIndex === index;
               const selectionOrder = selectedIndices.indexOf(index) + 1;

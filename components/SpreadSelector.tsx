@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Spread } from '@/lib/types';
 
 interface SpreadSelectorProps {
@@ -8,6 +9,8 @@ interface SpreadSelectorProps {
 }
 
 export default function SpreadSelector({ spreads, onSelect }: SpreadSelectorProps) {
+  const t = useTranslations();
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-5xl mx-auto">
       {spreads.map((spread) => (
@@ -26,7 +29,7 @@ export default function SpreadSelector({ spreads, onSelect }: SpreadSelectorProp
 
           <div className="flex items-center justify-between pt-3 border-t border-border">
             <span className="text-sm md:text-base text-text-secondary font-sans font-medium">
-              {spread.cardCount} 张牌
+              {spread.cardCount} {spread.cardCount === 1 ? t('common.card') : t('common.cards')}
             </span>
             <span className="text-accent text-2xl md:text-3xl group-hover:translate-x-1 transition-transform font-bold">
               →

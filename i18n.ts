@@ -8,11 +8,17 @@ export type Locale = (typeof locales)[number];
 // 默认语言
 export const defaultLocale: Locale = 'en';
 
-export default getRequestConfig(async ({ locale }) => {
-  // 验证传入的locale是否有效
-  if (!locales.includes(locale as Locale)) notFound();
+export default getRequestConfig(async ({ requestLocale }) => {
+  // Get the locale from the request
+  let locale = await requestLocale;
+
+  // Validate locale - if not valid, use default
+  if (!locale || !locales.includes(locale as Locale)) {
+    locale = defaultLocale;
+  }
 
   return {
+    locale,
     messages: (await import(`./messages/${locale}.json`)).default,
   };
 });

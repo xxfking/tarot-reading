@@ -115,6 +115,13 @@
     "cancel": "取消",
     "confirm": "确认",
     "yes": "是",
-    "no": "否"
+    "no": "否",
+    "card": "张牌",
+    "cards": "张牌"
+  },
+  "footer": {
+    "about": "关于塔罗牌",
+    "spreads": "牌阵介绍",
+    "copyright": "© 2026 塔罗占卜 | AI智能在线塔罗牌解读平台"
   }
 }

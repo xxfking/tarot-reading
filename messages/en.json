@@ -115,6 +115,13 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "card": "card",
+    "cards": "cards"
+  },
+  "footer": {
+    "about": "About Tarot",
+    "spreads": "Spread Guide",
+    "copyright": "© 2026 AI Tarot Reading | AI-Powered Online Tarot Card Reading Platform"
   }
 }

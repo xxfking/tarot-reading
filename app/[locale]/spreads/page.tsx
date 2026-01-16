@@ -109,11 +109,11 @@ export default function SpreadsPage() {
                 <h3 className="text-xl font-bold text-text-primary mb-3 font-sans">适用场景</h3>
                 <div className="p-4 bg-accent/5 rounded-lg border-l-4 border-accent">
                   <p className="text-text-primary font-sans">
-                    {spread.type === 'single-card' && '适合快速决策、每日指引、简单问题的即时解答。当你需要快速获得启发或确认直觉时，单牌占卜是最佳选择。'}
-                    {spread.type === 'three-card' && '适合了解事情的发展脉络、问题的前因后果。三牌阵简洁明了，既能提供足够信息，又不会过于复杂，是最常用的牌阵之一。'}
-                    {spread.type === 'holy-triangle' && '适合分析当前困境、寻找解决方案。当你面临挑战需要建议时，圣三角能清晰展现问题的本质、阻碍和行动方向。'}
-                    {spread.type === 'celtic-cross' && '适合深度分析复杂情况、人生重大决策。凯尔特十字是最经典、最全面的牌阵，能从多个角度剖析问题，提供详尽的洞察。'}
-                    {spread.type === 'time-flow' && '适合了解事态发展趋势、规划未来行动。时间之流清晰展现从过去到未来的演变过程，帮助你把握时机、顺势而为。'}
+                    {spread.type === 'single' && '适合快速决策、每日指引、简单问题的即时解答。当你需要快速获得启发或确认直觉时，单牌占卜是最佳选择。'}
+                    {spread.type === 'three_time' && '适合了解事情的发展脉络、问题的前因后果。三牌阵简洁明了，既能提供足够信息，又不会过于复杂，是最常用的牌阵之一。'}
+                    {spread.type === 'three_situation' && '适合分析当前困境、寻找解决方案。当你面临挑战需要建议时，圣三角能清晰展现问题的本质、阻碍和行动方向。'}
+                    {spread.type === 'celtic_cross' && '适合深度分析复杂情况、人生重大决策。凯尔特十字是最经典、最全面的牌阵，能从多个角度剖析问题，提供详尽的洞察。'}
+                    {spread.type === 'relationship' && '适合了解事态发展趋势、规划未来行动。时间之流清晰展现从过去到未来的演变过程，帮助你把握时机、顺势而为。'}
                   </p>
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function SpreadsPage() {
               <div className="mb-6">
                 <h3 className="text-xl font-bold text-text-primary mb-3 font-sans">解读要点</h3>
                 <ul className="space-y-2">
-                  {spread.type === 'single-card' && (
+                  {spread.type === 'single' && (
                     <>
                       <li className="flex gap-2 text-text-primary font-sans">
                         <span className="text-accent">•</span>
@@ -138,7 +138,7 @@ export default function SpreadsPage() {
                       </li>
                     </>
                   )}
-                  {spread.type === 'three-card' && (
+                  {spread.type === 'three_time' && (
                     <>
                       <li className="flex gap-2 text-text-primary font-sans">
                         <span className="text-accent">•</span>
@@ -158,7 +158,7 @@ export default function SpreadsPage() {
                       </li>
                     </>
                   )}
-                  {spread.type === 'holy-triangle' && (
+                  {spread.type === 'three_situation' && (
                     <>
                       <li className="flex gap-2 text-text-primary font-sans">
                         <span className="text-accent">•</span>
@@ -174,7 +174,7 @@ export default function SpreadsPage() {
                       </li>
                     </>
                   )}
-                  {spread.type === 'celtic-cross' && (
+                  {spread.type === 'celtic_cross' && (
                     <>
                       <li className="flex gap-2 text-text-primary font-sans">
                         <span className="text-accent">•</span>
@@ -194,7 +194,7 @@ export default function SpreadsPage() {
                       </li>
                     </>
                   )}
-                  {spread.type === 'time-flow' && (
+                  {spread.type === 'relationship' && (
                     <>
                       <li className="flex gap-2 text-text-primary font-sans">
                         <span className="text-accent">•</span>

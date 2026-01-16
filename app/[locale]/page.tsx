@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Spread, DrawnCard } from '@/lib/types';
 import { getAllSpreads } from '@/lib/spreads';
 import SpreadSelector from '@/components/SpreadSelector';
@@ -16,6 +17,7 @@ import { saveToHistory } from '@/lib/history';
 type Step = 'select-spread' | 'select-cards' | 'input-question' | 'reveal-cards' | 'interpreting' | 'show-result';
 
 export default function Home() {
+  const t = useTranslations();
   const [step, setStep] = useState<Step>('select-spread');
   const [selectedSpread, setSelectedSpread] = useState<Spread | null>(null);
   const [drawnCards, setDrawnCards] = useState<DrawnCard[]>([]);
@@ -146,10 +148,10 @@ ${interpretation}
               <div className="w-16 h-1 bg-accent-yellow mx-auto mb-7 rounded-full"></div>
 
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-sans mb-4 text-text-primary font-bold">
-                塔罗占卜
+                {t('home.title')}
               </h1>
               <p className="text-text-secondary text-sm md:text-base font-sans max-w-2xl mx-auto leading-relaxed font-medium">
-                选择一个牌阵，开启你的占卜之旅
+                {t('home.subtitle')}
               </p>
             </div>
 
@@ -159,14 +161,14 @@ ${interpretation}
             {/* Usage Info */}
             <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
               <p className="text-sm md:text-base text-text-secondary font-sans">
-                今日剩余占卜次数：<span className="font-semibold text-accent ml-1 text-base">{remainingCount} / {DAILY_LIMIT}</span>
+                {t('home.usageInfo')} <span className="font-semibold text-accent ml-1 text-base">{remainingCount} / {DAILY_LIMIT}</span>
               </p>
               <button
                 onClick={() => setIsHistoryOpen(true)}
                 className="inline-flex items-center gap-2 px-6 py-2 text-sm md:text-base text-text-secondary hover:text-accent transition-colors font-sans border border-border hover:border-accent rounded-lg"
               >
                 <span>📜</span>
-                <span>查看历史记录</span>
+                <span>{t('home.viewHistory')}</span>
               </button>
             </div>
           </div>
@@ -202,11 +204,11 @@ ${interpretation}
             </div>
 
             <h2 className="text-4xl font-display mb-4 text-text-primary font-semibold">
-              命运解析中
+              {t('interpreting.title')}
             </h2>
 
             <p className="text-text-secondary font-sans text-base max-w-md mx-auto">
-              正在为你解析牌面
+              {t('interpreting.subtitle')}
             </p>
           </div>
         </div>
@@ -218,10 +220,10 @@ ${interpretation}
             {/* 标题 */}
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-4xl md:text-5xl font-display mb-3 text-text-primary font-semibold">
-                解读结果
+                {t('result.title')}
               </h2>
               <p className="text-text-secondary font-sans text-sm md:text-base">
-                塔罗牌为你揭示的启示
+                {t('result.subtitle')}
               </p>
             </div>
 

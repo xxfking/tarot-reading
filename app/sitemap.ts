@@ -1,27 +1,23 @@
 import { MetadataRoute } from 'next';
 import { seoConfig } from '@/lib/seo-config';
+import { locales } from '@/i18n';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = seoConfig.siteUrl;
 
-  return [
-    {
-      url: baseUrl,
+  const routes = ['', '/about', '/spreads'];
+
+  return locales.flatMap((locale) =>
+    routes.map((route) => ({
+      url: `${baseUrl}/${locale}${route}`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/spreads`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-  ];
+      changeFrequency: route === '' ? 'daily' : 'monthly' as 'daily' | 'monthly',
+      priority: route === '' ? 1.0 : 0.8,
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((l) => [l, `${baseUrl}/${l}${route}`])
+        ),
+      },
+    }))
+  );
 }

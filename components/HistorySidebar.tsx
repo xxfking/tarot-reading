@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { ReadingHistory, getHistory, deleteHistoryItem, clearHistory, formatTimestamp } from '@/lib/history';
 
 interface HistorySidebarProps {
@@ -10,6 +11,8 @@ interface HistorySidebarProps {
 }
 
 export default function HistorySidebar({ isOpen, onClose }: HistorySidebarProps) {
+  const t = useTranslations('history');
+  const tResult = useTranslations('result');
   const [history, setHistory] = useState<ReadingHistory[]>([]);
   const [selectedItem, setSelectedItem] = useState<ReadingHistory | null>(null);
 
@@ -20,7 +23,7 @@ export default function HistorySidebar({ isOpen, onClose }: HistorySidebarProps)
   }, [isOpen]);
 
   const handleDelete = (id: string) => {
-    if (confirm('确定要删除这条记录吗？')) {
+    if (confirm(t('confirmDelete'))) {
       deleteHistoryItem(id);
       setHistory(getHistory());
       if (selectedItem?.id === id) {
@@ -30,7 +33,7 @@ export default function HistorySidebar({ isOpen, onClose }: HistorySidebarProps)
   };
 
   const handleClearAll = () => {
-    if (confirm('确定要清空所有历史记录吗？此操作不可恢复。')) {
+    if (confirm(t('confirmClear'))) {
       clearHistory();
       setHistory([]);
       setSelectedItem(null);
@@ -38,24 +41,23 @@ export default function HistorySidebar({ isOpen, onClose }: HistorySidebarProps)
   };
 
   const handleCopy = (item: ReadingHistory) => {
-    const copyText = `【塔罗占卜解读】
+    const copyText = `${t('copyTemplate.title')}
 
-牌阵：${item.spreadName}
-时间：${formatTimestamp(item.timestamp)}
-${item.question ? `问题：${item.question}\n` : ''}
-抽牌结果：
-${item.cards.map(dc => `  ${dc.position}：${dc.card.name}（${dc.isReversed ? '逆位' : '正位'}）`).join('\n')}
+${t('copyTemplate.spread')}：${item.spreadName}
+${t('copyTemplate.time')}：${formatTimestamp(item.timestamp)}
+${item.question ? `${t('copyTemplate.question')}：${item.question}\n` : ''}
+${t('copyTemplate.cards')}：
+${item.cards.map(dc => `  ${dc.position}：${dc.card.name}（${dc.isReversed ? tResult('reversed') : tResult('upright')}）`).join('\n')}
 
-解读：
+${t('copyTemplate.interpretation')}：
 ${item.interpretation}
 
----
-由 AI 智能解读`;
+${t('copyTemplate.footer')}`;
 
     navigator.clipboard.writeText(copyText).then(() => {
-      alert('已复制到剪贴板');
+      alert(t('copySuccess'));
     }).catch(() => {
-      alert('复制失败');
+      alert(t('copyFailed'));
     });
   };
 
@@ -74,7 +76,7 @@ ${item.interpretation}
         {/* 头部 */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <h2 className="text-2xl md:text-3xl font-sans font-bold text-text-primary">
-            历史记录
+            {t('title')}
           </h2>
           <button
             onClick={onClose}
@@ -90,7 +92,7 @@ ${item.interpretation}
           <div className="w-full md:w-2/5 border-r border-border overflow-y-auto">
             {history.length === 0 ? (
               <div className="p-8 text-center">
-                <p className="text-text-secondary font-sans text-sm">暂无历史记录</p>
+                <p className="text-text-secondary font-sans text-sm">{t('empty')}</p>
               </div>
             ) : (
               <>
@@ -99,7 +101,7 @@ ${item.interpretation}
                     onClick={handleClearAll}
                     className="text-sm text-text-secondary hover:text-red-600 font-sans transition-colors"
                   >
-                    清空全部
+                    {t('clear')}
                   </button>
                 </div>
                 <div className="divide-y divide-border">
@@ -145,7 +147,7 @@ ${item.interpretation}
                       onClick={() => handleDelete(selectedItem.id)}
                       className="text-sm text-red-600 hover:text-red-700 font-sans"
                     >
-                      删除
+                      {t('delete')}
                     </button>
                   </div>
                   <p className="text-sm text-text-secondary font-sans">
@@ -157,7 +159,7 @@ ${item.interpretation}
                 {selectedItem.question && (
                   <div className="mb-6 p-4 bg-background rounded-lg">
                     <div className="text-xs text-text-secondary font-sans font-semibold mb-2">
-                      你的问题
+                      {tResult('yourQuestion')}
                     </div>
                     <p className="text-sm text-text-primary font-sans">
                       {selectedItem.question}
@@ -168,7 +170,7 @@ ${item.interpretation}
                 {/* 抽到的牌 */}
                 <div className="mb-6">
                   <div className="text-xs text-text-secondary font-sans font-semibold mb-3">
-                    抽牌结果
+                    {t('cardResults')}
                   </div>
                   <div className="space-y-3">
                     {selectedItem.cards.map((dc, index) => (
@@ -189,7 +191,7 @@ ${item.interpretation}
                             {dc.card.name}
                           </div>
                           <div className={`text-xs font-sans ${dc.isReversed ? 'text-accent-cool' : 'text-accent'}`}>
-                            {dc.isReversed ? '逆位' : '正位'}
+                            {dc.isReversed ? tResult('reversed') : tResult('upright')}
                           </div>
                         </div>
                       </div>
@@ -200,7 +202,7 @@ ${item.interpretation}
                 {/* 结果解析 */}
                 <div className="mb-6">
                   <div className="text-xs text-text-secondary font-sans font-semibold mb-3">
-                    结果解析
+                    {tResult('interpretation')}
                   </div>
                   <div className="p-4 bg-background rounded-lg space-y-3">
                     {selectedItem.interpretation.split('\n\n').map((paragraph, index) => (
@@ -216,13 +218,13 @@ ${item.interpretation}
                   onClick={() => handleCopy(selectedItem)}
                   className="w-full py-3 border-2 border-accent text-accent hover:bg-accent hover:text-white rounded-lg font-sans font-medium transition-all text-sm"
                 >
-                  复制解读
+                  {tResult('copyReading')}
                 </button>
               </div>
             ) : (
               <div className="h-full flex items-center justify-center">
                 <p className="text-text-secondary font-sans text-sm">
-                  选择一条记录查看详情
+                  {t('selectHint')}
                 </p>
               </div>
             )}
@@ -239,7 +241,7 @@ ${item.interpretation}
                 className="mb-6 inline-flex items-center gap-2 text-text-primary hover:text-accent transition-colors"
               >
                 <span className="text-xl">←</span>
-                <span className="font-sans text-sm">返回列表</span>
+                <span className="font-sans text-sm">{t('backToList')}</span>
               </button>
 
               {/* 头部信息 */}
@@ -255,7 +257,7 @@ ${item.interpretation}
                     }}
                     className="text-sm text-red-600 hover:text-red-700 font-sans"
                   >
-                    删除
+                    {t('delete')}
                   </button>
                 </div>
                 <p className="text-sm text-text-secondary font-sans">
@@ -267,7 +269,7 @@ ${item.interpretation}
               {selectedItem.question && (
                 <div className="mb-6 p-4 bg-background rounded-lg">
                   <div className="text-xs text-text-secondary font-sans font-semibold mb-2">
-                    你的问题
+                    {tResult('yourQuestion')}
                   </div>
                   <p className="text-sm text-text-primary font-sans">
                     {selectedItem.question}
@@ -278,7 +280,7 @@ ${item.interpretation}
               {/* 抽到的牌 */}
               <div className="mb-6">
                 <div className="text-xs text-text-secondary font-sans font-semibold mb-3">
-                  抽牌结果
+                  {t('cardResults')}
                 </div>
                 <div className="space-y-3">
                   {selectedItem.cards.map((dc, index) => (
@@ -299,7 +301,7 @@ ${item.interpretation}
                           {dc.card.name}
                         </div>
                         <div className={`text-xs font-sans ${dc.isReversed ? 'text-accent-cool' : 'text-accent'}`}>
-                          {dc.isReversed ? '逆位' : '正位'}
+                          {dc.isReversed ? tResult('reversed') : tResult('upright')}
                         </div>
                       </div>
                     </div>
@@ -310,7 +312,7 @@ ${item.interpretation}
               {/* 结果解析 */}
               <div className="mb-6">
                 <div className="text-xs text-text-secondary font-sans font-semibold mb-3">
-                  结果解析
+                  {tResult('interpretation')}
                 </div>
                 <div className="p-4 bg-background rounded-lg space-y-3">
                   {selectedItem.interpretation.split('\n\n').map((paragraph, index) => (
@@ -326,7 +328,7 @@ ${item.interpretation}
                 onClick={() => handleCopy(selectedItem)}
                 className="w-full py-3 border-2 border-accent text-accent hover:bg-accent hover:text-white rounded-lg font-sans font-medium transition-all text-sm"
               >
-                复制解读
+                {tResult('copyReading')}
               </button>
             </div>
           </div>

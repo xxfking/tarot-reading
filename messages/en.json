@@ -57,9 +57,24 @@
     "delete": "Delete",
     "clear": "Clear All",
     "confirmClear": "Are you sure you want to clear all history?",
+    "confirmDelete": "Are you sure you want to delete this record?",
     "spread": "Spread",
     "time": "Time",
-    "question": "Question"
+    "question": "Question",
+    "selectHint": "Select a record to view details",
+    "backToList": "Back to List",
+    "cardResults": "Card Results",
+    "copySuccess": "Copied to clipboard",
+    "copyFailed": "Copy failed",
+    "copyTemplate": {
+      "title": "【Tarot Reading】",
+      "spread": "Spread",
+      "time": "Time",
+      "question": "Question",
+      "cards": "Cards Drawn",
+      "interpretation": "Interpretation",
+      "footer": "---\nInterpreted by AI"
+    }
   },
   "spreads": {
     "singleCard": {
@@ -123,6 +138,113 @@
   "footer": {
     "about": "About Tarot",
     "spreads": "Spread Guide",
-    "copyright": "© 2026 AI Tarot Reading | AI-Powered Online Tarot Card Reading Platform"
+    "copyright": "© 2026 AI Tarot Reading | AI-Powered Online Tarot Card Reading Platform",
+    "home": "Home"
+  },
+  "about": {
+    "backToHome": "Back to Home",
+    "title": "About Tarot Cards",
+    "subtitle": "Exploring the perfect blend of ancient wisdom and modern AI",
+    "whatIsTarot": {
+      "title": "What are Tarot Cards?",
+      "intro": "Tarot cards are an ancient divination tool originating from 15th century Europe. A complete tarot deck consists of 78 cards, each containing profound symbolic meaning and wisdom. Tarot cards are not only a divination tool but also a mirror reflecting the inner self, helping us understand ourselves, comprehend the present, and gain insight into the future.",
+      "ourService": "On this website, we combine traditional tarot wisdom with advanced AI technology to provide professional and accurate online tarot reading services. Whether you're confused about love, facing career choices, or seeking life direction, tarot cards can bring you inspiration and guidance."
+    },
+    "structure": {
+      "title": "The 78 Tarot Cards",
+      "majorArcana": {
+        "title": "Major Arcana - 22 Cards",
+        "description": "The Major Arcana represents life's major themes and turning points, from 0 \"The Fool\" to 21 \"The World\", depicting a complete life journey. These cards symbolize important life experiences, profound realizations, and spiritual growth.",
+        "fool": "New beginnings, adventure",
+        "magician": "Creativity, action",
+        "highPriestess": "Intuition, mystery",
+        "empress": "Abundance, motherhood",
+        "emperor": "Authority, order",
+        "hierophant": "Tradition, faith",
+        "more": "...and 16 other Major Arcana cards, each representing an important life stage."
+      },
+      "minorArcana": {
+        "title": "Minor Arcana - 56 Cards",
+        "description": "The Minor Arcana describes specific events and situations in daily life, divided into four suits with 14 cards each:",
+        "wands": {
+          "title": "Wands",
+          "description": "Represents the fire element, symbolizing action, creativity, passion, and career development."
+        },
+        "cups": {
+          "title": "Cups",
+          "description": "Represents the water element, symbolizing emotions, love, relationships, and inner feelings."
+        },
+        "swords": {
+          "title": "Swords",
+          "description": "Represents the air element, symbolizing thoughts, communication, conflict, and decisions."
+        },
+        "pentacles": {
+          "title": "Pentacles",
+          "description": "Represents the earth element, symbolizing material wealth, work, and practical matters."
+        }
+      }
+    },
+    "howToRead": {
+      "title": "How to Perform a Tarot Reading?",
+      "step1": {
+        "title": "Choose a Spread",
+        "description": "Select an appropriate spread based on your question. Simple questions can use single card or three-card spreads, while complex situations are best suited for larger spreads like the Celtic Cross."
+      },
+      "step2": {
+        "title": "Meditate",
+        "description": "Before drawing cards, calm your mind and focus on your question. Let your intuition guide you to choose cards that resonate with you."
+      },
+      "step3": {
+        "title": "Select Cards",
+        "description": "Choose the specified number of cards from the rotating deck. Each card's position has a specific meaning, together forming a complete reading."
+      },
+      "step4": {
+        "title": "AI Interpretation",
+        "description": "Our AI combines card meanings, position significance, and your question to generate a professional, personalized interpretation for you."
+      }
+    },
+    "advantages": {
+      "title": "Advantages of AI Tarot Reading",
+      "instant": {
+        "title": "Instant Interpretation",
+        "description": "No waiting required - AI generates professional readings immediately, available 24/7."
+      },
+      "objective": {
+        "title": "Objective & Neutral",
+        "description": "AI provides objective, unbiased interpretations based on traditional tarot meanings."
+      },
+      "free": {
+        "title": "Completely Free",
+        "description": "10 free readings daily, no registration required, protecting your privacy."
+      },
+      "knowledge": {
+        "title": "Professional Knowledge Base",
+        "description": "Trained on extensive tarot materials, providing deep and detailed card analysis."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "Are tarot readings accurate?",
+        "answer": "Tarot is a tool for self-exploration and reflection. It helps you gain insight into your inner self and clarify your thoughts through symbolic imagery. Accuracy depends on your self-awareness and resonance with the cards."
+      },
+      "q2": {
+        "question": "What kind of questions can I ask?",
+        "answer": "Tarot is best suited for exploring open-ended questions, such as \"What should I pay attention to in this relationship?\" rather than yes/no questions like \"Does he/she love me?\" The best questions focus on your own growth and direction for action."
+      },
+      "q3": {
+        "question": "How often can I do readings?",
+        "answer": "It's recommended to wait at least a week before doing another reading on the same question. Frequent readings on the same topic may lead to more confusion rather than clear guidance."
+      },
+      "q4": {
+        "question": "What's the difference between AI and human readings?",
+        "answer": "AI readings are based on traditional tarot knowledge, providing objective and standardized interpretations. Human readings may incorporate the reader's personal experience and intuition. AI's advantages lie in immediacy, consistency, and accessibility."
+      }
+    },
+    "cta": {
+      "title": "Begin Your Tarot Journey",
+      "description": "78 tarot cards, 5 classic spreads, AI-powered interpretation, 10 free readings daily",
+      "button": "Start Reading Now"
+    }
   }
 }

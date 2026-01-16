@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { TarotCard, Spread, DrawnCard } from '@/lib/types';
 import { tarotCards, isReversed } from '@/lib/tarot-data';
 
@@ -12,18 +13,19 @@ interface CircularCardSelectionProps {
 }
 
 export default function CircularCardSelection({ spread, onComplete, onBack }: CircularCardSelectionProps) {
+  const t = useTranslations('spreadSelection');
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
   const [shuffledCards, setShuffledCards] = useState<TarotCard[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [rotation, setRotation] = useState(0);
 
-  // 洗牌
+  // Shuffle cards
   useEffect(() => {
     const shuffled = [...tarotCards].sort(() => Math.random() - 0.5);
     setShuffledCards(shuffled);
   }, []);
 
-  // 缓慢旋转动画
+  // Slow rotation animation
   useEffect(() => {
     const interval = setInterval(() => {
       setRotation(prev => (prev + 0.05) % 360);
@@ -53,60 +55,59 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
   const isComplete = selectedIndices.length === spread.cardCount;
   const totalCards = 78;
 
-  // 完整圆盘参数 - 增大半径以更好展示
+  // Full circle parameters
   const radius = 280;
-  // 让卡牌均匀分布在整个360度，头尾相接无间隙
-  const angleStep = 360 / totalCards; // 每张卡片占据的角度
+  const angleStep = 360 / totalCards;
   const startAngle = 0;
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 md:p-8 overflow-hidden bg-white">
       <div className="w-full max-w-7xl flex flex-col md:flex-row gap-8 md:gap-12 items-center">
-        {/* 左侧：信息区域 */}
+        {/* Left: Info Area */}
         <div className="w-full md:w-1/2 flex flex-col justify-center space-y-8 md:space-y-10">
-          {/* 返回按钮 */}
+          {/* Back Button */}
           <button
             onClick={onBack}
             className="group inline-flex items-center gap-3 px-6 py-3 text-text-primary hover:text-accent transition-all border-2 border-border hover:border-accent rounded-lg bg-white hover:shadow-md font-medium self-start"
           >
             <span className="group-hover:-translate-x-1 transition-transform text-xl md:text-2xl">←</span>
-            <span className="font-sans text-base md:text-lg">返回</span>
+            <span className="font-sans text-base md:text-lg">{t('back')}</span>
           </button>
 
-          {/* 标题和描述 */}
+          {/* Title and Description */}
           <div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans mb-6 text-text-primary font-bold">
               {spread.name}
             </h2>
             <p className="text-text-secondary text-xl md:text-2xl font-sans font-medium leading-relaxed">
-              静心感受，选择与你有共鸣的牌
+              {t('description')}
             </p>
           </div>
 
-          {/* 选择进度 */}
+          {/* Selection Progress */}
           <div className="inline-flex items-center gap-4 px-12 py-6 bg-accent-yellow border-2 border-accent-yellow rounded-xl shadow-md self-start">
             <span className="text-text-primary text-5xl md:text-6xl font-sans font-bold">{selectedIndices.length}</span>
             <span className="text-text-primary font-sans font-bold text-3xl">/</span>
             <span className="text-text-primary font-sans text-3xl md:text-4xl font-bold">{spread.cardCount}</span>
           </div>
 
-          {/* 底部提示 */}
+          {/* Bottom Hint */}
           <p className="text-base md:text-lg text-text-secondary max-w-md font-sans">
-            牌阵在缓缓旋转，静心感受，让直觉引导你的选择
+            {t('hint')}
           </p>
 
-          {/* 确认按钮 */}
+          {/* Confirm Button */}
           {isComplete && (
             <button
               onClick={handleConfirm}
               className="bg-accent text-white px-16 md:px-20 py-5 md:py-6 rounded-xl font-sans font-bold text-xl md:text-2xl transition-all shadow-xl hover:shadow-2xl hover:bg-accent/90 uppercase tracking-wider self-start"
             >
-              确认选择
+              {t('confirm')}
             </button>
           )}
         </div>
 
-        {/* 右侧：卡牌旋转区域 */}
+        {/* Right: Card Rotation Area */}
         <div className="w-full md:w-1/2 flex items-center justify-center">
           <div
             className="relative"
@@ -116,30 +117,30 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
               height: '720px',
             }}
           >
-          {/* 中心的神秘之眼 */}
+          {/* Mystical Eye in Center */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <div className="relative w-64 h-64 md:w-80 md:h-80">
-              {/* 外圈光晕 */}
+              {/* Outer Glow */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-yellow/20 to-accent/30 blur-xl animate-pulse"></div>
 
-              {/* 眼睛主体 */}
+              {/* Eye Body */}
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* 眼白 */}
+                {/* White of Eye */}
                 <div className="relative w-56 h-32 md:w-64 md:h-40 bg-gradient-to-br from-white to-gray-100 rounded-full shadow-2xl overflow-hidden">
-                  {/* 虹膜 */}
+                  {/* Iris */}
                   <div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 shadow-inner"
                     style={{
                       animation: 'eyeMove 4s ease-in-out infinite',
                     }}
                   >
-                    {/* 瞳孔 */}
+                    {/* Pupil */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black shadow-lg">
-                      {/* 高光 */}
+                      {/* Highlight */}
                       <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full opacity-80"></div>
                     </div>
 
-                    {/* 虹膜纹理 */}
+                    {/* Iris Texture */}
                     <div className="absolute inset-0 opacity-30">
                       {[...Array(8)].map((_, i) => (
                         <div
@@ -154,14 +155,14 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                     </div>
                   </div>
 
-                  {/* 眼睑阴影 */}
+                  {/* Eyelid Shadow */}
                   <div className="absolute inset-0 bg-gradient-to-b from-gray-400/20 to-transparent"></div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 旋转的扇形牌堆 */}
+          {/* Rotating Card Deck */}
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{
@@ -177,7 +178,6 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
               const isHovered = hoveredIndex === index;
               const selectionOrder = selectedIndices.indexOf(index) + 1;
 
-              // 均匀层叠：简单按顺序递增z-index
               const baseZIndex = index;
 
               return (
@@ -199,7 +199,7 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                     zIndex: isHovered ? 1000 : isSelected ? 500 + selectionOrder : baseZIndex,
                   }}
                 >
-                  {/* 竖版塔罗牌 */}
+                  {/* Vertical Tarot Card */}
                   <div
                     className={`
                       w-20 h-32 md:w-24 md:h-36 rounded-md overflow-hidden bg-white border
@@ -216,7 +216,7 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                       }
                     `}
                   >
-                    {/* 使用真实卡背图片 */}
+                    {/* Card Back Image */}
                     <div className="relative w-full h-full">
                       <Image
                         src="/cards/card-back.jpg"
@@ -228,17 +228,17 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                     </div>
                   </div>
 
-                  {/* 选择序号标记 */}
+                  {/* Selection Number Badge */}
                   {isSelected && (
                     <div className="absolute -top-2 -right-2 w-9 h-9 bg-accent rounded-full flex items-center justify-center text-white text-base font-sans font-semibold shadow-md">
                       {selectionOrder}
                     </div>
                   )}
 
-                  {/* 悬停提示 */}
+                  {/* Hover Tooltip */}
                   {isHovered && !isSelected && selectedIndices.length < spread.cardCount && (
                     <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap px-4 py-2 bg-accent text-white text-sm font-sans rounded shadow-md">
-                      点击选择
+                      {t('clickToSelect')}
                     </div>
                   )}
                 </button>
@@ -249,7 +249,7 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
         </div>
       </div>
 
-      {/* 眼睛动画样式 */}
+      {/* Eye Animation Styles */}
       <style jsx>{`
         @keyframes eyeMove {
           0%, 100% {

@@ -176,9 +176,8 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
               const isHovered = hoveredIndex === index;
               const selectionOrder = selectedIndices.indexOf(index) + 1;
 
-              const middleIndex = totalCards / 2;
-              const distanceFromMiddle = Math.abs(index - middleIndex);
-              const baseZIndex = totalCards - Math.floor(distanceFromMiddle);
+              // 均匀层叠：简单按顺序递增z-index，让卡片形成连续的层叠效果
+              const baseZIndex = index;
 
               return (
                 <button

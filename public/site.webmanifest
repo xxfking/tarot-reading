@@ -1,0 +1,26 @@
+{
+  "name": "塔罗占卜 - AI智能在线塔罗牌解读",
+  "short_name": "塔罗占卜",
+  "description": "AI智能塔罗牌在线占卜解读平台，免费塔罗牌测试",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "orientation": "portrait",
+  "categories": ["lifestyle", "entertainment"]
+}

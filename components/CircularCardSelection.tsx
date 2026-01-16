@@ -117,25 +117,25 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
           >
           {/* 中心的神秘之眼 */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-            <div className="relative w-32 h-32 md:w-40 md:h-40">
+            <div className="relative w-64 h-64 md:w-80 md:h-80">
               {/* 外圈光晕 */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-yellow/20 to-accent/30 blur-xl animate-pulse"></div>
 
               {/* 眼睛主体 */}
               <div className="relative w-full h-full flex items-center justify-center">
                 {/* 眼白 */}
-                <div className="relative w-28 h-16 md:w-32 md:h-20 bg-gradient-to-br from-white to-gray-100 rounded-full shadow-2xl overflow-hidden">
+                <div className="relative w-56 h-32 md:w-64 md:h-40 bg-gradient-to-br from-white to-gray-100 rounded-full shadow-2xl overflow-hidden">
                   {/* 虹膜 */}
                   <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 shadow-inner"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 shadow-inner"
                     style={{
                       animation: 'eyeMove 4s ease-in-out infinite',
                     }}
                   >
                     {/* 瞳孔 */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 md:w-7 md:h-7 rounded-full bg-black shadow-lg">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black shadow-lg">
                       {/* 高光 */}
-                      <div className="absolute top-1 left-1 w-2 h-2 bg-white rounded-full opacity-80"></div>
+                      <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full opacity-80"></div>
                     </div>
 
                     {/* 虹膜纹理 */}

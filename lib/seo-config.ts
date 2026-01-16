@@ -1,70 +1,85 @@
-// SEO配置文件
+// SEO Configuration - Optimized for Global Market
 export const seoConfig = {
-  // 基础信息
-  siteName: '塔罗占卜',
-  siteDescription: 'AI智能塔罗牌在线占卜解读平台，提供免费塔罗牌测试。支持5种经典牌阵，78张完整塔罗牌，专业AI解读爱情、事业、学业运势。每日免费占卜10次，让古老智慧与现代科技结合，为你指引方向。',
+  // Basic Information
+  siteName: 'AI Tarot Reading',
+  siteDescription: 'Free AI-powered online tarot card reading platform. Get instant, accurate tarot predictions with 5 classic spreads and 78 complete tarot cards. Professional AI interpretation for love, career, and life guidance. 10 free readings daily.',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://tarot-reading.vercel.app',
 
-  // 关键词
+  // Keywords - Optimized for Low Competition & High Intent
   keywords: [
-    '塔罗牌',
-    '塔罗占卜',
-    'AI塔罗',
-    '在线占卜',
-    '免费塔罗',
-    '塔罗牌在线占卜',
-    '塔罗牌测试',
-    '塔罗解读',
-    '爱情占卜',
-    '事业占卜',
-    '学业占卜',
-    '塔罗牌阵',
-    '78张塔罗牌',
-    '智能塔罗',
-    'AI解读',
-    '免费占卜',
-    '塔罗牌免费',
-    '在线抽牌',
-    '牌义解析',
+    // Primary AI Keywords (Low KD, High Conversion)
+    'AI tarot reading',
+    'free AI tarot online',
+    'AI tarot card reading',
+    'instant AI tarot',
+    'AI tarot predictions',
+
+    // Long-tail Function Keywords
+    'AI tarot reading for love',
+    'AI tarot career guidance',
+    'free 3 card tarot AI',
+    'Celtic cross AI tarot',
+    'daily AI tarot reading',
+
+    // User Intent Keywords
+    'online tarot interpretation AI',
+    '24/7 tarot reader AI',
+    'free instant tarot reading',
+    'AI tarot predictions online',
+    'automated tarot reading',
+
+    // Secondary Broad Keywords (Long-term)
+    'free online tarot',
+    'tarot card reading free',
+    'online tarot reading',
+    'free tarot card reading online',
+    'tarot reading online free',
+
+    // Spread-specific
+    'single card tarot reading',
+    'three card tarot spread',
+    'Celtic cross tarot online',
+
+    // General
     'tarot',
+    'tarot cards',
     'tarot reading',
     'free tarot',
-    'AI tarot reading',
   ],
 
-  // 页面标题模板
-  titleTemplate: '%s | 塔罗占卜 - AI智能在线塔罗牌解读',
-  defaultTitle: '塔罗占卜 - AI智能在线免费塔罗牌占卜解读｜爱情事业学业运势测试',
+  // Page Title Template
+  titleTemplate: '%s | AI Tarot Reading - Free Online Tarot Card Predictions',
+  defaultTitle: 'Free AI Tarot Reading Online | Instant Tarot Card Predictions & Interpretations',
 
-  // Open Graph 图片
+  // Open Graph Image
   ogImage: '/og-image.jpg',
 
   // Twitter
   twitterCard: 'summary_large_image',
-  twitterSite: '@tarot_reading', // 如果有Twitter账号可以修改
+  twitterSite: '@tarot_reading',
 
-  // 作者信息
-  author: '塔罗占卜团队',
+  // Author
+  author: 'AI Tarot Reading Team',
 
-  // 语言
-  language: 'zh-CN',
-  locale: 'zh_CN',
+  // Language
+  language: 'en',
+  locale: 'en_US',
 
-  // 分类
-  category: '占卜',
+  // Category
+  category: 'Lifestyle',
 
-  // 结构化数据
+  // Structured Data
   structuredData: {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: '塔罗占卜',
-    description: 'AI智能塔罗牌在线占卜解读平台，免费塔罗牌测试，专业AI解读',
+    name: 'AI Tarot Reading',
+    description: 'Free AI-powered online tarot card reading platform with instant, accurate predictions and professional interpretations',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://tarot-reading.vercel.app',
     applicationCategory: 'LifestyleApplication',
     offers: {
       '@type': 'Offer',
       price: '0',
-      priceCurrency: 'CNY',
+      priceCurrency: 'USD',
     },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -74,11 +89,11 @@ export const seoConfig = {
   },
 };
 
-// 页面特定的SEO配置
+// Page-specific SEO Configuration
 export const pageSEO = {
   home: {
-    title: '塔罗占卜 - AI智能在线免费塔罗牌占卜解读｜爱情事业学业运势测试',
-    description: 'AI智能塔罗牌在线占卜解读平台，提供免费塔罗牌测试。支持单牌、三牌、圣三角、凯尔特十字、时间之流等5种经典牌阵，78张完整塔罗牌，专业AI解读爱情、事业、学业运势。每日免费占卜10次，让古老智慧与现代科技结合，为你指引人生方向。',
-    keywords: '塔罗牌,AI塔罗,在线占卜,免费塔罗,塔罗牌在线占卜,爱情占卜,事业占卜,学业占卜,智能塔罗解读',
+    title: 'Free AI Tarot Reading Online | Instant Tarot Card Predictions & Interpretations',
+    description: 'Get free AI-powered tarot card readings online. Choose from 5 classic spreads with 78 complete tarot cards. Instant AI interpretation for love, career, and life guidance. 10 free readings daily. No signup required.',
+    keywords: 'AI tarot reading,free AI tarot,online tarot reading,AI tarot card reading,free tarot online,instant tarot reading,AI tarot predictions,love tarot reading,career tarot guidance',
   },
 };

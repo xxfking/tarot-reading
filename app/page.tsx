@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Spread, DrawnCard } from '@/lib/types';
 import { getAllSpreads } from '@/lib/spreads';
 import SpreadSelector from '@/components/SpreadSelector';
@@ -366,6 +367,25 @@ ${interpretation}
 
       {/* 历史记录侧边栏 */}
       <HistorySidebar isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)} />
+
+      {/* 页脚导航 */}
+      {step === 'select-spread' && (
+        <footer className="border-t border-border mt-16">
+          <div className="max-w-5xl mx-auto px-6 py-8 text-center">
+            <div className="flex flex-wrap justify-center gap-6 mb-4 text-sm font-sans">
+              <Link href="/about" className="text-text-secondary hover:text-accent transition-colors">
+                关于塔罗牌
+              </Link>
+              <Link href="/spreads" className="text-text-secondary hover:text-accent transition-colors">
+                牌阵介绍
+              </Link>
+            </div>
+            <p className="text-text-secondary text-xs font-sans">
+              © 2026 塔罗占卜 | AI智能在线塔罗牌解读平台
+            </p>
+          </div>
+        </footer>
+      )}
     </main>
   );
 }

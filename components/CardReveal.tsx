@@ -17,12 +17,12 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
     if (revealedCount < drawnCards.length) {
       const timer = setTimeout(() => {
         setRevealedCount(revealedCount + 1);
-      }, 600);
+      }, 1200); // 增加到1.2秒，让动画更从容
       return () => clearTimeout(timer);
     } else if (revealedCount === drawnCards.length) {
       const timer = setTimeout(() => {
         onComplete();
-      }, 1000);
+      }, 1500); // 增加最后停留时间
       return () => clearTimeout(timer);
     }
   }, [revealedCount, drawnCards.length, onComplete]);
@@ -48,14 +48,14 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                 scale: 1
               }}
               transition={{
-                duration: 0.8,
+                duration: 1.2, // 增加翻转动画时长到1.2秒
                 ease: [0.43, 0.13, 0.23, 0.96],
-                delay: index * 0.1
+                delay: index * 0.15 // 稍微增加错开时间
               }}
               className="relative group"
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="w-36 md:w-44 aspect-[2/3]">
+              <div className="relative w-36 md:w-44 aspect-[2/3]">
                 {/* 牌背 */}
                 <div
                   className="absolute w-full h-full rounded-md overflow-hidden shadow-md"
@@ -68,7 +68,9 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                     src="/cards/card-back.jpg"
                     alt="Tarot Card Back"
                     fill
+                    sizes="(max-width: 768px) 144px, 176px"
                     className="object-cover"
+                    priority
                   />
                 </div>
 
@@ -77,13 +79,17 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                   className="absolute w-full h-full rounded-md overflow-hidden shadow-md border border-border"
                   style={{ backfaceVisibility: 'hidden' }}
                 >
-                  <div className={drawnCard.isReversed ? 'rotate-180' : ''} style={{ width: '100%', height: '100%' }}>
-                    <Image
-                      src={drawnCard.card.imageUrl}
-                      alt={drawnCard.card.name}
-                      fill
-                      className="object-cover"
-                    />
+                  <div className={drawnCard.isReversed ? 'rotate-180 w-full h-full' : 'w-full h-full'}>
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={drawnCard.card.imageUrl}
+                        alt={drawnCard.card.name}
+                        fill
+                        sizes="(max-width: 768px) 144px, 176px"
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
                   </div>
                   {/* 正逆位标识 */}
                   <div className="absolute bottom-0 left-0 right-0 bg-accent text-white text-xs py-2 text-center font-sans font-medium">

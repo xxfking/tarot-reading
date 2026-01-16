@@ -38,77 +38,88 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
         </p>
 
         <div className="flex flex-wrap justify-center gap-6">
-          {drawnCards.map((drawnCard, index) => (
-            <motion.div
-              key={index}
-              initial={{ rotateY: 0, opacity: 0, scale: 0.8 }}
-              animate={{
-                rotateY: index < revealedCount ? 180 : 0,
-                opacity: 1,
-                scale: 1
-              }}
-              transition={{
-                duration: 1.2, // 增加翻转动画时长到1.2秒
-                ease: [0.43, 0.13, 0.23, 0.96],
-                delay: index * 0.15 // 稍微增加错开时间
-              }}
-              className="relative group"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <div className="relative w-36 md:w-44 aspect-[2/3]">
-                {/* 牌背 */}
-                <div
-                  className="absolute w-full h-full rounded-md overflow-hidden shadow-md"
-                  style={{
-                    backfaceVisibility: 'hidden',
+          {drawnCards.map((drawnCard, index) => {
+            const isRevealed = index < revealedCount;
+            return (
+              <div key={index} className="relative group">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.3,
+                    ease: [0.43, 0.13, 0.23, 0.96],
+                    delay: index * 0.15
                   }}
+                  className="w-36 md:w-44 aspect-[2/3] relative"
+                  style={{ perspective: '1000px' }}
                 >
-                  <Image
-                    src="/cards/card-back.jpg"
-                    alt="Tarot Card Back"
-                    fill
-                    sizes="(max-width: 768px) 144px, 176px"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-
-                {/* 牌面 */}
-                <div
-                  className="absolute w-full h-full rounded-md overflow-hidden shadow-md border border-border"
-                  style={{
-                    backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)',
-                  }}
-                >
-                  <div
-                    className="relative w-full h-full"
-                    style={{
-                      transform: drawnCard.isReversed ? 'rotate(180deg)' : 'none'
+                  <motion.div
+                    initial={{ rotateY: 0 }}
+                    animate={{ rotateY: isRevealed ? 180 : 0 }}
+                    transition={{
+                      duration: 1.2,
+                      ease: [0.43, 0.13, 0.23, 0.96],
                     }}
+                    className="w-full h-full relative"
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
-                    <Image
-                      src={drawnCard.card.imageUrl}
-                      alt={drawnCard.card.name}
-                      fill
-                      sizes="(max-width: 768px) 144px, 176px"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                  {/* 正逆位标识 */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-accent text-white text-xs py-2 text-center font-sans font-medium">
-                    {drawnCard.isReversed ? '逆位' : '正位'}
-                  </div>
+                    {/* 牌背 */}
+                    <div
+                      className="absolute inset-0 w-full h-full rounded-md overflow-hidden shadow-md"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                      }}
+                    >
+                      <Image
+                        src="/cards/card-back.jpg"
+                        alt="Tarot Card Back"
+                        fill
+                        sizes="(max-width: 768px) 144px, 176px"
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+
+                    {/* 牌面 */}
+                    <div
+                      className="absolute inset-0 w-full h-full rounded-md overflow-hidden shadow-md border border-border"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                      }}
+                    >
+                      <div
+                        className="absolute inset-0 w-full h-full"
+                        style={{
+                          transform: drawnCard.isReversed ? 'rotate(180deg)' : 'none'
+                        }}
+                      >
+                        <Image
+                          src={drawnCard.card.imageUrl}
+                          alt={drawnCard.card.name}
+                          fill
+                          sizes="(max-width: 768px) 144px, 176px"
+                          className="object-cover"
+                          priority
+                        />
+                      </div>
+                      {/* 正逆位标识 */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-accent text-white text-xs py-2 text-center font-sans font-medium z-10">
+                        {drawnCard.isReversed ? '逆位' : '正位'}
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+
+                {/* 位置标签 */}
+                <div className="text-center mt-4 text-base text-text-primary font-sans">
+                  {drawnCard.position}
                 </div>
               </div>
-
-              {/* 位置标签 */}
-              <div className="text-center mt-4 text-base text-text-primary font-sans">
-                {drawnCard.position}
-              </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center mt-16 text-text-secondary font-sans">

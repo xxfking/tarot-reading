@@ -51,10 +51,7 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
   };
 
   const isComplete = selectedIndices.length === spread.cardCount;
-
-  // 莫比乌斯环效果：减少显示卡牌数量，创造流动感
-  const displayCardCount = 36; // 只显示36张卡牌，形成均匀的环
-  const displayCards = shuffledCards.slice(0, displayCardCount);
+  const totalCards = 78;
 
   // 完整圆盘参数 - 增大半径以更好展示
   const radius = 280;
@@ -173,21 +170,14 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
               transition: 'transform 0.05s linear',
             }}
           >
-            {displayCards.map((card, index) => {
-              const angle = startAngle + (index / displayCardCount) * spreadAngle;
+            {shuffledCards.map((card, index) => {
+              const angle = startAngle + (index / (totalCards - 1)) * spreadAngle;
               const isSelected = selectedIndices.includes(index);
               const isHovered = hoveredIndex === index;
               const selectionOrder = selectedIndices.indexOf(index) + 1;
 
-              // 莫比乌斯环效果：创造循环渐进的深度感
-              // 卡片在0-180度时逐渐"远离"，180-360度时逐渐"靠近"
-              const normalizedAngle = (angle + rotation) % 360;
-              const depthFactor = Math.sin((normalizedAngle * Math.PI) / 180); // -1 到 1
-              const scale = 0.85 + depthFactor * 0.15; // 0.7 到 1.0 的缩放
-              const opacity = 0.6 + depthFactor * 0.4; // 0.2 到 1.0 的透明度
-
-              // z-index根据深度因子调整，创造连续的层叠
-              const baseZIndex = Math.floor((depthFactor + 1) * 50); // 0-100范围
+              // 均匀层叠：简单按顺序递增z-index
+              const baseZIndex = index;
 
               return (
                 <button
@@ -203,10 +193,8 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                       rotate(${angle}deg)
                       translateY(-${radius}px)
                       rotate(-${angle + rotation}deg)
-                      scale(${isHovered ? 1.2 : isSelected ? 1.1 : scale})
-                      ${isHovered ? 'translateY(-30px)' : isSelected ? 'translateY(-20px)' : ''}
+                      ${isHovered ? 'translateY(-30px) scale(1.1)' : isSelected ? 'translateY(-20px) scale(1.05)' : ''}
                     `,
-                    opacity: isHovered || isSelected ? 1 : opacity,
                     zIndex: isHovered ? 1000 : isSelected ? 500 + selectionOrder : baseZIndex,
                   }}
                 >

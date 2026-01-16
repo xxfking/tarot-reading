@@ -77,6 +77,14 @@ export function canPerformReading(): {
   remainingCount?: number;
   cooldownRemaining?: number;
 } {
+  // 开发者模式：跳过限流检查
+  if (process.env.NEXT_PUBLIC_DISABLE_RATE_LIMIT === 'true') {
+    return {
+      allowed: true,
+      remainingCount: 999,
+    };
+  }
+
   const record = getRateLimitRecord();
   const now = Date.now();
 
@@ -113,6 +121,11 @@ export function canPerformReading(): {
 export function recordReading(): void {
   if (typeof window === 'undefined') return;
 
+  // 开发者模式：不记录
+  if (process.env.NEXT_PUBLIC_DISABLE_RATE_LIMIT === 'true') {
+    return;
+  }
+
   const record = getRateLimitRecord();
   const now = Date.now();
 
@@ -127,6 +140,10 @@ export function recordReading(): void {
 
 // 获取剩余次数
 export function getRemainingReadings(): number {
+  if (process.env.NEXT_PUBLIC_DISABLE_RATE_LIMIT === 'true') {
+    return 999;
+  }
+
   const record = getRateLimitRecord();
   return Math.max(0, DAILY_LIMIT - record.count);
 }
@@ -138,4 +155,35 @@ export function getResetTimeString(): string {
   const hours = resetDate.getHours().toString().padStart(2, '0');
   const minutes = resetDate.getMinutes().toString().padStart(2, '0');
   return `${hours}:${minutes}`;
+}
+
+// 🔧 开发者工具：手动重置限流
+export function resetRateLimit(): void {
+  if (typeof window === 'undefined') return;
+  localStorage.removeItem(STORAGE_KEY);
+  console.log('✅ Rate limit has been reset');
+}
+
+// 🔧 开发者工具：设置自定义次数
+export function setRateLimitCount(count: number): void {
+  if (typeof window === 'undefined') return;
+
+  const record = getRateLimitRecord();
+  const newRecord: RateLimitRecord = {
+    ...record,
+    count: Math.max(0, count),
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(newRecord));
+  console.log(`✅ Rate limit count set to: ${count}`);
+}
+
+// 在浏览器控制台暴露工具函数（仅开发环境）
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+  (window as any).tarotDevTools = {
+    resetRateLimit,
+    setRateLimitCount,
+    getRateLimitRecord,
+  };
+  console.log('🎯 Tarot Dev Tools available: window.tarotDevTools');
 }

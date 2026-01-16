@@ -1,23 +1,9 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Crimson_Text, Outfit } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  weight: ["400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-display",
-});
-
-const crimson = Crimson_Text({
-  weight: ["400", "600", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-serif",
-});
-
-const outfit = Outfit({
-  weight: ["300", "400", "500", "600", "700"],
+const notoSans = Noto_Sans({
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
@@ -39,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={`${playfair.variable} ${crimson.variable} ${outfit.variable} font-sans bg-background text-text-primary antialiased`}>
+      <body className={`${notoSans.variable} font-sans bg-background text-text-primary antialiased`}>
         {children}
       </body>
     </html>

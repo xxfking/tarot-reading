@@ -9,26 +9,26 @@ interface SpreadSelectorProps {
 
 export default function SpreadSelector({ spreads, onSelect }: SpreadSelectorProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-5xl mx-auto">
       {spreads.map((spread) => (
         <button
           key={spread.type}
           onClick={() => onSelect(spread)}
-          className="group bg-white border border-border hover:border-accent rounded-lg p-10 text-left transition-all duration-300 hover:shadow-xl shadow-sm focus:outline-none focus:ring-1 focus:ring-accent focus:ring-offset-4 hover:-translate-y-1"
+          className="group bg-white border-2 border-border hover:border-accent rounded-lg p-7 md:p-8 text-left transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
         >
-          <h3 className="text-2xl font-display text-text-primary mb-4 group-hover:text-accent transition-colors font-semibold">
+          <h3 className="text-2xl md:text-3xl font-sans text-text-primary mb-3 group-hover:text-accent transition-colors font-bold">
             {spread.name}
           </h3>
 
-          <p className="text-text-secondary text-base font-sans leading-relaxed mb-8">
+          <p className="text-text-secondary text-sm md:text-base font-sans leading-relaxed mb-5">
             {spread.description}
           </p>
 
-          <div className="flex items-center justify-between pt-5 border-t border-border/50">
-            <span className="text-xs uppercase tracking-wider text-text-secondary font-sans font-medium">
+          <div className="flex items-center justify-between pt-3 border-t border-border">
+            <span className="text-sm md:text-base text-text-secondary font-sans font-medium">
               {spread.cardCount} 张牌
             </span>
-            <span className="text-accent text-xl group-hover:translate-x-2 transition-transform">
+            <span className="text-accent text-2xl md:text-3xl group-hover:translate-x-1 transition-transform font-bold">
               →
             </span>
           </div>

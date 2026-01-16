@@ -8,7 +8,9 @@ import SpreadSelector from '@/components/SpreadSelector';
 import CircularCardSelection from '@/components/CircularCardSelection';
 import QuestionInput from '@/components/QuestionInput';
 import CardReveal from '@/components/CardReveal';
+import HistorySidebar from '@/components/HistorySidebar';
 import { canPerformReading, recordReading, getRemainingReadings } from '@/lib/rate-limit';
+import { saveToHistory } from '@/lib/history';
 
 type Step = 'select-spread' | 'select-cards' | 'input-question' | 'reveal-cards' | 'interpreting' | 'show-result';
 
@@ -20,6 +22,7 @@ export default function Home() {
   const [interpretation, setInterpretation] = useState<string>('');
   const [interpretError, setInterpretError] = useState<string>('');
   const [remainingCount, setRemainingCount] = useState(3);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
   const spreads = getAllSpreads();
 
@@ -80,6 +83,17 @@ export default function Home() {
       recordReading();
       setRemainingCount(getRemainingReadings());
 
+      // 保存到历史记录
+      if (selectedSpread) {
+        saveToHistory({
+          spreadType: selectedSpread.type,
+          spreadName: selectedSpread.name,
+          question: question || undefined,
+          cards: drawnCards,
+          interpretation: data.interpretation,
+        });
+      }
+
       setStep('show-result');
     } catch (error) {
       console.error('AI interpretation error:', error);
@@ -123,22 +137,18 @@ ${interpretation}
   return (
     <main className="min-h-screen">
       {step === 'select-spread' && (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-subtle">
-          <div className="w-full max-w-6xl">
+        <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-5 bg-white">
+          <div className="w-full max-w-5xl">
             {/* Header */}
-            <div className="text-center mb-16 md:mb-20 relative">
-              {/* 装饰性细线 */}
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-12 h-px bg-accent opacity-30"></div>
-                <div className="w-2 h-2 rounded-full bg-accent opacity-40 mx-4"></div>
-                <div className="w-12 h-px bg-accent opacity-30"></div>
-              </div>
+            <div className="text-center mb-10 md:mb-13 relative">
+              {/* 宜家风格黄色装饰条 */}
+              <div className="w-16 h-1 bg-accent-yellow mx-auto mb-7 rounded-full"></div>
 
-              <h1 className="text-5xl md:text-6xl font-display mb-5 text-text-primary tracking-tight font-semibold">
+              <h1 className="text-4xl md:text-5xl lg:text-5xl font-sans mb-4 text-text-primary font-bold">
                 塔罗占卜
               </h1>
-              <p className="text-text-secondary text-base md:text-lg font-sans max-w-xl mx-auto leading-relaxed">
-                选择一个牌阵，静心感受，让直觉引导你的选择
+              <p className="text-text-secondary text-sm md:text-base font-sans max-w-2xl mx-auto leading-relaxed font-medium">
+                选择一个牌阵，开启你的占卜之旅
               </p>
             </div>
 
@@ -146,10 +156,17 @@ ${interpretation}
             <SpreadSelector spreads={spreads} onSelect={handleSpreadSelect} />
 
             {/* Usage Info */}
-            <div className="mt-20 text-center">
-              <p className="text-sm text-text-secondary font-sans">
-                今日剩余占卜次数：<span className="font-semibold text-accent ml-1">{remainingCount} / 3</span>
+            <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+              <p className="text-sm md:text-base text-text-secondary font-sans">
+                今日剩余占卜次数：<span className="font-semibold text-accent ml-1 text-base">{remainingCount} / 3</span>
               </p>
+              <button
+                onClick={() => setIsHistoryOpen(true)}
+                className="inline-flex items-center gap-2 px-6 py-2 text-sm md:text-base text-text-secondary hover:text-accent transition-colors font-sans border border-border hover:border-accent rounded-lg"
+              >
+                <span>📜</span>
+                <span>查看历史记录</span>
+              </button>
             </div>
           </div>
         </div>
@@ -342,6 +359,9 @@ ${interpretation}
           </div>
         </div>
       )}
+
+      {/* 历史记录侧边栏 */}
+      <HistorySidebar isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)} />
     </main>
   );
 }

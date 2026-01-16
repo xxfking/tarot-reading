@@ -1,0 +1,120 @@
+{
+  "site": {
+    "title": "Tarot Reading",
+    "description": "AI-Powered Online Tarot Card Reading & Divination | Free Love, Career & Life Guidance"
+  },
+  "home": {
+    "title": "Tarot Reading",
+    "subtitle": "Choose a spread to begin your divination journey",
+    "usageInfo": "Daily readings remaining:",
+    "viewHistory": "View History",
+    "dailyLimit": "{{remaining}} / {{total}}"
+  },
+  "spreadSelection": {
+    "back": "Back",
+    "description": "Feel the cards and choose those that resonate with you",
+    "progress": "{{selected}} / {{required}}",
+    "hint": "The cards are slowly rotating, let your intuition guide your choice",
+    "confirm": "Confirm Selection",
+    "clickToSelect": "Click to select"
+  },
+  "questionInput": {
+    "title": "Your Question",
+    "subtitle": "Speak your heart, let the cards guide you",
+    "placeholder": "What would you like to know? (Optional)\n\nFor example:\n- Will my current relationship develop further?\n- Should I accept this new job opportunity?\n- What should I focus on in my career development?",
+    "skip": "Skip",
+    "submit": "Continue"
+  },
+  "cardReveal": {
+    "title": "Your Cards",
+    "subtitle": "The cards are about to be revealed",
+    "preparing": "Preparing interpretation"
+  },
+  "interpreting": {
+    "title": "Destiny Analysis",
+    "subtitle": "Analyzing the cards for you"
+  },
+  "result": {
+    "title": "Interpretation Results",
+    "subtitle": "Revelations from the Tarot",
+    "yourQuestion": "Your Question",
+    "interpretation": "Interpretation",
+    "failed": "Interpretation Failed",
+    "checkConfig": "Please check environment configuration or try again later",
+    "copyReading": "Copy Reading",
+    "readAgain": "Draw Again",
+    "keywords": "Keywords",
+    "meaning": "Meaning",
+    "upright": "Upright",
+    "reversed": "Reversed"
+  },
+  "history": {
+    "title": "Reading History",
+    "empty": "No reading history yet",
+    "emptyHint": "Your reading records will appear here",
+    "close": "Close",
+    "delete": "Delete",
+    "clear": "Clear All",
+    "confirmClear": "Are you sure you want to clear all history?",
+    "spread": "Spread",
+    "time": "Time",
+    "question": "Question"
+  },
+  "spreads": {
+    "singleCard": {
+      "name": "Single Card",
+      "description": "Draw one card for quick insight and guidance",
+      "positions": ["Current Situation"]
+    },
+    "threeCard": {
+      "name": "Three Card Spread",
+      "description": "Classic spread revealing past, present, and future",
+      "positions": ["Past", "Present", "Future"]
+    },
+    "holyTriangle": {
+      "name": "Holy Triangle",
+      "description": "Explore situation, challenge, and advice",
+      "positions": ["Situation", "Challenge", "Advice"]
+    },
+    "celticCross": {
+      "name": "Celtic Cross",
+      "description": "Comprehensive 10-card spread for deep analysis",
+      "positions": [
+        "Present Situation",
+        "Challenge",
+        "Foundation",
+        "Recent Past",
+        "Possible Outcome",
+        "Near Future",
+        "Your Attitude",
+        "External Influences",
+        "Hopes and Fears",
+        "Final Outcome"
+      ]
+    },
+    "timeFlow": {
+      "name": "Time Flow",
+      "description": "Five-card spread showing development and outcome",
+      "positions": [
+        "Past",
+        "Present",
+        "Near Future",
+        "Advice",
+        "Outcome"
+      ]
+    }
+  },
+  "errors": {
+    "rateLimitExceeded": "Daily reading limit reached, will reset in {{minutes}} minutes",
+    "cooldown": "Please wait {{seconds}} seconds before reading again",
+    "apiError": "Service temporarily unavailable",
+    "genericError": "Something went wrong"
+  },
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

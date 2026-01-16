@@ -1,0 +1,120 @@
+{
+  "site": {
+    "title": "塔罗占卜",
+    "description": "AI智能塔罗牌在线占卜解读平台｜免费爱情事业学业运势测试"
+  },
+  "home": {
+    "title": "塔罗占卜",
+    "subtitle": "选择一个牌阵，开启你的占卜之旅",
+    "usageInfo": "今日剩余占卜次数：",
+    "viewHistory": "查看历史记录",
+    "dailyLimit": "{{remaining}} / {{total}}"
+  },
+  "spreadSelection": {
+    "back": "返回",
+    "description": "静心感受，选择与你有共鸣的牌",
+    "progress": "{{selected}} / {{required}}",
+    "hint": "牌阵在缓缓旋转，静心感受，让直觉引导你的选择",
+    "confirm": "确认选择",
+    "clickToSelect": "点击选择"
+  },
+  "questionInput": {
+    "title": "你的问题",
+    "subtitle": "说出你的心声，让塔罗为你指引",
+    "placeholder": "你想了解什么？（可选）\n\n例如：\n- 我目前的感情会有进一步发展吗？\n- 我应该接受这个新的工作机会吗？\n- 我的事业发展应该注意什么？",
+    "skip": "跳过",
+    "submit": "继续"
+  },
+  "cardReveal": {
+    "title": "你的牌面",
+    "subtitle": "牌面即将揭晓",
+    "preparing": "正在准备解读"
+  },
+  "interpreting": {
+    "title": "命运解析中",
+    "subtitle": "正在为你解析牌面"
+  },
+  "result": {
+    "title": "解读结果",
+    "subtitle": "塔罗牌为你揭示的启示",
+    "yourQuestion": "你的问题",
+    "interpretation": "结果解析",
+    "failed": "解读失败",
+    "checkConfig": "请检查环境变量配置，或稍后重试",
+    "copyReading": "复制解读",
+    "readAgain": "重新抽牌",
+    "keywords": "关键词",
+    "meaning": "牌义",
+    "upright": "正位",
+    "reversed": "逆位"
+  },
+  "history": {
+    "title": "占卜历史",
+    "empty": "暂无占卜记录",
+    "emptyHint": "你的占卜记录会显示在这里",
+    "close": "关闭",
+    "delete": "删除",
+    "clear": "清空全部",
+    "confirmClear": "确定要清空所有历史记录吗？",
+    "spread": "牌阵",
+    "time": "时间",
+    "question": "问题"
+  },
+  "spreads": {
+    "singleCard": {
+      "name": "单牌占卜",
+      "description": "抽取一张牌，快速获得指引",
+      "positions": ["当前情况"]
+    },
+    "threeCard": {
+      "name": "三牌阵",
+      "description": "经典牌阵，揭示过去、现在、未来",
+      "positions": ["过去", "现在", "未来"]
+    },
+    "holyTriangle": {
+      "name": "圣三角",
+      "description": "探索事态、挑战与建议",
+      "positions": ["情况", "挑战", "建议"]
+    },
+    "celticCross": {
+      "name": "凯尔特十字",
+      "description": "全面的10张牌阵，深度解析",
+      "positions": [
+        "当前状况",
+        "挑战",
+        "根基",
+        "最近过去",
+        "可能结果",
+        "近期未来",
+        "你的态度",
+        "外部影响",
+        "希望与恐惧",
+        "最终结果"
+      ]
+    },
+    "timeFlow": {
+      "name": "时间之流",
+      "description": "五张牌展示发展与结果",
+      "positions": [
+        "过去",
+        "现在",
+        "近期未来",
+        "建议",
+        "结果"
+      ]
+    }
+  },
+  "errors": {
+    "rateLimitExceeded": "今日占卜次数已用完，将在 {{minutes}} 分钟后重置",
+    "cooldown": "请稍候 {{seconds}} 秒后再次占卜",
+    "apiError": "解读服务暂时不可用",
+    "genericError": "发生了一些错误"
+  },
+  "common": {
+    "loading": "加载中...",
+    "cancel": "取消",
+    "confirm": "确认",
+    "yes": "是",
+    "no": "否"
+  }
+}

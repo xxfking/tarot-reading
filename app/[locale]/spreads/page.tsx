@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { getAllSpreads } from '@/lib/spreads';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export const metadata: Metadata = {
   title: 'Tarot Spreads Guide - 5 Classic Tarot Card Layouts Explained',
@@ -37,7 +38,7 @@ export default async function SpreadsPage({
     <div className="min-h-screen bg-white">
       {/* 导航 */}
       <nav className="border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 py-4">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link
             href={`/${locale}`}
             className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-sans font-medium"
@@ -45,6 +46,7 @@ export default async function SpreadsPage({
             <span>←</span>
             <span>{t('backToHome')}</span>
           </Link>
+          <LanguageSwitcher />
         </div>
       </nav>
 

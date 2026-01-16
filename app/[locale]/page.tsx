@@ -11,6 +11,7 @@ import CircularCardSelection from '@/components/CircularCardSelection';
 import QuestionInput from '@/components/QuestionInput';
 import CardReveal from '@/components/CardReveal';
 import HistorySidebar from '@/components/HistorySidebar';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { canPerformReading, recordReading, getRemainingReadings, DAILY_LIMIT } from '@/lib/rate-limit';
 import { saveToHistory } from '@/lib/history';
 
@@ -144,6 +145,11 @@ ${interpretation}
           <div className="w-full max-w-5xl">
             {/* Header */}
             <div className="text-center mb-10 md:mb-13 relative">
+              {/* Language Switcher */}
+              <div className="absolute top-0 right-0">
+                <LanguageSwitcher />
+              </div>
+
               {/* 宜家风格黄色装饰条 */}
               <div className="w-16 h-1 bg-accent-yellow mx-auto mb-7 rounded-full"></div>
 

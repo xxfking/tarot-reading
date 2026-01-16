@@ -246,5 +246,60 @@
       "description": "78 tarot cards, 5 classic spreads, AI-powered interpretation, 10 free readings daily",
       "button": "Start Reading Now"
     }
+  },
+  "spreadsPage": {
+    "backToHome": "Back to Home",
+    "title": "Complete Tarot Spreads Guide",
+    "subtitle": "Choose the right spread for more precise guidance from the tarot",
+    "intro": {
+      "title": "What is a Tarot Spread?",
+      "p1": "A Tarot Spread refers to the arrangement pattern of cards during a reading. Each spread has a specific structure, with each position representing different meanings. Choosing the right spread allows you to understand the various aspects of your question more comprehensively and deeply.",
+      "p2": "From simple single-card readings to complex Celtic Cross spreads, different spreads suit different types of questions. Beginners are advised to start with simple spreads and gradually try more complex arrangements."
+    },
+    "cardCount": "Card Count",
+    "difficulty": "Difficulty",
+    "duration": "Reading Time",
+    "cards": "cards",
+    "beginner": "Beginner",
+    "simple": "Simple",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "minute": "minute",
+    "minutes": "minutes",
+    "positions": "Card Positions",
+    "suitable": "Suitable For",
+    "keyPoints": "Key Points",
+    "useSpread": "Use {name} Spread",
+    "howToChoose": {
+      "title": "How to Choose the Right Spread?",
+      "complexity": {
+        "title": "Based on Question Complexity",
+        "simple": "Simple questions → Single or Three Card",
+        "medium": "Medium questions → Holy Triangle or Time Flow",
+        "complex": "Complex questions → Celtic Cross"
+      },
+      "experience": {
+        "title": "Based on Your Experience",
+        "beginner": "Beginner → Start with Single and Three Card",
+        "experienced": "Experienced → Try Holy Triangle and Time Flow",
+        "advanced": "Advanced → Use Celtic Cross for deep readings"
+      },
+      "time": {
+        "title": "Based on Time Available",
+        "quick": "Quick guidance → Single Card (1 minute)",
+        "regular": "Regular reading → Three Card (3 minutes)",
+        "deep": "Deep analysis → Celtic Cross (10+ minutes)"
+      },
+      "intuition": {
+        "title": "Based on Intuition",
+        "trust": "Trust your first feeling",
+        "resonate": "Which spread resonates with you?",
+        "uncertain": "When uncertain, start with simple ones"
+      }
+    },
+    "cta": {
+      "button": "Begin Your Tarot Journey",
+      "subtitle": "10 free daily readings • No registration • AI-powered interpretation"
+    }
   }
 }

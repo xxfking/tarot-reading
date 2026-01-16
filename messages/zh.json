@@ -246,5 +246,60 @@
       "description": "78张塔罗牌，5种经典牌阵，AI智能解读，每日10次免费占卜",
       "button": "立即开始占卜"
     }
+  },
+  "spreadsPage": {
+    "backToHome": "返回首页",
+    "title": "塔罗牌阵大全",
+    "subtitle": "选择合适的牌阵，让塔罗牌为你的问题提供更精准的指引",
+    "intro": {
+      "title": "什么是塔罗牌阵？",
+      "p1": "塔罗牌阵（Tarot Spread）是指在占卜时卡牌的排列方式。每个牌阵都有其特定的结构，每个位置代表不同的含义。选择合适的牌阵能够让你更全面、深入地了解问题的各个层面。",
+      "p2": "从简单的单牌占卜到复杂的凯尔特十字，不同的牌阵适用于不同类型的问题。初学者建议从简单的牌阵开始，逐步尝试更复杂的排列方式。"
+    },
+    "cardCount": "卡牌数量",
+    "difficulty": "难度等级",
+    "duration": "占卜时长",
+    "cards": "张",
+    "beginner": "入门",
+    "simple": "简单",
+    "intermediate": "中等",
+    "advanced": "进阶",
+    "minute": "分钟",
+    "minutes": "分钟",
+    "positions": "牌位说明",
+    "suitable": "适用场景",
+    "keyPoints": "解读要点",
+    "useSpread": "使用{name}占卜",
+    "howToChoose": {
+      "title": "如何选择合适的牌阵？",
+      "complexity": {
+        "title": "根据问题复杂度",
+        "simple": "简单问题 → 单牌或三牌阵",
+        "medium": "中等问题 → 圣三角或时间之流",
+        "complex": "复杂问题 → 凯尔特十字"
+      },
+      "experience": {
+        "title": "根据你的经验",
+        "beginner": "初学者 → 从单牌和三牌阵开始",
+        "experienced": "有经验 → 尝试圣三角和时间之流",
+        "advanced": "熟练者 → 使用凯尔特十字深度解读"
+      },
+      "time": {
+        "title": "根据时间",
+        "quick": "快速指引 → 单牌占卜（1分钟）",
+        "regular": "常规占卜 → 三牌阵（3分钟）",
+        "deep": "深度分析 → 凯尔特十字（10分钟+）"
+      },
+      "intuition": {
+        "title": "根据直觉",
+        "trust": "相信你的第一感觉",
+        "resonate": "哪个牌阵让你更有共鸣？",
+        "uncertain": "不确定时从简单的开始"
+      }
+    },
+    "cta": {
+      "button": "开始你的塔罗占卜之旅",
+      "subtitle": "每日10次免费占卜 • 无需注册 • AI智能解读"
+    }
   }
 }

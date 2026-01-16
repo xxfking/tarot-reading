@@ -201,11 +201,11 @@ ${interpretation}
             </div>
 
             <h2 className="text-4xl font-display mb-4 text-text-primary font-semibold">
-              正在解读中
+              命运解析中
             </h2>
 
             <p className="text-text-secondary font-sans text-base max-w-md mx-auto">
-              AI 正在分析你的牌面
+              正在为你解析牌面
             </p>
           </div>
         </div>

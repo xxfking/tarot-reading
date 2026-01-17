@@ -8,8 +8,8 @@ export default createMiddleware({
   // 默认语言
   defaultLocale,
 
-  // 语言检测策略
-  localeDetection: true,
+  // 语言检测策略：关闭自动检测，强制使用默认语言（英文）
+  localeDetection: false,
 
   // URL策略：仅非默认语言显示前缀（/为英文，/zh为中文）
   localePrefix: 'as-needed',

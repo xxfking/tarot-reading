@@ -30,16 +30,25 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
   }, [revealedCount, drawnCards.length, onComplete]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-subtle">
-      <div className="max-w-5xl w-full">
-        <h2 className="text-4xl font-display mb-4 text-text-primary text-center font-semibold">
-          {t('cardReveal.title')}
-        </h2>
-        <p className="text-center text-text-secondary font-sans mb-12">
-          {t('cardReveal.subtitle')}
-        </p>
+    <div className="min-h-screen flex items-center justify-center p-6 md:p-8 bg-gradient-celestial grain-overlay">
+      <div className="max-w-6xl w-full">
+        {/* Title */}
+        <div className="text-center mb-10 md:mb-14">
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-mystic-500 to-transparent"></div>
+            <div className="w-2 h-2 bg-accent-gold rounded-full shadow-glow"></div>
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-mystic-500 to-transparent"></div>
+          </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+          <h2 className="text-4xl md:text-5xl font-display mb-4 text-text-primary text-center font-semibold">
+            {t('cardReveal.title')}
+          </h2>
+          <p className="text-center text-text-secondary font-serif text-base md:text-lg max-w-2xl mx-auto">
+            {t('cardReveal.subtitle')}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-8 md:gap-10">
           {drawnCards.map((drawnCard, index) => {
             const isRevealed = index < revealedCount;
             return (
@@ -52,7 +61,7 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                     ease: [0.43, 0.13, 0.23, 0.96],
                     delay: index * 0.15
                   }}
-                  className="w-36 md:w-44 aspect-[2/3] relative"
+                  className="w-44 md:w-56 aspect-[2/3] relative"
                   style={{ perspective: '1000px' }}
                 >
                   <motion.div
@@ -67,25 +76,27 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                   >
                     {/* Card Back */}
                     <div
-                      className="absolute inset-0 w-full h-full rounded-md overflow-hidden shadow-md"
+                      className="absolute inset-0 w-full h-full rounded-xl shadow-mystic bg-white p-2"
                       style={{
                         backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden',
                       }}
                     >
-                      <Image
-                        src="/cards/card-back.jpg"
-                        alt="Tarot Card Back"
-                        fill
-                        sizes="(max-width: 768px) 144px, 176px"
-                        className="object-cover"
-                        priority
-                      />
+                      <div className="relative w-full h-full rounded-lg overflow-hidden">
+                        <Image
+                          src="/cards/card-back.jpg"
+                          alt="Tarot Card Back"
+                          fill
+                          sizes="(max-width: 768px) 176px, 224px"
+                          className="object-contain"
+                          priority
+                        />
+                      </div>
                     </div>
 
                     {/* Card Front */}
                     <div
-                      className="absolute inset-0 w-full h-full rounded-md overflow-hidden shadow-md border border-border"
+                      className="absolute inset-0 w-full h-full rounded-xl shadow-mystic border border-mystic-200/50 bg-white p-2"
                       style={{
                         backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden',
@@ -93,7 +104,7 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                       }}
                     >
                       <div
-                        className="absolute inset-0 w-full h-full"
+                        className="relative w-full h-full rounded-lg overflow-hidden pb-6"
                         style={{
                           transform: drawnCard.isReversed ? 'rotate(180deg)' : 'none'
                         }}
@@ -102,13 +113,13 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                           src={drawnCard.card.imageUrl}
                           alt={drawnCard.card.name}
                           fill
-                          sizes="(max-width: 768px) 144px, 176px"
-                          className="object-cover"
+                          sizes="(max-width: 768px) 176px, 224px"
+                          className="object-contain"
                           priority
                         />
                       </div>
-                      {/* Upright/Reversed Badge */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-accent text-white text-xs py-2 text-center font-sans font-medium z-10">
+                      {/* Upright/Reversed Badge - 缩小避免遮挡 */}
+                      <div className="absolute bottom-2 left-2 right-2 bg-gradient-to-r from-accent to-mystic-600 text-white text-xs py-1 text-center font-sans font-medium z-10 rounded shadow-md">
                         {drawnCard.isReversed ? t('result.reversed') : t('result.upright')}
                       </div>
                     </div>
@@ -116,7 +127,7 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
                 </motion.div>
 
                 {/* Position Label */}
-                <div className="text-center mt-4 text-base text-text-primary font-sans">
+                <div className="text-center mt-5 text-sm md:text-base text-text-primary font-display font-semibold">
                   {drawnCard.position}
                 </div>
               </div>
@@ -124,8 +135,14 @@ export default function CardReveal({ drawnCards, onComplete }: CardRevealProps) 
           })}
         </div>
 
-        <div className="text-center mt-16 text-text-secondary font-sans">
-          {t('cardReveal.preparing')}
+        {/* Preparing Message */}
+        <div className="text-center mt-14 md:mt-16">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 backdrop-blur-sm border border-mystic-200/50 rounded-full shadow-card">
+            <div className="w-2 h-2 bg-mystic-500 rounded-full animate-pulse"></div>
+            <span className="text-text-secondary font-serif text-sm md:text-base">
+              {t('cardReveal.preparing')}
+            </span>
+          </div>
         </div>
       </div>
     </div>

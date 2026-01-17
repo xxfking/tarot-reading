@@ -146,50 +146,62 @@ ${t('home.copyTemplate.footer')}`;
   return (
     <main className="min-h-screen">
       {step === 'select-spread' && (
-        <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-5 bg-gradient-celestial relative overflow-hidden grain-overlay">
+        <div className="min-h-screen bg-gradient-celestial relative overflow-hidden grain-overlay">
+          {/* Top Navigation Bar - 固定在顶部 */}
+          <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border/30 shadow-sm">
+            <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-4">
+              {/* Logo/Title */}
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-6 bg-gradient-to-b from-accent to-mystic-500 rounded-full"></div>
+                <span className="font-display font-semibold text-lg md:text-xl text-text-primary">
+                  {t('home.title')}
+                </span>
+              </div>
+
+              {/* Usage Info & History - 移到顶部导航 */}
+              <div className="flex items-center gap-3 md:gap-5">
+                <div className="flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-accent/10 border border-accent/20 rounded-lg">
+                  <span className="text-xs md:text-sm text-text-secondary font-sans">
+                    {t('home.usageInfo')}
+                  </span>
+                  <span className="font-semibold text-accent text-sm md:text-base font-sans">
+                    {remainingCount}/{DAILY_LIMIT}
+                  </span>
+                </div>
+                <button
+                  onClick={() => setIsHistoryOpen(true)}
+                  className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm text-text-secondary hover:text-accent transition-all duration-300 font-sans border border-border hover:border-accent rounded-lg hover:shadow-card"
+                  title={t('home.viewHistory')}
+                >
+                  <span className="text-base md:text-lg">📜</span>
+                  <span className="hidden sm:inline">{t('home.viewHistory')}</span>
+                </button>
+              </div>
+            </div>
+          </nav>
+
           {/* Floating decorative elements */}
           <div className="absolute top-20 left-10 w-32 h-32 bg-mystic-200 rounded-full opacity-30 blur-3xl animate-drift pointer-events-none"></div>
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent-yellow/20 rounded-full opacity-40 blur-3xl animate-float pointer-events-none"></div>
 
-          <div className="w-full max-w-6xl relative z-10">
-            {/* Header */}
-            <div className="text-center mb-14 md:mb-20 relative">
-              {/* Language Switcher - 已隐藏 */}
-              {/* <div className="absolute top-0 right-0">
-                <LanguageSwitcher />
-              </div> */}
-
+          {/* Main Content - 调整为非 flex-center，改为 padding */}
+          <div className="w-full max-w-6xl mx-auto px-4 md:px-5 py-8 md:py-12 relative z-10">
+            {/* Header - 进一步减小 */}
+            <div className="text-center mb-6 md:mb-8">
               {/* Decorative accent */}
-              <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent via-mystic-500 to-transparent"></div>
                 <div className="w-2 h-2 bg-accent-gold rounded-full shadow-glow"></div>
                 <div className="w-12 h-px bg-gradient-to-r from-transparent via-mystic-500 to-transparent"></div>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display mb-6 text-text-primary font-semibold tracking-tight">
-                {t('home.title')}
-              </h1>
-              <p className="text-text-secondary text-base md:text-lg font-serif max-w-2xl mx-auto leading-relaxed">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-display mb-3 text-text-primary font-semibold tracking-tight">
                 {t('home.subtitle')}
-              </p>
+              </h1>
             </div>
 
             {/* Spread Selection */}
             <SpreadSelector spreads={spreads} onSelect={handleSpreadSelect} />
-
-            {/* Usage Info */}
-            <div className="mt-20 flex flex-col md:flex-row items-center justify-center gap-5 md:gap-10">
-              <p className="text-sm md:text-base text-text-secondary font-sans">
-                {t('home.usageInfo')} <span className="font-semibold text-accent ml-1.5 text-lg">{remainingCount} / {DAILY_LIMIT}</span>
-              </p>
-              <button
-                onClick={() => setIsHistoryOpen(true)}
-                className="inline-flex items-center gap-2.5 px-7 py-2.5 text-sm md:text-base text-text-secondary hover:text-accent transition-all duration-300 font-sans border-2 border-border hover:border-accent rounded-lg hover:shadow-card"
-              >
-                <span className="text-lg">📜</span>
-                <span>{t('home.viewHistory')}</span>
-              </button>
-            </div>
           </div>
         </div>
       )}
@@ -277,16 +289,19 @@ ${t('home.copyTemplate.footer')}`;
                     <div className="absolute inset-0 bg-gradient-to-br from-mystic-50/30 via-transparent to-accent-yellow/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                     <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative z-10">
-                      {/* 左侧：塔罗牌图片 */}
+                      {/* 左侧：塔罗牌图片 - 完整显示不裁剪 */}
                       <div className="flex-shrink-0">
-                        <div className={`relative w-48 h-72 md:w-56 md:h-84 mx-auto md:mx-0 rounded-xl overflow-hidden shadow-mystic ring-1 ring-border/20 ${drawnCard.isReversed ? 'rotate-180' : ''}`}>
-                          <Image
-                            src={localizedCard.imageUrl}
-                            alt={localizedCard.name}
-                            fill
-                            className="object-cover"
-                            priority
-                          />
+                        <div className={`relative w-52 h-80 md:w-64 md:h-96 mx-auto md:mx-0 rounded-xl shadow-mystic bg-white p-2 ${drawnCard.isReversed ? 'rotate-180' : ''}`}>
+                          <div className="relative w-full h-full rounded-lg overflow-hidden">
+                            <Image
+                              src={localizedCard.imageUrl}
+                              alt={localizedCard.name}
+                              fill
+                              className="object-contain"
+                              priority
+                              sizes="(max-width: 768px) 208px, 256px"
+                            />
+                          </div>
                         </div>
                       </div>
 

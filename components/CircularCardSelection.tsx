@@ -199,10 +199,10 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                     zIndex: isHovered ? 1000 : isSelected ? 500 + selectionOrder : baseZIndex,
                   }}
                 >
-                  {/* Vertical Tarot Card */}
+                  {/* Vertical Tarot Card - 完整显示牌背 */}
                   <div
                     className={`
-                      w-20 h-32 md:w-24 md:h-36 rounded-md overflow-hidden bg-white border
+                      w-20 h-32 md:w-24 md:h-36 rounded-md bg-white border p-0.5
                       transition-all duration-300
                       ${isSelected
                         ? 'border-accent shadow-xl scale-110 ring-2 ring-accent/20'
@@ -217,12 +217,12 @@ export default function CircularCardSelection({ spread, onComplete, onBack }: Ci
                     `}
                   >
                     {/* Card Back Image */}
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full rounded overflow-hidden">
                       <Image
                         src="/cards/card-back.jpg"
                         alt="Tarot Card Back"
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(max-width: 768px) 5rem, 6rem"
                       />
                     </div>

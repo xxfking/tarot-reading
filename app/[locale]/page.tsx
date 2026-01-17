@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Spread, DrawnCard } from '@/lib/types';
 import { getSpreadsWithTranslations } from '@/lib/spreads';
+import { getLocalizedCard } from '@/lib/tarot-data';
 import SpreadSelector from '@/components/SpreadSelector';
 import CircularCardSelection from '@/components/CircularCardSelection';
 import QuestionInput from '@/components/QuestionInput';
@@ -19,6 +20,7 @@ type Step = 'select-spread' | 'select-cards' | 'input-question' | 'reveal-cards'
 
 export default function Home() {
   const t = useTranslations();
+  const locale = useLocale();
   const [step, setStep] = useState<Step>('select-spread');
   const [selectedSpread, setSelectedSpread] = useState<Spread | null>(null);
   const [drawnCards, setDrawnCards] = useState<DrawnCard[]>([]);
@@ -123,7 +125,10 @@ export default function Home() {
 ${t('home.copyTemplate.spread')}：${selectedSpread?.name}
 ${question ? `${t('home.copyTemplate.question')}：${question}\n` : ''}
 ${t('home.copyTemplate.cards')}：
-${drawnCards.map(dc => `  ${dc.position}：${dc.card.name}（${dc.isReversed ? t('result.reversed') : t('result.upright')}）`).join('\n')}
+${drawnCards.map(dc => {
+  const localizedCard = getLocalizedCard(dc.card, locale);
+  return `  ${dc.position}：${localizedCard.name}（${dc.isReversed ? t('result.reversed') : t('result.upright')}）`;
+}).join('\n')}
 
 ${t('home.copyTemplate.interpretation')}：
 ${interpretation}
@@ -234,76 +239,79 @@ ${t('home.copyTemplate.footer')}`;
 
             {/* 抽到的牌 - 带图片和含义 */}
             <div className="mb-12 md:mb-16 space-y-8 md:space-y-12">
-              {drawnCards.map((drawnCard, index) => (
-                <div key={index} className="bg-white border border-border rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-                    {/* 左侧：塔罗牌图片 */}
-                    <div className="flex-shrink-0">
-                      <div className={`relative w-40 h-60 md:w-48 md:h-72 mx-auto md:mx-0 rounded-md overflow-hidden shadow-md ${drawnCard.isReversed ? 'rotate-180' : ''}`}>
-                        <Image
-                          src={drawnCard.card.imageUrl}
-                          alt={drawnCard.card.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-
-                    {/* 右侧：牌面信息 */}
-                    <div className="flex-1">
-                      {/* 位置和牌名 */}
-                      <div className="mb-5 md:mb-6">
-                        <p className="text-xs md:text-sm text-text-secondary font-sans mb-2">
-                          {drawnCard.position}
-                        </p>
-                        <h3 className="text-2xl md:text-3xl font-display text-text-primary mb-3">
-                          {drawnCard.card.name}
-                        </h3>
-                        <span className={`inline-block px-4 py-1.5 rounded-md text-sm font-sans font-medium ${
-                          drawnCard.isReversed
-                            ? 'bg-accent-cool/10 text-accent-cool border border-accent-cool/30'
-                            : 'bg-accent/10 text-accent border border-accent/30'
-                        }`}>
-                          {drawnCard.isReversed ? t('result.reversed') : t('result.upright')}
-                        </span>
-                      </div>
-
-                      {/* Keywords */}
-                      <div className="mb-5 md:mb-6">
-                        <h4 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-2 md:mb-3 uppercase tracking-wide">
-                          {t('result.keywords')}
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {(drawnCard.isReversed
-                            ? drawnCard.card.keywords.reversed
-                            : drawnCard.card.keywords.upright
-                          ).map((keyword, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 bg-background border border-border rounded text-xs md:text-sm text-text-primary font-sans"
-                            >
-                              {keyword}
-                            </span>
-                          ))}
+              {drawnCards.map((drawnCard, index) => {
+                const localizedCard = getLocalizedCard(drawnCard.card, locale);
+                return (
+                  <div key={index} className="bg-white border border-border rounded-lg p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                      {/* 左侧：塔罗牌图片 */}
+                      <div className="flex-shrink-0">
+                        <div className={`relative w-40 h-60 md:w-48 md:h-72 mx-auto md:mx-0 rounded-md overflow-hidden shadow-md ${drawnCard.isReversed ? 'rotate-180' : ''}`}>
+                          <Image
+                            src={localizedCard.imageUrl}
+                            alt={localizedCard.name}
+                            fill
+                            className="object-cover"
+                          />
                         </div>
                       </div>
 
-                      {/* Card Meaning */}
-                      <div>
-                        <h4 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-2 md:mb-3 uppercase tracking-wide">
-                          {t('result.meaning')}
-                        </h4>
-                        <p className="text-sm md:text-base text-text-primary font-sans leading-relaxed">
-                          {drawnCard.isReversed
-                            ? drawnCard.card.description.reversed
-                            : drawnCard.card.description.upright
-                          }
-                        </p>
+                      {/* 右侧：牌面信息 */}
+                      <div className="flex-1">
+                        {/* 位置和牌名 */}
+                        <div className="mb-5 md:mb-6">
+                          <p className="text-xs md:text-sm text-text-secondary font-sans mb-2">
+                            {drawnCard.position}
+                          </p>
+                          <h3 className="text-2xl md:text-3xl font-display text-text-primary mb-3">
+                            {localizedCard.name}
+                          </h3>
+                          <span className={`inline-block px-4 py-1.5 rounded-md text-sm font-sans font-medium ${
+                            drawnCard.isReversed
+                              ? 'bg-accent-cool/10 text-accent-cool border border-accent-cool/30'
+                              : 'bg-accent/10 text-accent border border-accent/30'
+                          }`}>
+                            {drawnCard.isReversed ? t('result.reversed') : t('result.upright')}
+                          </span>
+                        </div>
+
+                        {/* Keywords */}
+                        <div className="mb-5 md:mb-6">
+                          <h4 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-2 md:mb-3 uppercase tracking-wide">
+                            {t('result.keywords')}
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {(drawnCard.isReversed
+                              ? localizedCard.keywords.reversed
+                              : localizedCard.keywords.upright
+                            ).map((keyword, i) => (
+                              <span
+                                key={i}
+                                className="px-3 py-1 bg-background border border-border rounded text-xs md:text-sm text-text-primary font-sans"
+                              >
+                                {keyword}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Card Meaning */}
+                        <div>
+                          <h4 className="text-xs md:text-sm font-sans font-semibold text-text-secondary mb-2 md:mb-3 uppercase tracking-wide">
+                            {t('result.meaning')}
+                          </h4>
+                          <p className="text-sm md:text-base text-text-primary font-sans leading-relaxed">
+                            {drawnCard.isReversed
+                              ? localizedCard.description.reversed
+                              : localizedCard.description.upright
+                            }
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* User Question */}

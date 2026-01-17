@@ -8,12 +8,20 @@ export interface TarotCard {
   nameEn: string;                // 英文名称
   suit: Suit;
   keywords: {
-    upright: string[];           // 正位关键词
-    reversed: string[];          // 逆位关键词
+    upright: string[];           // 正位关键词（中文）
+    reversed: string[];          // 逆位关键词（中文）
+  };
+  keywordsEn?: {
+    upright: string[];           // 正位关键词（英文）
+    reversed: string[];          // 逆位关键词（英文）
   };
   description: {
-    upright: string;             // 正位基础含义
-    reversed: string;            // 逆位基础含义
+    upright: string;             // 正位基础含义（中文）
+    reversed: string;            // 逆位基础含义（中文）
+  };
+  descriptionEn?: {
+    upright: string;             // 正位基础含义（英文）
+    reversed: string;            // 逆位基础含义（英文）
   };
   imageUrl: string;              // 牌面图片路径
 }

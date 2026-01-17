@@ -344,15 +344,15 @@ ${t('home.copyTemplate.footer')}`;
                           </div>
                         </div>
 
-                        {/* Card Meaning */}
+                        {/* Card Meaning - Always show English */}
                         <div>
                           <h4 className="text-xs font-sans font-semibold text-text-secondary mb-4 uppercase tracking-widest">
                             {t('result.meaning')}
                           </h4>
                           <p className="text-base md:text-lg text-text-primary font-serif leading-relaxed prose-reading">
                             {drawnCard.isReversed
-                              ? localizedCard.description.reversed
-                              : localizedCard.description.upright
+                              ? drawnCard.card.descriptionEn.reversed
+                              : drawnCard.card.descriptionEn.upright
                             }
                           </p>
                         </div>

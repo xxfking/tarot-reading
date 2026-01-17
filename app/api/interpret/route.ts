@@ -8,12 +8,13 @@ interface InterpretRequest {
   drawnCards: DrawnCard[];
   spreadName: string;
   question?: string;
+  locale?: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: InterpretRequest = await request.json();
-    const { drawnCards, spreadName, question } = body;
+    const { drawnCards, spreadName, question, locale = 'zh' } = body;
 
     // 验证请求参数
     if (!drawnCards || !Array.isArray(drawnCards) || drawnCards.length === 0) {
@@ -30,8 +31,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 构建提示词
-    const prompt = buildTarotPrompt(drawnCards, spreadName, question);
+    // 构建提示词（根据语言环境）
+    const prompt = buildTarotPrompt(drawnCards, spreadName, question, locale);
 
     // 调用 LLM（带主备切换）
     const llmResponse = await callLLM(prompt);

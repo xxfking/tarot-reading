@@ -74,6 +74,7 @@ export default function Home() {
           drawnCards,
           spreadName: selectedSpread?.name,
           question: question || undefined,
+          locale: locale, // 传递语言环境
         }),
       });
 

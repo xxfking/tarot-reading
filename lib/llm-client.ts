@@ -9,35 +9,69 @@ interface LLMResponse {
   error?: string;
 }
 
-// 构建塔罗牌解读提示词
+// 构建塔罗牌解读提示词（支持多语言）
 export function buildTarotPrompt(
   drawnCards: DrawnCard[],
   spreadName: string,
-  question?: string
+  question?: string,
+  locale: string = 'zh'
 ): string {
+  const isEnglish = locale === 'en';
+
   const cardDescriptions = drawnCards
     .map((dc) => {
       const position = dc.position;
       const cardName = dc.card.name;
-      const orientation = dc.isReversed ? '逆位' : '正位';
+      const orientation = dc.isReversed
+        ? (isEnglish ? 'Reversed' : '逆位')
+        : (isEnglish ? 'Upright' : '正位');
       const keywords = dc.isReversed
-        ? dc.card.keywords.reversed.join('、')
-        : dc.card.keywords.upright.join('、');
+        ? dc.card.keywords.reversed.join(isEnglish ? ', ' : '、')
+        : dc.card.keywords.upright.join(isEnglish ? ', ' : '、');
       const description = dc.isReversed
         ? dc.card.description.reversed
         : dc.card.description.upright;
 
-      return `**位置${position}**：${cardName}（${orientation}）
+      if (isEnglish) {
+        return `**Position: ${position}**: ${cardName} (${orientation})
+Keywords: ${keywords}
+Meaning: ${description}`;
+      } else {
+        return `**位置${position}**：${cardName}（${orientation}）
 关键词：${keywords}
 牌义：${description}`;
+      }
     })
     .join('\n\n');
 
   const questionPart = question
-    ? `\n\n问卜者的问题：${question}`
+    ? (isEnglish ? `\n\nQuerent's Question: ${question}` : `\n\n问卜者的问题：${question}`)
     : '';
 
-  return `你是一位专业的塔罗占卜师，请根据以下抽牌结果为问卜者提供深入、细致的解读。
+  if (isEnglish) {
+    return `You are a professional tarot reader. Please provide an in-depth, detailed interpretation based on the following cards drawn.
+
+Spread: ${spreadName}
+
+${cardDescriptions}${questionPart}
+
+Please structure your interpretation as follows (use plain text format, no Markdown syntax):
+
+I. Overall Overview
+Provide 2-3 sentences summarizing the general insights and direction based on all the cards.
+
+II. Individual Card Analysis
+For each card, explain:
+- The specific meaning of this card in its position
+- The influence and insights from its upright/reversed orientation
+- Its relationship with other cards
+
+III. Advice and Guidance
+Provide 3-4 sentences of practical, actionable advice. Remind the querent of important things to pay attention to, and end with encouraging words.
+
+Please use a warm, professional tone. Avoid overly mysterious or vague expressions. The interpretation should be specific and practical, helping the querent gain insights. Do not use **bold**, ##headings or other Markdown formatting - just use paragraphs and line breaks.`;
+  } else {
+    return `你是一位专业的塔罗占卜师，请根据以下抽牌结果为问卜者提供深入、细致的解读。
 
 牌阵：${spreadName}
 
@@ -58,6 +92,7 @@ ${cardDescriptions}${questionPart}
 用3-4句话给出实际可行的建议，提醒问卜者需要注意的事项，并以鼓励性的话语结束。
 
 请用温暖、专业的语气，避免过于神秘或模糊的表达。解读应具体、实用，帮助问卜者获得启发。输出时不要使用**粗体**、##标题等Markdown格式，直接使用段落和换行即可。`;
+  }
 }
 
 // OpenAI API 调用

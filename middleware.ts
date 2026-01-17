@@ -11,8 +11,8 @@ export default createMiddleware({
   // 语言检测策略
   localeDetection: true,
 
-  // URL策略：始终在URL中显示语言前缀（/en, /zh）
-  localePrefix: 'always',
+  // URL策略：仅非默认语言显示前缀（/为英文，/zh为中文）
+  localePrefix: 'as-needed',
 });
 
 export const config = {

@@ -5,7 +5,7 @@ import { getRequestConfig } from 'next-intl/server';
 export const locales = ['en', 'zh'] as const;
 export type Locale = (typeof locales)[number];
 
-// 默认语言
+// 默认语言（现在使用英文）
 export const defaultLocale: Locale = 'en';
 
 export default getRequestConfig(async ({ locale }) => {

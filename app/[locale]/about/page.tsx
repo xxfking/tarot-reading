@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+// import LanguageSwitcher from '@/components/LanguageSwitcher'; // 隐藏语言切换器
 import { locales } from '@/i18n';
 
 // Generate static params for all locales
@@ -53,7 +53,7 @@ export default async function AboutPage({
             <span>←</span>
             <span>{t('backToHome')}</span>
           </Link>
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
         </div>
       </nav>
 

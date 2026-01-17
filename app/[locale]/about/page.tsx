@@ -42,15 +42,15 @@ export default async function AboutPage({
   const tFooter = await getTranslations('footer');
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-celestial grain-overlay">
       {/* 导航 */}
-      <nav className="border-b border-border">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav className="border-b border-border/30 bg-white/50 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link
             href={`/${locale}`}
-            className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-sans font-medium"
+            className="inline-flex items-center gap-2.5 text-accent hover:text-mystic-600 font-sans font-semibold transition-colors group"
           >
-            <span>←</span>
+            <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
             <span>{t('backToHome')}</span>
           </Link>
           {/* <LanguageSwitcher /> */}
@@ -58,68 +58,75 @@ export default async function AboutPage({
       </nav>
 
       {/* 主内容 */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-5xl mx-auto px-6 py-16 md:py-20">
         {/* 标题 */}
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-4 font-sans">
+        <div className="mb-16 md:mb-20 text-center">
+          {/* Decorative accent */}
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-mystic-500 to-transparent"></div>
+            <div className="w-2 h-2 bg-accent-gold rounded-full shadow-glow"></div>
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-mystic-500 to-transparent"></div>
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-display font-semibold text-text-primary mb-6">
             {t('title')}
           </h1>
-          <p className="text-lg text-text-secondary font-sans">
+          <p className="text-xl text-text-secondary font-serif max-w-3xl mx-auto leading-relaxed">
             {t('subtitle')}
           </p>
         </div>
 
         {/* 内容区域 */}
-        <article className="prose prose-lg max-w-none">
+        <article className="max-w-4xl mx-auto">
           {/* 什么是塔罗牌 */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-text-primary mb-4 font-sans">
+          <section className="mb-20 bg-white/80 backdrop-blur-sm rounded-2xl p-10 md:p-12 shadow-card">
+            <h2 className="text-4xl font-display font-semibold text-text-primary mb-8">
               {t('whatIsTarot.title')}
             </h2>
-            <p className="text-text-primary leading-relaxed mb-4 font-sans">
+            <p className="text-text-primary text-lg leading-loose mb-6 font-serif">
               {t('whatIsTarot.intro')}
             </p>
-            <p className="text-text-primary leading-relaxed mb-4 font-sans">
+            <p className="text-text-primary text-lg leading-loose font-serif">
               {t('whatIsTarot.ourService')}
             </p>
           </section>
 
           {/* 78张塔罗牌构成 */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-text-primary mb-4 font-sans">
+          <section className="mb-20 bg-white/80 backdrop-blur-sm rounded-2xl p-10 md:p-12 shadow-card">
+            <h2 className="text-4xl font-display font-semibold text-text-primary mb-12">
               {t('structure.title')}
             </h2>
 
-            <h3 className="text-2xl font-bold text-text-primary mb-3 mt-6 font-sans">
+            <h3 className="text-3xl font-display font-semibold text-text-primary mb-6">
               {t('structure.majorArcana.title')}
             </h3>
-            <p className="text-text-primary leading-relaxed mb-4 font-sans">
+            <p className="text-text-primary text-lg leading-loose mb-8 font-serif">
               {t('structure.majorArcana.description')}
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-              <div className="p-3 border border-border rounded-lg">
-                <p className="font-semibold text-text-primary font-sans">0. {locale === 'zh' ? '愚者' : 'The Fool'}</p>
-                <p className="text-sm text-text-secondary font-sans">{t('structure.majorArcana.fool')}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              <div className="p-5 border border-mystic-200 bg-mystic-50/30 rounded-xl hover:border-mystic-400 hover:shadow-card transition-all duration-300">
+                <p className="font-display font-semibold text-text-primary text-lg mb-2">0. {locale === 'zh' ? '愚者' : 'The Fool'}</p>
+                <p className="text-sm text-text-secondary font-serif">{t('structure.majorArcana.fool')}</p>
               </div>
-              <div className="p-3 border border-border rounded-lg">
-                <p className="font-semibold text-text-primary font-sans">1. {locale === 'zh' ? '魔术师' : 'The Magician'}</p>
-                <p className="text-sm text-text-secondary font-sans">{t('structure.majorArcana.magician')}</p>
+              <div className="p-5 border border-mystic-200 bg-mystic-50/30 rounded-xl hover:border-mystic-400 hover:shadow-card transition-all duration-300">
+                <p className="font-display font-semibold text-text-primary text-lg mb-2">1. {locale === 'zh' ? '魔术师' : 'The Magician'}</p>
+                <p className="text-sm text-text-secondary font-serif">{t('structure.majorArcana.magician')}</p>
               </div>
-              <div className="p-3 border border-border rounded-lg">
-                <p className="font-semibold text-text-primary font-sans">2. {locale === 'zh' ? '女祭司' : 'The High Priestess'}</p>
-                <p className="text-sm text-text-secondary font-sans">{t('structure.majorArcana.highPriestess')}</p>
+              <div className="p-5 border border-mystic-200 bg-mystic-50/30 rounded-xl hover:border-mystic-400 hover:shadow-card transition-all duration-300">
+                <p className="font-display font-semibold text-text-primary text-lg mb-2">2. {locale === 'zh' ? '女祭司' : 'The High Priestess'}</p>
+                <p className="text-sm text-text-secondary font-serif">{t('structure.majorArcana.highPriestess')}</p>
               </div>
-              <div className="p-3 border border-border rounded-lg">
-                <p className="font-semibold text-text-primary font-sans">3. {locale === 'zh' ? '皇后' : 'The Empress'}</p>
-                <p className="text-sm text-text-secondary font-sans">{t('structure.majorArcana.empress')}</p>
+              <div className="p-5 border border-mystic-200 bg-mystic-50/30 rounded-xl hover:border-mystic-400 hover:shadow-card transition-all duration-300">
+                <p className="font-display font-semibold text-text-primary text-lg mb-2">3. {locale === 'zh' ? '皇后' : 'The Empress'}</p>
+                <p className="text-sm text-text-secondary font-serif">{t('structure.majorArcana.empress')}</p>
               </div>
-              <div className="p-3 border border-border rounded-lg">
-                <p className="font-semibold text-text-primary font-sans">4. {locale === 'zh' ? '皇帝' : 'The Emperor'}</p>
-                <p className="text-sm text-text-secondary font-sans">{t('structure.majorArcana.emperor')}</p>
+              <div className="p-5 border border-mystic-200 bg-mystic-50/30 rounded-xl hover:border-mystic-400 hover:shadow-card transition-all duration-300">
+                <p className="font-display font-semibold text-text-primary text-lg mb-2">4. {locale === 'zh' ? '皇帝' : 'The Emperor'}</p>
+                <p className="text-sm text-text-secondary font-serif">{t('structure.majorArcana.emperor')}</p>
               </div>
-              <div className="p-3 border border-border rounded-lg">
-                <p className="font-semibold text-text-primary font-sans">5. {locale === 'zh' ? '教皇' : 'The Hierophant'}</p>
-                <p className="text-sm text-text-secondary font-sans">{t('structure.majorArcana.hierophant')}</p>
+              <div className="p-5 border border-mystic-200 bg-mystic-50/30 rounded-xl hover:border-mystic-400 hover:shadow-card transition-all duration-300">
+                <p className="font-display font-semibold text-text-primary text-lg mb-2">5. {locale === 'zh' ? '教皇' : 'The Hierophant'}</p>
+                <p className="text-sm text-text-secondary font-serif">{t('structure.majorArcana.hierophant')}</p>
               </div>
             </div>
             <p className="text-sm text-text-secondary italic font-sans">

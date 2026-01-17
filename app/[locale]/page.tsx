@@ -39,7 +39,7 @@ export default function Home() {
     // 检查是否可以进行占卜
     const check = canPerformReading();
     if (!check.allowed) {
-      alert(check.reason || '无法进行占卜');
+      alert(check.reason || t('home.cannotRead'));
       return;
     }
 
@@ -101,7 +101,7 @@ export default function Home() {
       setStep('show-result');
     } catch (error) {
       console.error('AI interpretation error:', error);
-      setInterpretError(error instanceof Error ? error.message : '解读服务暂时不可用');
+      setInterpretError(error instanceof Error ? error.message : t('result.checkConfig'));
       setStep('show-result');
     }
   };
@@ -118,23 +118,22 @@ export default function Home() {
   const handleCopyInterpretation = () => {
     if (!interpretation) return;
 
-    const copyText = `【塔罗占卜解读】
+    const copyText = `${t('home.copyTemplate.title')}
 
-牌阵：${selectedSpread?.name}
-${question ? `问题：${question}\n` : ''}
-抽牌结果：
-${drawnCards.map(dc => `  ${dc.position}：${dc.card.name}（${dc.isReversed ? '逆位' : '正位'}）`).join('\n')}
+${t('home.copyTemplate.spread')}：${selectedSpread?.name}
+${question ? `${t('home.copyTemplate.question')}：${question}\n` : ''}
+${t('home.copyTemplate.cards')}：
+${drawnCards.map(dc => `  ${dc.position}：${dc.card.name}（${dc.isReversed ? t('result.reversed') : t('result.upright')}）`).join('\n')}
 
-解读：
+${t('home.copyTemplate.interpretation')}：
 ${interpretation}
 
----
-由 AI 智能解读`;
+${t('home.copyTemplate.footer')}`;
 
     navigator.clipboard.writeText(copyText).then(() => {
-      alert('解读内容已复制到剪贴板');
+      alert(t('home.copySuccess'));
     }).catch(() => {
-      alert('复制失败，请手动选择复制');
+      alert(t('home.copyFailed'));
     });
   };
 

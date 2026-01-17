@@ -8,7 +8,20 @@
     "subtitle": "Choose a spread to begin your divination journey",
     "usageInfo": "Daily readings remaining:",
     "viewHistory": "View History",
-    "dailyLimit": "{{remaining}} / {{total}}"
+    "dailyLimit": "{{remaining}} / {{total}}",
+    "cannotRead": "Unable to perform reading",
+    "copySuccess": "Reading copied to clipboard",
+    "copyFailed": "Copy failed, please select and copy manually",
+    "copyTemplate": {
+      "title": "【Tarot Reading Interpretation】",
+      "spread": "Spread",
+      "time": "Time",
+      "question": "Question",
+      "cards": "Cards Drawn",
+      "interpretation": "Interpretation",
+      "footer": "---\nAI-Powered Interpretation",
+      "cardFormat": "{{position}}: {{name}} ({{orientation}})"
+    }
   },
   "spreadSelection": {
     "back": "Back",

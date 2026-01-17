@@ -10,10 +10,15 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
 
   const switchLanguage = (newLocale: string) => {
-    // Remove current locale from pathname
-    const pathWithoutLocale = pathname.replace(`/${locale}`, '');
+    // Extract the path after the locale prefix
+    // pathname format: /en, /en/about, /zh, /zh/spreads, etc.
+    const segments = pathname.split('/').filter(Boolean);
+
+    // Remove the first segment (current locale) and get the rest
+    const pathWithoutLocale = segments.length > 1 ? `/${segments.slice(1).join('/')}` : '';
+
     // Navigate to new locale path
-    router.push(`/${newLocale}${pathWithoutLocale || ''}`);
+    router.push(`/${newLocale}${pathWithoutLocale}`);
   };
 
   return (

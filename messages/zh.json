@@ -8,7 +8,20 @@
     "subtitle": "选择一个牌阵，开启你的占卜之旅",
     "usageInfo": "今日剩余占卜次数：",
     "viewHistory": "查看历史记录",
-    "dailyLimit": "{{remaining}} / {{total}}"
+    "dailyLimit": "{{remaining}} / {{total}}",
+    "cannotRead": "无法进行占卜",
+    "copySuccess": "解读内容已复制到剪贴板",
+    "copyFailed": "复制失败，请手动选择复制",
+    "copyTemplate": {
+      "title": "【塔罗占卜解读】",
+      "spread": "牌阵",
+      "time": "时间",
+      "question": "问题",
+      "cards": "抽牌结果",
+      "interpretation": "解读",
+      "footer": "---\n由 AI 智能解读",
+      "cardFormat": "{{position}}：{{name}}（{{orientation}}）"
+    }
   },
   "spreadSelection": {
     "back": "返回",

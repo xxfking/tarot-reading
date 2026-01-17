@@ -351,8 +351,8 @@ ${t('home.copyTemplate.footer')}`;
                           </h4>
                           <p className="text-base md:text-lg text-text-primary font-serif leading-relaxed prose-reading">
                             {drawnCard.isReversed
-                              ? drawnCard.card.descriptionEn.reversed
-                              : drawnCard.card.descriptionEn.upright
+                              ? (drawnCard.card.descriptionEn?.reversed || drawnCard.card.description.reversed)
+                              : (drawnCard.card.descriptionEn?.upright || drawnCard.card.description.upright)
                             }
                           </p>
                         </div>

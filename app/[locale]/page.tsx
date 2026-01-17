@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { Spread, DrawnCard } from '@/lib/types';
-import { getAllSpreads } from '@/lib/spreads';
+import { getSpreadsWithTranslations } from '@/lib/spreads';
 import SpreadSelector from '@/components/SpreadSelector';
 import CircularCardSelection from '@/components/CircularCardSelection';
 import QuestionInput from '@/components/QuestionInput';
@@ -28,7 +28,7 @@ export default function Home() {
   const [remainingCount, setRemainingCount] = useState(3);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
-  const spreads = getAllSpreads();
+  const spreads = getSpreadsWithTranslations((key: string) => t(key));
 
   // 更新剩余次数
   useEffect(() => {

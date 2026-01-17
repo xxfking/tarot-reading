@@ -139,6 +139,60 @@
     "apiError": "解读服务暂时不可用",
     "genericError": "发生了一些错误"
   },
+  "spreads": {
+    "single": {
+      "name": "单张牌",
+      "description": "适合日常指引或快速答案",
+      "positions": {
+        "guidance": "指引"
+      }
+    },
+    "threeTime": {
+      "name": "时间之流",
+      "description": "探索过去、现在和未来的发展",
+      "positions": {
+        "past": "过去",
+        "present": "现在",
+        "future": "未来"
+      }
+    },
+    "threeSituation": {
+      "name": "情境三张",
+      "description": "分析当前情况、应采取的行动和可能的结果",
+      "positions": {
+        "situation": "情况",
+        "action": "行动",
+        "outcome": "结果"
+      }
+    },
+    "celticCross": {
+      "name": "凯尔特十字",
+      "description": "最经典的深度解读牌阵，适合复杂问题",
+      "positions": {
+        "present": "现状",
+        "challenge": "挑战",
+        "pastRoot": "过去根源",
+        "recentPast": "近期过去",
+        "possibleFuture": "可能的未来",
+        "nearFuture": "近期未来",
+        "yourAttitude": "你的态度",
+        "externalInfluence": "外在影响",
+        "hopesAndFears": "希望与恐惧",
+        "finalOutcome": "最终结果"
+      }
+    },
+    "relationship": {
+      "name": "关系牌阵",
+      "description": "探索人际关系或感情问题",
+      "positions": {
+        "yourPosition": "你的立场",
+        "theirPosition": "对方的立场",
+        "connection": "双方的连接",
+        "challenge": "挑战",
+        "outcome": "可能的结果"
+      }
+    }
+  },
   "common": {
     "loading": "加载中...",
     "cancel": "取消",

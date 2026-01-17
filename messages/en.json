@@ -139,6 +139,60 @@
     "apiError": "Service temporarily unavailable",
     "genericError": "Something went wrong"
   },
+  "spreads": {
+    "single": {
+      "name": "Single Card",
+      "description": "Perfect for daily guidance or quick answers",
+      "positions": {
+        "guidance": "Guidance"
+      }
+    },
+    "threeTime": {
+      "name": "Time Flow",
+      "description": "Explore the development of past, present, and future",
+      "positions": {
+        "past": "Past",
+        "present": "Present",
+        "future": "Future"
+      }
+    },
+    "threeSituation": {
+      "name": "Three Card Situation",
+      "description": "Analyze the current situation, action to take, and possible outcome",
+      "positions": {
+        "situation": "Situation",
+        "action": "Action",
+        "outcome": "Outcome"
+      }
+    },
+    "celticCross": {
+      "name": "Celtic Cross",
+      "description": "The most classic in-depth reading spread for complex questions",
+      "positions": {
+        "present": "Present Situation",
+        "challenge": "Challenge",
+        "pastRoot": "Past Foundation",
+        "recentPast": "Recent Past",
+        "possibleFuture": "Possible Future",
+        "nearFuture": "Near Future",
+        "yourAttitude": "Your Attitude",
+        "externalInfluence": "External Influence",
+        "hopesAndFears": "Hopes and Fears",
+        "finalOutcome": "Final Outcome"
+      }
+    },
+    "relationship": {
+      "name": "Relationship Spread",
+      "description": "Explore interpersonal or romantic relationships",
+      "positions": {
+        "yourPosition": "Your Position",
+        "theirPosition": "Their Position",
+        "connection": "Connection",
+        "challenge": "Challenge",
+        "outcome": "Possible Outcome"
+      }
+    }
+  },
   "common": {
     "loading": "Loading...",
     "cancel": "Cancel",

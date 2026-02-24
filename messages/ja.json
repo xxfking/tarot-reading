@@ -89,50 +89,6 @@
       "footer": "---\nAIによる解釈"
     }
   },
-  "spreads": {
-    "singleCard": {
-      "name": "ワンカード",
-      "description": "1枚のカードで素早い洞察とガイダンスを得る",
-      "positions": ["現在の状況"]
-    },
-    "threeCard": {
-      "name": "スリーカードスプレッド",
-      "description": "過去・現在・未来を明らかにするクラシックなスプレッド",
-      "positions": ["過去", "現在", "未来"]
-    },
-    "holyTriangle": {
-      "name": "聖三角形",
-      "description": "状況・課題・アドバイスを探る",
-      "positions": ["状況", "課題", "アドバイス"]
-    },
-    "celticCross": {
-      "name": "ケルト十字",
-      "description": "深い分析のための10枚の総合的なスプレッド",
-      "positions": [
-        "現在の状況",
-        "課題",
-        "基盤",
-        "近い過去",
-        "起こり得る結果",
-        "近い未来",
-        "あなたの姿勢",
-        "外部の影響",
-        "希望と不安",
-        "最終結果"
-      ]
-    },
-    "timeFlow": {
-      "name": "タイムフロー",
-      "description": "展開と結果を示す5枚のスプレッド",
-      "positions": [
-        "過去",
-        "現在",
-        "近い未来",
-        "アドバイス",
-        "結果"
-      ]
-    }
-  },
   "errors": {
     "rateLimitExceeded": "本日の占い回数上限に達しました。{{minutes}}分後にリセットされます",
     "cooldown": "再び占うまで{{seconds}}秒お待ちください",

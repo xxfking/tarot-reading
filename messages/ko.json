@@ -89,50 +89,6 @@
       "footer": "---\nAI 해석"
     }
   },
-  "spreads": {
-    "singleCard": {
-      "name": "원 카드",
-      "description": "한 장의 카드로 빠른 통찰과 안내를 받으세요",
-      "positions": ["현재 상황"]
-    },
-    "threeCard": {
-      "name": "쓰리 카드 스프레드",
-      "description": "과거, 현재, 미래를 밝혀주는 클래식 스프레드",
-      "positions": ["과거", "현재", "미래"]
-    },
-    "holyTriangle": {
-      "name": "홀리 트라이앵글",
-      "description": "상황, 도전, 조언을 탐색합니다",
-      "positions": ["상황", "도전", "조언"]
-    },
-    "celticCross": {
-      "name": "켈틱 크로스",
-      "description": "심층 분석을 위한 10장 종합 스프레드",
-      "positions": [
-        "현재 상황",
-        "도전",
-        "기반",
-        "최근 과거",
-        "가능한 결과",
-        "가까운 미래",
-        "당신의 태도",
-        "외부 영향",
-        "희망과 두려움",
-        "최종 결과"
-      ]
-    },
-    "timeFlow": {
-      "name": "시간의 흐름",
-      "description": "전개 과정과 결과를 보여주는 5장 스프레드",
-      "positions": [
-        "과거",
-        "현재",
-        "가까운 미래",
-        "조언",
-        "결과"
-      ]
-    }
-  },
   "errors": {
     "rateLimitExceeded": "일일 리딩 한도에 도달했습니다. {{minutes}}분 후에 초기화됩니다",
     "cooldown": "{{seconds}}초 후에 다시 리딩할 수 있습니다",

@@ -1,4 +1,5 @@
 import { TarotCard, Suit } from './types';
+import { getCardTranslation } from './card-translations';
 
 export const tarotCards: TarotCard[] = [
   // 大阿卡纳 (Major Arcana) - 0-21
@@ -1839,7 +1840,20 @@ export interface LocalizedCard {
 }
 
 export function getLocalizedCard(card: TarotCard, locale: string): LocalizedCard {
-  // zh uses Chinese fields directly; all other locales use English fields with fallback
+  // Check for locale-specific translation (ja, ko, fr)
+  const translation = getCardTranslation(card.id, locale);
+  if (translation) {
+    return {
+      id: card.id,
+      suit: card.suit,
+      imageUrl: card.imageUrl,
+      name: translation.name,
+      keywords: translation.keywords,
+      description: translation.description,
+    };
+  }
+
+  // zh uses Chinese fields directly; en and unknown locales use English fields
   const useChinese = locale === 'zh';
 
   return {

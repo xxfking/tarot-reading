@@ -89,50 +89,6 @@
       "footer": "---\n由 AI 智能解读"
     }
   },
-  "spreads": {
-    "singleCard": {
-      "name": "单牌占卜",
-      "description": "抽取一张牌，快速获得指引",
-      "positions": ["当前情况"]
-    },
-    "threeCard": {
-      "name": "三牌阵",
-      "description": "经典牌阵，揭示过去、现在、未来",
-      "positions": ["过去", "现在", "未来"]
-    },
-    "holyTriangle": {
-      "name": "圣三角",
-      "description": "探索事态、挑战与建议",
-      "positions": ["情况", "挑战", "建议"]
-    },
-    "celticCross": {
-      "name": "凯尔特十字",
-      "description": "全面的10张牌阵，深度解析",
-      "positions": [
-        "当前状况",
-        "挑战",
-        "根基",
-        "最近过去",
-        "可能结果",
-        "近期未来",
-        "你的态度",
-        "外部影响",
-        "希望与恐惧",
-        "最终结果"
-      ]
-    },
-    "timeFlow": {
-      "name": "时间之流",
-      "description": "五张牌展示发展与结果",
-      "positions": [
-        "过去",
-        "现在",
-        "近期未来",
-        "建议",
-        "结果"
-      ]
-    }
-  },
   "errors": {
     "rateLimitExceeded": "今日占卜次数已用完，将在 {{minutes}} 分钟后重置",
     "cooldown": "请稍候 {{seconds}} 秒后再次占卜",

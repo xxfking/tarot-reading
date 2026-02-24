@@ -89,50 +89,6 @@
       "footer": "---\nInterprété par IA"
     }
   },
-  "spreads": {
-    "singleCard": {
-      "name": "Carte Unique",
-      "description": "Tirez une carte pour un aperçu rapide et des conseils",
-      "positions": ["Situation Actuelle"]
-    },
-    "threeCard": {
-      "name": "Tirage en Trois Cartes",
-      "description": "Tirage classique révélant le passé, le présent et l'avenir",
-      "positions": ["Passé", "Présent", "Avenir"]
-    },
-    "holyTriangle": {
-      "name": "Triangle Sacré",
-      "description": "Explorez la situation, le défi et le conseil",
-      "positions": ["Situation", "Défi", "Conseil"]
-    },
-    "celticCross": {
-      "name": "Croix Celtique",
-      "description": "Tirage complet de 10 cartes pour une analyse approfondie",
-      "positions": [
-        "Situation Présente",
-        "Défi",
-        "Fondation",
-        "Passé Récent",
-        "Issue Possible",
-        "Avenir Proche",
-        "Votre Attitude",
-        "Influences Extérieures",
-        "Espoirs et Craintes",
-        "Issue Finale"
-      ]
-    },
-    "timeFlow": {
-      "name": "Flux Temporel",
-      "description": "Tirage de cinq cartes montrant l'évolution et l'issue",
-      "positions": [
-        "Passé",
-        "Présent",
-        "Avenir Proche",
-        "Conseil",
-        "Issue"
-      ]
-    }
-  },
   "errors": {
     "rateLimitExceeded": "Limite quotidienne de tirages atteinte, réinitialisation dans {{minutes}} minutes",
     "cooldown": "Veuillez patienter {{seconds}} secondes avant de tirer à nouveau",

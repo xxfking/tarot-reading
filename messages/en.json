@@ -89,50 +89,6 @@
       "footer": "---\nInterpreted by AI"
     }
   },
-  "spreads": {
-    "singleCard": {
-      "name": "Single Card",
-      "description": "Draw one card for quick insight and guidance",
-      "positions": ["Current Situation"]
-    },
-    "threeCard": {
-      "name": "Three Card Spread",
-      "description": "Classic spread revealing past, present, and future",
-      "positions": ["Past", "Present", "Future"]
-    },
-    "holyTriangle": {
-      "name": "Holy Triangle",
-      "description": "Explore situation, challenge, and advice",
-      "positions": ["Situation", "Challenge", "Advice"]
-    },
-    "celticCross": {
-      "name": "Celtic Cross",
-      "description": "Comprehensive 10-card spread for deep analysis",
-      "positions": [
-        "Present Situation",
-        "Challenge",
-        "Foundation",
-        "Recent Past",
-        "Possible Outcome",
-        "Near Future",
-        "Your Attitude",
-        "External Influences",
-        "Hopes and Fears",
-        "Final Outcome"
-      ]
-    },
-    "timeFlow": {
-      "name": "Time Flow",
-      "description": "Five-card spread showing development and outcome",
-      "positions": [
-        "Past",
-        "Present",
-        "Near Future",
-        "Advice",
-        "Outcome"
-      ]
-    }
-  },
   "errors": {
     "rateLimitExceeded": "Daily reading limit reached, will reset in {{minutes}} minutes",
     "cooldown": "Please wait {{seconds}} seconds before reading again",

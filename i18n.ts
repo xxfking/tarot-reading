@@ -8,12 +8,13 @@ export type Locale = (typeof locales)[number];
 // 默认语言（现在使用英文）
 export const defaultLocale: Locale = 'en';
 
-export default getRequestConfig(async ({ locale }) => {
-  // Validate locale - if not valid, use default
-  const validLocale = locale && locales.includes(locale as Locale) ? locale : defaultLocale;
+export default getRequestConfig(async ({ requestLocale }) => {
+  // In next-intl v4, requestLocale is a Promise that may resolve to undefined
+  const requested = await requestLocale;
+  const locale = requested && locales.includes(requested as Locale) ? requested : defaultLocale;
 
   return {
-    locale: validLocale,
-    messages: (await import(`./messages/${validLocale}.json`)).default,
+    locale,
+    messages: (await import(`./messages/${locale}.json`)).default,
   };
 });

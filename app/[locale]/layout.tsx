@@ -1,7 +1,17 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { Noto_Sans } from "next/font/google";
 import { locales } from '@/i18n';
+import { seoConfig } from '@/lib/seo-config';
+import '../globals.css';
+
+const notoSans = Noto_Sans({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 // Generate static params for all locales
 export function generateStaticParams() {
@@ -26,8 +36,24 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      {children}
-    </NextIntlClientProvider>
+    <html lang={locale}>
+      <head>
+        {/* Structured Data - JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              ...seoConfig.structuredData,
+              inLanguage: locale,
+            }),
+          }}
+        />
+      </head>
+      <body className={`${notoSans.variable} font-sans bg-background text-text-primary antialiased`}>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

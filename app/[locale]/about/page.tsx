@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
-// import LanguageSwitcher from '@/components/LanguageSwitcher'; // 隐藏语言切换器
 import { locales } from '@/i18n';
+import { getAlternates, seoConfig } from '@/lib/seo-config';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 // Generate static params for all locales
 export function generateStaticParams() {
@@ -17,18 +18,43 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  if (locale === 'zh') {
-    return {
+  const alternates = getAlternates(locale, '/about');
+
+  const metaByLocale: Record<string, { title: string; description: string; keywords: string[] }> = {
+    zh: {
       title: '关于塔罗牌 - 历史、含义与AI解读指南',
       description: '探索塔罗牌的起源，了解78张大小阿卡纳的含义、塔罗占卜方法和牌阵解读技巧。专业AI驱动的在线塔罗平台，提供爱情、事业和人生指引。',
       keywords: ['塔罗牌', '塔罗牌含义', '塔罗历史', '大阿卡纳', '小阿卡纳', '塔罗占卜方法', 'AI塔罗', '如何解读塔罗牌', '塔罗牌指南'],
-    };
-  }
+    },
+    ja: {
+      title: 'タロットカードについて - 歴史、意味とAIリーディングガイド',
+      description: 'タロットカードの起源を探り、78枚の大アルカナ・小アルカナの意味、タロット占いの方法とスプレッド解釈を学びましょう。AI搭載のオンラインタロットプラットフォーム。',
+      keywords: ['タロットカード', 'タロット意味', 'タロット歴史', '大アルカナ', '小アルカナ', 'タロット占い', 'AIタロット', 'タロットカードガイド'],
+    },
+    ko: {
+      title: '타로 카드 소개 - 역사, 의미 및 AI 리딩 가이드',
+      description: '타로 카드의 기원을 탐구하고 78장의 메이저 & 마이너 아르카나의 의미, 타로 리딩 방법과 스프레드 해석을 배워보세요. AI 기반 온라인 타로 플랫폼.',
+      keywords: ['타로 카드', '타로 의미', '타로 역사', '메이저 아르카나', '마이너 아르카나', '타로 점', 'AI 타로', '타로 카드 가이드'],
+    },
+    fr: {
+      title: 'À propos du Tarot - Histoire, Significations et Guide de Lecture IA',
+      description: 'Découvrez les origines des cartes de tarot, les significations des 78 arcanes majeurs et mineurs, les méthodes de lecture et les interprétations. Plateforme de tarot en ligne alimentée par l\'IA.',
+      keywords: ['cartes de tarot', 'signification tarot', 'histoire du tarot', 'arcanes majeurs', 'arcanes mineurs', 'tirage de tarot', 'tarot IA', 'guide tarot'],
+    },
+    en: {
+      title: 'About Tarot Cards - History, Meanings & AI Reading Guide',
+      description: 'Discover the origins of tarot cards, 78 Major & Minor Arcana meanings, tarot reading methods and spread interpretations. Professional AI-powered online tarot platform for love, career, and life guidance.',
+      keywords: ['tarot cards', 'tarot card meanings', 'tarot history', 'Major Arcana', 'Minor Arcana', 'tarot reading methods', 'AI tarot', 'how to read tarot cards', 'tarot card guide'],
+    },
+  };
+
+  const meta = metaByLocale[locale] || metaByLocale.en;
 
   return {
-    title: 'About Tarot Cards - History, Meanings & AI Reading Guide',
-    description: 'Discover the origins of tarot cards, 78 Major & Minor Arcana meanings, tarot reading methods and spread interpretations. Professional AI-powered online tarot platform for love, career, and life guidance.',
-    keywords: ['tarot cards', 'tarot card meanings', 'tarot history', 'Major Arcana', 'Minor Arcana', 'tarot reading methods', 'AI tarot', 'how to read tarot cards', 'tarot card guide'],
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    alternates,
   };
 }
 
@@ -41,8 +67,53 @@ export default async function AboutPage({
   const t = await getTranslations('about');
   const tFooter = await getTranslations('footer');
 
+  // Build FAQ structured data
+  const faqQuestions = ['q1', 'q2', 'q3', 'q4'] as const;
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqQuestions.map((q) => ({
+      '@type': 'Question',
+      name: t(`faq.${q}.question`),
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: t(`faq.${q}.answer`),
+      },
+    })),
+  };
+
+  // Breadcrumb structured data
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: seoConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: t('title'),
+        item: `${seoConfig.siteUrl}/${locale}/about`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-gradient-celestial grain-overlay">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* 导航 */}
       <nav className="border-b border-border/30 bg-white/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -53,7 +124,7 @@ export default async function AboutPage({
             <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
             <span>{t('backToHome')}</span>
           </Link>
-          {/* <LanguageSwitcher /> */}
+          <LanguageSwitcher />
         </div>
       </nav>
 

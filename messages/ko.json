@@ -1,0 +1,372 @@
+{
+  "site": {
+    "title": "타로 리딩",
+    "description": "AI 기반 온라인 타로 카드 리딩 & 점술 | 무료 연애, 직업 & 인생 상담"
+  },
+  "home": {
+    "title": "타로 리딩",
+    "subtitle": "스프레드를 선택하여 점술 여정을 시작하세요",
+    "usageInfo": "오늘 남은 리딩 횟수:",
+    "viewHistory": "기록 보기",
+    "dailyLimit": "{{remaining}} / {{total}}",
+    "cannotRead": "리딩을 진행할 수 없습니다",
+    "copySuccess": "리딩 결과가 클립보드에 복사되었습니다",
+    "copyFailed": "복사에 실패했습니다. 직접 선택하여 복사해 주세요",
+    "copyTemplate": {
+      "title": "【타로 리딩 해석】",
+      "spread": "스프레드",
+      "time": "시간",
+      "question": "질문",
+      "cards": "뽑은 카드",
+      "interpretation": "해석",
+      "footer": "---\nAI 기반 해석",
+      "cardFormat": "{{position}}: {{name}} ({{orientation}})"
+    }
+  },
+  "spreadSelection": {
+    "back": "뒤로",
+    "description": "카드를 느끼며 당신에게 끌리는 카드를 선택하세요",
+    "progress": "{{selected}} / {{required}}",
+    "hint": "카드가 천천히 회전하고 있습니다. 직감에 따라 선택하세요",
+    "confirm": "선택 확인",
+    "clickToSelect": "클릭하여 선택"
+  },
+  "questionInput": {
+    "title": "당신의 질문",
+    "subtitle": "카드를 뽑을 때 어떤 질문을 떠올리고 계신지 알려주시면, 리딩 결과를 바탕으로 해석해 드리겠습니다",
+    "skipHint": "이 단계를 건너뛰고 전체적인 리딩을 받을 수도 있습니다",
+    "placeholder": "여기에 질문을 입력하세요...",
+    "skip": "건너뛰기",
+    "submit": "리딩 시작"
+  },
+  "cardReveal": {
+    "title": "당신의 카드",
+    "subtitle": "카드가 곧 공개됩니다",
+    "preparing": "해석 준비 중"
+  },
+  "interpreting": {
+    "title": "운명 분석",
+    "subtitle": "카드를 분석하고 있습니다"
+  },
+  "result": {
+    "title": "해석 결과",
+    "subtitle": "타로가 전하는 메시지",
+    "yourQuestion": "당신의 질문",
+    "interpretation": "해석",
+    "failed": "해석 실패",
+    "checkConfig": "환경 설정을 확인하거나 나중에 다시 시도해 주세요",
+    "copyReading": "리딩 복사",
+    "readAgain": "다시 뽑기",
+    "keywords": "키워드",
+    "meaning": "의미",
+    "upright": "정방향",
+    "reversed": "역방향"
+  },
+  "history": {
+    "title": "리딩 기록",
+    "empty": "아직 리딩 기록이 없습니다",
+    "emptyHint": "리딩 기록이 여기에 표시됩니다",
+    "close": "닫기",
+    "delete": "삭제",
+    "clear": "전체 삭제",
+    "confirmClear": "모든 기록을 삭제하시겠습니까?",
+    "confirmDelete": "이 기록을 삭제하시겠습니까?",
+    "spread": "스프레드",
+    "time": "시간",
+    "question": "질문",
+    "selectHint": "기록을 선택하여 상세 내용을 확인하세요",
+    "backToList": "목록으로 돌아가기",
+    "cardResults": "카드 결과",
+    "copySuccess": "클립보드에 복사되었습니다",
+    "copyFailed": "복사 실패",
+    "copyTemplate": {
+      "title": "【타로 리딩】",
+      "spread": "스프레드",
+      "time": "시간",
+      "question": "질문",
+      "cards": "뽑은 카드",
+      "interpretation": "해석",
+      "footer": "---\nAI 해석"
+    }
+  },
+  "spreads": {
+    "singleCard": {
+      "name": "원 카드",
+      "description": "한 장의 카드로 빠른 통찰과 안내를 받으세요",
+      "positions": ["현재 상황"]
+    },
+    "threeCard": {
+      "name": "쓰리 카드 스프레드",
+      "description": "과거, 현재, 미래를 밝혀주는 클래식 스프레드",
+      "positions": ["과거", "현재", "미래"]
+    },
+    "holyTriangle": {
+      "name": "홀리 트라이앵글",
+      "description": "상황, 도전, 조언을 탐색합니다",
+      "positions": ["상황", "도전", "조언"]
+    },
+    "celticCross": {
+      "name": "켈틱 크로스",
+      "description": "심층 분석을 위한 10장 종합 스프레드",
+      "positions": [
+        "현재 상황",
+        "도전",
+        "기반",
+        "최근 과거",
+        "가능한 결과",
+        "가까운 미래",
+        "당신의 태도",
+        "외부 영향",
+        "희망과 두려움",
+        "최종 결과"
+      ]
+    },
+    "timeFlow": {
+      "name": "시간의 흐름",
+      "description": "전개 과정과 결과를 보여주는 5장 스프레드",
+      "positions": [
+        "과거",
+        "현재",
+        "가까운 미래",
+        "조언",
+        "결과"
+      ]
+    }
+  },
+  "errors": {
+    "rateLimitExceeded": "일일 리딩 한도에 도달했습니다. {{minutes}}분 후에 초기화됩니다",
+    "cooldown": "{{seconds}}초 후에 다시 리딩할 수 있습니다",
+    "apiError": "서비스를 일시적으로 사용할 수 없습니다",
+    "genericError": "문제가 발생했습니다"
+  },
+  "spreads": {
+    "single": {
+      "name": "원 카드",
+      "description": "일상적인 조언이나 빠른 답변에 적합합니다",
+      "positions": {
+        "guidance": "조언"
+      }
+    },
+    "threeTime": {
+      "name": "시간의 흐름",
+      "description": "과거, 현재, 미래의 흐름을 탐색합니다",
+      "positions": {
+        "past": "과거",
+        "present": "현재",
+        "future": "미래"
+      }
+    },
+    "threeSituation": {
+      "name": "쓰리 카드 상황",
+      "description": "현재 상황, 취해야 할 행동, 가능한 결과를 분석합니다",
+      "positions": {
+        "situation": "상황",
+        "action": "행동",
+        "outcome": "결과"
+      }
+    },
+    "celticCross": {
+      "name": "켈틱 크로스",
+      "description": "복잡한 질문을 위한 가장 전통적인 심층 리딩 스프레드",
+      "positions": {
+        "present": "현재 상황",
+        "challenge": "도전",
+        "pastRoot": "과거의 기반",
+        "recentPast": "최근 과거",
+        "possibleFuture": "가능한 미래",
+        "nearFuture": "가까운 미래",
+        "yourAttitude": "당신의 태도",
+        "externalInfluence": "외부 영향",
+        "hopesAndFears": "희망과 두려움",
+        "finalOutcome": "최종 결과"
+      }
+    },
+    "relationship": {
+      "name": "관계 스프레드",
+      "description": "대인 관계나 연애 관계를 탐색합니다",
+      "positions": {
+        "yourPosition": "당신의 입장",
+        "theirPosition": "상대의 입장",
+        "connection": "연결",
+        "challenge": "도전",
+        "outcome": "가능한 결과"
+      }
+    }
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "cancel": "취소",
+    "confirm": "확인",
+    "yes": "예",
+    "no": "아니오",
+    "card": "장",
+    "cards": "장"
+  },
+  "footer": {
+    "about": "타로 소개",
+    "spreads": "스프레드 가이드",
+    "copyright": "© 2026 AI Tarot Reading | AI 기반 온라인 타로 카드 리딩 플랫폼",
+    "home": "홈"
+  },
+  "about": {
+    "backToHome": "홈으로 돌아가기",
+    "title": "타로 카드 소개",
+    "subtitle": "고대의 지혜와 현대 AI의 완벽한 조화를 탐구합니다",
+    "whatIsTarot": {
+      "title": "타로 카드란 무엇인가요?",
+      "intro": "타로 카드는 15세기 유럽에서 유래한 고대 점술 도구입니다. 완전한 타로 덱은 78장의 카드로 구성되어 있으며, 각 카드에는 깊은 상징적 의미와 지혜가 담겨 있습니다. 타로 카드는 단순한 점술 도구가 아니라 내면을 비추는 거울이며, 자신을 이해하고, 현재를 파악하며, 미래를 통찰하는 데 도움을 줍니다.",
+      "ourService": "이 웹사이트에서는 전통적인 타로의 지혜와 첨단 AI 기술을 결합하여 전문적이고 정확한 온라인 타로 리딩 서비스를 제공합니다. 연애 고민, 직업 선택, 인생의 방향 탐색 등 어떤 질문이든 타로 카드가 영감과 안내를 드립니다."
+    },
+    "structure": {
+      "title": "78장의 타로 카드",
+      "majorArcana": {
+        "title": "메이저 아르카나 - 22장",
+        "description": "메이저 아르카나는 인생의 중요한 주제와 전환점을 나타내며, 0번 \"바보\"부터 21번 \"세계\"까지 완전한 인생 여정을 그려냅니다. 이 카드들은 중요한 인생 경험, 깊은 깨달음, 영적 성장을 상징합니다.",
+        "fool": "새로운 시작, 모험",
+        "magician": "창의력, 행동",
+        "highPriestess": "직감, 신비",
+        "empress": "풍요, 모성",
+        "emperor": "권위, 질서",
+        "hierophant": "전통, 신앙",
+        "more": "...이 외에 16장의 메이저 아르카나 카드가 있으며, 각각 중요한 인생의 단계를 나타냅니다."
+      },
+      "minorArcana": {
+        "title": "마이너 아르카나 - 56장",
+        "description": "마이너 아르카나는 일상생활의 구체적인 사건과 상황을 묘사하며, 각 14장씩 네 가지 수트로 나뉩니다:",
+        "wands": {
+          "title": "완드",
+          "description": "불의 원소를 나타내며, 행동, 창의력, 열정, 직업적 발전을 상징합니다."
+        },
+        "cups": {
+          "title": "컵",
+          "description": "물의 원소를 나타내며, 감정, 사랑, 관계, 내면의 느낌을 상징합니다."
+        },
+        "swords": {
+          "title": "소드",
+          "description": "공기의 원소를 나타내며, 사고, 소통, 갈등, 결정을 상징합니다."
+        },
+        "pentacles": {
+          "title": "펜타클",
+          "description": "땅의 원소를 나타내며, 물질적 풍요, 일, 실질적인 문제를 상징합니다."
+        }
+      }
+    },
+    "howToRead": {
+      "title": "타로 리딩은 어떻게 하나요?",
+      "step1": {
+        "title": "스프레드 선택",
+        "description": "질문에 맞는 적절한 스프레드를 선택하세요. 간단한 질문은 원 카드나 쓰리 카드 스프레드를, 복잡한 상황은 켈틱 크로스와 같은 큰 스프레드가 적합합니다."
+      },
+      "step2": {
+        "title": "명상",
+        "description": "카드를 뽑기 전에 마음을 가라앉히고 질문에 집중하세요. 직감이 이끄는 대로 끌리는 카드를 선택하세요."
+      },
+      "step3": {
+        "title": "카드 선택",
+        "description": "회전하는 덱에서 지정된 수만큼 카드를 선택하세요. 각 카드의 위치에는 특정한 의미가 있으며, 함께 완전한 리딩을 구성합니다."
+      },
+      "step4": {
+        "title": "AI 해석",
+        "description": "AI가 카드의 의미, 위치의 의미, 그리고 당신의 질문을 종합하여 전문적이고 맞춤화된 해석을 제공합니다."
+      }
+    },
+    "advantages": {
+      "title": "AI 타로 리딩의 장점",
+      "instant": {
+        "title": "즉시 해석",
+        "description": "기다릴 필요 없이 AI가 즉시 전문적인 리딩을 제공하며, 24시간 이용 가능합니다."
+      },
+      "objective": {
+        "title": "객관적 & 중립적",
+        "description": "AI가 전통적인 타로 의미를 바탕으로 객관적이고 편향 없는 해석을 제공합니다."
+      },
+      "free": {
+        "title": "완전 무료",
+        "description": "매일 10회 무료 리딩, 회원가입 불필요, 개인정보를 보호합니다."
+      },
+      "knowledge": {
+        "title": "전문 지식 기반",
+        "description": "방대한 타로 자료를 학습하여 깊이 있고 상세한 카드 분석을 제공합니다."
+      }
+    },
+    "faq": {
+      "title": "자주 묻는 질문",
+      "q1": {
+        "question": "타로 리딩은 정확한가요?",
+        "answer": "타로는 자기 탐색과 성찰을 위한 도구입니다. 상징적인 이미지를 통해 내면을 통찰하고 생각을 정리하는 데 도움을 줍니다. 정확도는 자기 인식과 카드와의 공명에 따라 달라집니다."
+      },
+      "q2": {
+        "question": "어떤 질문을 할 수 있나요?",
+        "answer": "타로는 \"이 관계에서 무엇에 주의해야 할까요?\"와 같은 개방형 질문을 탐색하는 데 가장 적합합니다. \"그/그녀가 나를 사랑하나요?\"와 같은 예/아니오 질문보다는 자기 성장과 행동 방향에 초점을 맞춘 질문이 가장 좋습니다."
+      },
+      "q3": {
+        "question": "얼마나 자주 리딩을 할 수 있나요?",
+        "answer": "같은 질문에 대해서는 최소 일주일 간격을 두고 다시 리딩하는 것이 좋습니다. 같은 주제에 대해 너무 자주 리딩하면 명확한 안내보다 오히려 더 큰 혼란을 초래할 수 있습니다."
+      },
+      "q4": {
+        "question": "AI 리딩과 사람이 하는 리딩의 차이점은 무엇인가요?",
+        "answer": "AI 리딩은 전통적인 타로 지식을 기반으로 객관적이고 표준화된 해석을 제공합니다. 사람이 하는 리딩은 리더의 개인적인 경험과 직관이 반영될 수 있습니다. AI의 장점은 즉시성, 일관성, 접근성에 있습니다."
+      }
+    },
+    "cta": {
+      "title": "타로 여정을 시작하세요",
+      "description": "78장의 타로 카드, 5가지 클래식 스프레드, AI 기반 해석, 매일 10회 무료 리딩",
+      "button": "지금 리딩 시작하기"
+    }
+  },
+  "spreadsPage": {
+    "backToHome": "홈으로 돌아가기",
+    "title": "타로 스프레드 완전 가이드",
+    "subtitle": "올바른 스프레드를 선택하여 타로의 더 정확한 안내를 받으세요",
+    "intro": {
+      "title": "타로 스프레드란 무엇인가요?",
+      "p1": "타로 스프레드는 리딩 시 카드의 배치 패턴을 말합니다. 각 스프레드에는 특정한 구조가 있으며, 각 위치는 서로 다른 의미를 나타냅니다. 올바른 스프레드를 선택하면 질문의 다양한 측면을 더 포괄적이고 깊이 있게 이해할 수 있습니다.",
+      "p2": "간단한 원 카드 리딩부터 복잡한 켈틱 크로스 스프레드까지, 각기 다른 스프레드는 다른 유형의 질문에 적합합니다. 초보자는 간단한 스프레드부터 시작하여 점차 복잡한 배열을 시도하는 것을 권장합니다."
+    },
+    "cardCount": "카드 수",
+    "difficulty": "난이도",
+    "duration": "리딩 시간",
+    "cards": "장",
+    "beginner": "초급",
+    "simple": "간단",
+    "intermediate": "중급",
+    "advanced": "고급",
+    "minute": "분",
+    "minutes": "분",
+    "positions": "카드 위치",
+    "suitable": "적합한 용도",
+    "keyPoints": "핵심 포인트",
+    "useSpread": "{name} 스프레드 사용하기",
+    "howToChoose": {
+      "title": "올바른 스프레드를 어떻게 선택하나요?",
+      "complexity": {
+        "title": "질문의 복잡도에 따라",
+        "simple": "간단한 질문 → 원 카드 또는 쓰리 카드",
+        "medium": "보통 질문 → 홀리 트라이앵글 또는 시간의 흐름",
+        "complex": "복잡한 질문 → 켈틱 크로스"
+      },
+      "experience": {
+        "title": "경험 수준에 따라",
+        "beginner": "초보자 → 원 카드와 쓰리 카드부터 시작",
+        "experienced": "경험자 → 홀리 트라이앵글과 시간의 흐름 시도",
+        "advanced": "숙련자 → 켈틱 크로스로 심층 리딩"
+      },
+      "time": {
+        "title": "가용 시간에 따라",
+        "quick": "빠른 안내 → 원 카드 (1분)",
+        "regular": "일반 리딩 → 쓰리 카드 (3분)",
+        "deep": "심층 분석 → 켈틱 크로스 (10분 이상)"
+      },
+      "intuition": {
+        "title": "직감에 따라",
+        "trust": "첫 느낌을 믿으세요",
+        "resonate": "어떤 스프레드가 마음에 끌리나요?",
+        "uncertain": "확신이 없을 때는 간단한 것부터 시작하세요"
+      }
+    },
+    "cta": {
+      "button": "타로 여정을 시작하세요",
+      "subtitle": "매일 10회 무료 리딩 • 회원가입 불필요 • AI 기반 해석"
+    }
+  }
+}

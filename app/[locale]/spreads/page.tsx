@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { getAllSpreads } from '@/lib/spreads';
-// import LanguageSwitcher from '@/components/LanguageSwitcher'; // 隐藏语言切换器
 import { locales } from '@/i18n';
+import { getAlternates, seoConfig } from '@/lib/seo-config';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 // Generate static params for all locales
 export function generateStaticParams() {
@@ -18,18 +19,43 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  if (locale === 'zh') {
-    return {
+  const alternates = getAlternates(locale, '/spreads');
+
+  const metaByLocale: Record<string, { title: string; description: string; keywords: string[] }> = {
+    zh: {
       title: '塔罗牌阵指南 - 5种经典塔罗牌布局详解',
       description: '完整介绍5种经典塔罗牌阵：单牌、三牌阵、圣三角、凯尔特十字和时间之流。学习使用方法、适用场景和解读技巧，获得准确的AI塔罗占卜。',
       keywords: ['塔罗牌阵', '单牌占卜', '三牌阵', '圣三角塔罗', '凯尔特十字牌阵', '时间之流牌阵', '塔罗占卜方法', '塔罗布局', 'AI塔罗牌阵'],
-    };
-  }
+    },
+    ja: {
+      title: 'タロットスプレッドガイド - 5つのクラシックなタロットレイアウト解説',
+      description: '5つのクラシックなタロットスプレッドの完全ガイド：シングルカード、スリーカード、ホーリートライアングル、ケルト十字、タイムフロー。使用方法と解釈テクニックを学びましょう。',
+      keywords: ['タロットスプレッド', 'シングルカード', 'スリーカード', 'ケルト十字', 'タロット占い方法', 'タロットレイアウト', 'AIタロット'],
+    },
+    ko: {
+      title: '타로 스프레드 가이드 - 5가지 클래식 타로 카드 레이아웃 설명',
+      description: '5가지 클래식 타로 스프레드 완전 가이드: 싱글 카드, 쓰리 카드, 홀리 트라이앵글, 켈틱 크로스, 타임 플로우. 사용 방법과 해석 기법을 배워보세요.',
+      keywords: ['타로 스프레드', '싱글 카드', '쓰리 카드', '켈틱 크로스', '타로 점 방법', '타로 레이아웃', 'AI 타로'],
+    },
+    fr: {
+      title: 'Guide des Tirages de Tarot - 5 Dispositions Classiques Expliquées',
+      description: 'Guide complet de 5 tirages de tarot classiques : Carte Unique, Trois Cartes, Triangle Sacré, Croix Celtique et Flux Temporel. Apprenez les méthodes et techniques d\'interprétation.',
+      keywords: ['tirages de tarot', 'carte unique', 'trois cartes', 'croix celtique', 'méthodes de tarot', 'dispositions tarot', 'tarot IA'],
+    },
+    en: {
+      title: 'Tarot Spreads Guide - 5 Classic Tarot Card Layouts Explained',
+      description: 'Complete guide to 5 classic tarot spreads: Single Card, Three Card, Holy Triangle, Celtic Cross, and Time Flow. Learn usage methods, suitable scenarios, and interpretation techniques for accurate AI tarot readings.',
+      keywords: ['tarot spreads', 'single card reading', 'three card spread', 'holy triangle tarot', 'Celtic cross spread', 'time flow spread', 'tarot reading methods', 'tarot layouts', 'AI tarot spreads'],
+    },
+  };
+
+  const meta = metaByLocale[locale] || metaByLocale.en;
 
   return {
-    title: 'Tarot Spreads Guide - 5 Classic Tarot Card Layouts Explained',
-    description: 'Complete guide to 5 classic tarot spreads: Single Card, Three Card, Holy Triangle, Celtic Cross, and Time Flow. Learn usage methods, suitable scenarios, and interpretation techniques for accurate AI tarot readings.',
-    keywords: ['tarot spreads', 'single card reading', 'three card spread', 'holy triangle tarot', 'Celtic cross spread', 'time flow spread', 'tarot reading methods', 'tarot layouts', 'AI tarot spreads'],
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    alternates,
   };
 }
 
@@ -57,8 +83,34 @@ export default async function SpreadsPage({
     return `10${t('minutes')}`;
   };
 
+  // Breadcrumb structured data
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: seoConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: t('title'),
+        item: `${seoConfig.siteUrl}/${locale}/spreads`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* 导航 */}
       <nav className="border-b border-border">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -69,7 +121,7 @@ export default async function SpreadsPage({
             <span>←</span>
             <span>{t('backToHome')}</span>
           </Link>
-          {/* <LanguageSwitcher /> */}
+          <LanguageSwitcher />
         </div>
       </nav>
 

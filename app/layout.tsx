@@ -1,14 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
-import "./globals.css";
 import { seoConfig, pageSEO } from "@/lib/seo-config";
-
-const notoSans = Noto_Sans({
-  weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-sans",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(seoConfig.siteUrl),
@@ -61,11 +52,18 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  verification: {
+    google: '6QdZKAuci_x8mIKUITp2sMCZTLeAEeXyCdJu1Diuvrs',
+  },
 };
 
 export default function RootLayout({
@@ -73,20 +71,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <head>
-        {/* Structured Data - JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(seoConfig.structuredData),
-          }}
-        />
-      </head>
-      <body className={`${notoSans.variable} font-sans bg-background text-text-primary antialiased`}>
-        {children}
-      </body>
-    </html>
-  );
+  return children;
 }

@@ -1,0 +1,372 @@
+{
+  "site": {
+    "title": "Tirage de Tarot",
+    "description": "Tirage de Cartes de Tarot en Ligne par IA | Guidance Gratuite pour l'Amour, la Carrière et la Vie"
+  },
+  "home": {
+    "title": "Tirage de Tarot",
+    "subtitle": "Choisissez un tirage pour commencer votre voyage divinatoire",
+    "usageInfo": "Tirages restants aujourd'hui :",
+    "viewHistory": "Voir l'historique",
+    "dailyLimit": "{{remaining}} / {{total}}",
+    "cannotRead": "Impossible d'effectuer le tirage",
+    "copySuccess": "Tirage copié dans le presse-papiers",
+    "copyFailed": "Échec de la copie, veuillez sélectionner et copier manuellement",
+    "copyTemplate": {
+      "title": "【Interprétation du Tirage de Tarot】",
+      "spread": "Tirage",
+      "time": "Date",
+      "question": "Question",
+      "cards": "Cartes tirées",
+      "interpretation": "Interprétation",
+      "footer": "---\nInterprétation par IA",
+      "cardFormat": "{{position}} : {{name}} ({{orientation}})"
+    }
+  },
+  "spreadSelection": {
+    "back": "Retour",
+    "description": "Ressentez les cartes et choisissez celles qui résonnent en vous",
+    "progress": "{{selected}} / {{required}}",
+    "hint": "Les cartes tournent lentement, laissez votre intuition guider votre choix",
+    "confirm": "Confirmer la sélection",
+    "clickToSelect": "Cliquez pour sélectionner"
+  },
+  "questionInput": {
+    "title": "Votre Question",
+    "subtitle": "Dites-moi à quelle question vous pensez en tirant les cartes, et j'interpréterai le tirage en conséquence",
+    "skipHint": "Vous pouvez aussi passer cette étape pour un tirage général",
+    "placeholder": "Saisissez votre question ici...",
+    "skip": "Passer",
+    "submit": "Commencer le tirage"
+  },
+  "cardReveal": {
+    "title": "Vos Cartes",
+    "subtitle": "Les cartes sont sur le point d'être révélées",
+    "preparing": "Préparation de l'interprétation"
+  },
+  "interpreting": {
+    "title": "Analyse du Destin",
+    "subtitle": "Analyse des cartes en cours"
+  },
+  "result": {
+    "title": "Résultats de l'Interprétation",
+    "subtitle": "Révélations du Tarot",
+    "yourQuestion": "Votre Question",
+    "interpretation": "Interprétation",
+    "failed": "Échec de l'interprétation",
+    "checkConfig": "Veuillez vérifier la configuration de l'environnement ou réessayer plus tard",
+    "copyReading": "Copier le tirage",
+    "readAgain": "Tirer à nouveau",
+    "keywords": "Mots-clés",
+    "meaning": "Signification",
+    "upright": "À l'endroit",
+    "reversed": "Renversée"
+  },
+  "history": {
+    "title": "Historique des Tirages",
+    "empty": "Aucun historique de tirage",
+    "emptyHint": "Vos tirages apparaîtront ici",
+    "close": "Fermer",
+    "delete": "Supprimer",
+    "clear": "Tout effacer",
+    "confirmClear": "Êtes-vous sûr de vouloir effacer tout l'historique ?",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cet enregistrement ?",
+    "spread": "Tirage",
+    "time": "Date",
+    "question": "Question",
+    "selectHint": "Sélectionnez un enregistrement pour voir les détails",
+    "backToList": "Retour à la liste",
+    "cardResults": "Résultats des cartes",
+    "copySuccess": "Copié dans le presse-papiers",
+    "copyFailed": "Échec de la copie",
+    "copyTemplate": {
+      "title": "【Tirage de Tarot】",
+      "spread": "Tirage",
+      "time": "Date",
+      "question": "Question",
+      "cards": "Cartes tirées",
+      "interpretation": "Interprétation",
+      "footer": "---\nInterprété par IA"
+    }
+  },
+  "spreads": {
+    "singleCard": {
+      "name": "Carte Unique",
+      "description": "Tirez une carte pour un aperçu rapide et des conseils",
+      "positions": ["Situation Actuelle"]
+    },
+    "threeCard": {
+      "name": "Tirage en Trois Cartes",
+      "description": "Tirage classique révélant le passé, le présent et l'avenir",
+      "positions": ["Passé", "Présent", "Avenir"]
+    },
+    "holyTriangle": {
+      "name": "Triangle Sacré",
+      "description": "Explorez la situation, le défi et le conseil",
+      "positions": ["Situation", "Défi", "Conseil"]
+    },
+    "celticCross": {
+      "name": "Croix Celtique",
+      "description": "Tirage complet de 10 cartes pour une analyse approfondie",
+      "positions": [
+        "Situation Présente",
+        "Défi",
+        "Fondation",
+        "Passé Récent",
+        "Issue Possible",
+        "Avenir Proche",
+        "Votre Attitude",
+        "Influences Extérieures",
+        "Espoirs et Craintes",
+        "Issue Finale"
+      ]
+    },
+    "timeFlow": {
+      "name": "Flux Temporel",
+      "description": "Tirage de cinq cartes montrant l'évolution et l'issue",
+      "positions": [
+        "Passé",
+        "Présent",
+        "Avenir Proche",
+        "Conseil",
+        "Issue"
+      ]
+    }
+  },
+  "errors": {
+    "rateLimitExceeded": "Limite quotidienne de tirages atteinte, réinitialisation dans {{minutes}} minutes",
+    "cooldown": "Veuillez patienter {{seconds}} secondes avant de tirer à nouveau",
+    "apiError": "Service temporairement indisponible",
+    "genericError": "Une erreur s'est produite"
+  },
+  "spreads": {
+    "single": {
+      "name": "Carte Unique",
+      "description": "Idéal pour une guidance quotidienne ou des réponses rapides",
+      "positions": {
+        "guidance": "Guidance"
+      }
+    },
+    "threeTime": {
+      "name": "Flux Temporel",
+      "description": "Explorez l'évolution du passé, du présent et de l'avenir",
+      "positions": {
+        "past": "Passé",
+        "present": "Présent",
+        "future": "Avenir"
+      }
+    },
+    "threeSituation": {
+      "name": "Tirage Situationnel",
+      "description": "Analysez la situation actuelle, l'action à entreprendre et l'issue possible",
+      "positions": {
+        "situation": "Situation",
+        "action": "Action",
+        "outcome": "Issue"
+      }
+    },
+    "celticCross": {
+      "name": "Croix Celtique",
+      "description": "Le tirage approfondi le plus classique pour les questions complexes",
+      "positions": {
+        "present": "Situation Présente",
+        "challenge": "Défi",
+        "pastRoot": "Fondation Passée",
+        "recentPast": "Passé Récent",
+        "possibleFuture": "Avenir Possible",
+        "nearFuture": "Avenir Proche",
+        "yourAttitude": "Votre Attitude",
+        "externalInfluence": "Influence Extérieure",
+        "hopesAndFears": "Espoirs et Craintes",
+        "finalOutcome": "Issue Finale"
+      }
+    },
+    "relationship": {
+      "name": "Tirage Relationnel",
+      "description": "Explorez les relations interpersonnelles ou amoureuses",
+      "positions": {
+        "yourPosition": "Votre Position",
+        "theirPosition": "Sa Position",
+        "connection": "Connexion",
+        "challenge": "Défi",
+        "outcome": "Issue Possible"
+      }
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non",
+    "card": "carte",
+    "cards": "cartes"
+  },
+  "footer": {
+    "about": "À propos du Tarot",
+    "spreads": "Guide des Tirages",
+    "copyright": "© 2026 AI Tarot Reading | Plateforme de Tirage de Cartes de Tarot en Ligne par IA",
+    "home": "Accueil"
+  },
+  "about": {
+    "backToHome": "Retour à l'accueil",
+    "title": "À propos des Cartes de Tarot",
+    "subtitle": "Explorer l'alliance parfaite entre sagesse ancestrale et IA moderne",
+    "whatIsTarot": {
+      "title": "Qu'est-ce que le Tarot ?",
+      "intro": "Les cartes de tarot sont un ancien outil divinatoire originaire de l'Europe du XVe siècle. Un jeu de tarot complet se compose de 78 cartes, chacune contenant une signification symbolique profonde et une sagesse ancestrale. Le tarot n'est pas seulement un outil de divination, mais aussi un miroir reflétant notre monde intérieur, nous aidant à nous comprendre, à saisir le présent et à percevoir l'avenir.",
+      "ourService": "Sur ce site, nous combinons la sagesse traditionnelle du tarot avec une technologie IA avancée pour offrir des services de tirage de tarot en ligne professionnels et précis. Que vous soyez perplexe face à l'amour, confronté à des choix de carrière ou en quête de direction dans la vie, le tarot peut vous apporter inspiration et guidance."
+    },
+    "structure": {
+      "title": "Les 78 Cartes du Tarot",
+      "majorArcana": {
+        "title": "Arcanes Majeurs — 22 Cartes",
+        "description": "Les Arcanes Majeurs représentent les grands thèmes et tournants de la vie, du 0 « Le Mat » au 21 « Le Monde », dépeignant un parcours de vie complet. Ces cartes symbolisent les expériences de vie importantes, les prises de conscience profondes et la croissance spirituelle.",
+        "fool": "Nouveaux départs, aventure",
+        "magician": "Créativité, action",
+        "highPriestess": "Intuition, mystère",
+        "empress": "Abondance, maternité",
+        "emperor": "Autorité, ordre",
+        "hierophant": "Tradition, foi",
+        "more": "...et 16 autres cartes des Arcanes Majeurs, chacune représentant une étape importante de la vie."
+      },
+      "minorArcana": {
+        "title": "Arcanes Mineurs — 56 Cartes",
+        "description": "Les Arcanes Mineurs décrivent les événements et situations concrètes de la vie quotidienne, répartis en quatre enseignes de 14 cartes chacune :",
+        "wands": {
+          "title": "Bâtons",
+          "description": "Représente l'élément feu, symbolisant l'action, la créativité, la passion et le développement professionnel."
+        },
+        "cups": {
+          "title": "Coupes",
+          "description": "Représente l'élément eau, symbolisant les émotions, l'amour, les relations et les sentiments intérieurs."
+        },
+        "swords": {
+          "title": "Épées",
+          "description": "Représente l'élément air, symbolisant la pensée, la communication, les conflits et les décisions."
+        },
+        "pentacles": {
+          "title": "Deniers",
+          "description": "Représente l'élément terre, symbolisant la richesse matérielle, le travail et les affaires pratiques."
+        }
+      }
+    },
+    "howToRead": {
+      "title": "Comment effectuer un Tirage de Tarot ?",
+      "step1": {
+        "title": "Choisir un Tirage",
+        "description": "Sélectionnez un tirage approprié en fonction de votre question. Les questions simples peuvent utiliser un tirage à une ou trois cartes, tandis que les situations complexes sont mieux adaptées aux tirages plus élaborés comme la Croix Celtique."
+      },
+      "step2": {
+        "title": "Méditer",
+        "description": "Avant de tirer les cartes, apaisez votre esprit et concentrez-vous sur votre question. Laissez votre intuition vous guider vers les cartes qui résonnent en vous."
+      },
+      "step3": {
+        "title": "Sélectionner les Cartes",
+        "description": "Choisissez le nombre de cartes indiqué parmi le jeu en rotation. Chaque position de carte a une signification spécifique, formant ensemble un tirage complet."
+      },
+      "step4": {
+        "title": "Interprétation par IA",
+        "description": "Notre IA combine les significations des cartes, l'importance des positions et votre question pour générer une interprétation professionnelle et personnalisée."
+      }
+    },
+    "advantages": {
+      "title": "Avantages du Tirage de Tarot par IA",
+      "instant": {
+        "title": "Interprétation Instantanée",
+        "description": "Aucune attente nécessaire — l'IA génère des tirages professionnels immédiatement, disponibles 24h/24 et 7j/7."
+      },
+      "objective": {
+        "title": "Objectif et Neutre",
+        "description": "L'IA fournit des interprétations objectives et impartiales fondées sur les significations traditionnelles du tarot."
+      },
+      "free": {
+        "title": "Entièrement Gratuit",
+        "description": "10 tirages gratuits par jour, aucune inscription requise, dans le respect de votre vie privée."
+      },
+      "knowledge": {
+        "title": "Base de Connaissances Professionnelle",
+        "description": "Entraînée sur de nombreuses ressources de tarot, offrant une analyse approfondie et détaillée des cartes."
+      }
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "q1": {
+        "question": "Les tirages de tarot sont-ils précis ?",
+        "answer": "Le tarot est un outil d'exploration de soi et de réflexion. Il vous aide à percevoir votre monde intérieur et à clarifier vos pensées à travers des images symboliques. La précision dépend de votre conscience de soi et de votre résonance avec les cartes."
+      },
+      "q2": {
+        "question": "Quels types de questions puis-je poser ?",
+        "answer": "Le tarot est particulièrement adapté à l'exploration de questions ouvertes, comme « À quoi devrais-je être attentif dans cette relation ? » plutôt que des questions fermées comme « Est-ce qu'il/elle m'aime ? ». Les meilleures questions portent sur votre propre croissance et votre direction d'action."
+      },
+      "q3": {
+        "question": "À quelle fréquence puis-je faire des tirages ?",
+        "answer": "Il est recommandé d'attendre au moins une semaine avant de refaire un tirage sur la même question. Des tirages trop fréquents sur le même sujet risquent d'engendrer plus de confusion qu'une guidance claire."
+      },
+      "q4": {
+        "question": "Quelle est la différence entre un tirage par IA et un tirage humain ?",
+        "answer": "Les tirages par IA s'appuient sur les connaissances traditionnelles du tarot, offrant des interprétations objectives et standardisées. Les tirages humains peuvent intégrer l'expérience personnelle et l'intuition du praticien. Les avantages de l'IA résident dans l'immédiateté, la constance et l'accessibilité."
+      }
+    },
+    "cta": {
+      "title": "Commencez Votre Voyage dans le Tarot",
+      "description": "78 cartes de tarot, 5 tirages classiques, interprétation par IA, 10 tirages gratuits par jour",
+      "button": "Commencer le Tirage"
+    }
+  },
+  "spreadsPage": {
+    "backToHome": "Retour à l'accueil",
+    "title": "Guide Complet des Tirages de Tarot",
+    "subtitle": "Choisissez le bon tirage pour une guidance plus précise du tarot",
+    "intro": {
+      "title": "Qu'est-ce qu'un Tirage de Tarot ?",
+      "p1": "Un tirage de tarot désigne la disposition des cartes lors d'une consultation. Chaque tirage possède une structure spécifique, où chaque position représente une signification différente. Choisir le bon tirage vous permet de comprendre les différents aspects de votre question de manière plus complète et approfondie.",
+      "p2": "Du simple tirage à une carte au tirage complexe de la Croix Celtique, différents tirages conviennent à différents types de questions. Il est conseillé aux débutants de commencer par des tirages simples et de progresser vers des dispositions plus élaborées."
+    },
+    "cardCount": "Nombre de cartes",
+    "difficulty": "Difficulté",
+    "duration": "Durée du tirage",
+    "cards": "cartes",
+    "beginner": "Débutant",
+    "simple": "Simple",
+    "intermediate": "Intermédiaire",
+    "advanced": "Avancé",
+    "minute": "minute",
+    "minutes": "minutes",
+    "positions": "Positions des Cartes",
+    "suitable": "Convient pour",
+    "keyPoints": "Points Clés",
+    "useSpread": "Utiliser le tirage {name}",
+    "howToChoose": {
+      "title": "Comment choisir le bon tirage ?",
+      "complexity": {
+        "title": "Selon la complexité de la question",
+        "simple": "Questions simples → Carte Unique ou Trois Cartes",
+        "medium": "Questions moyennes → Triangle Sacré ou Flux Temporel",
+        "complex": "Questions complexes → Croix Celtique"
+      },
+      "experience": {
+        "title": "Selon votre expérience",
+        "beginner": "Débutant → Commencez par Carte Unique et Trois Cartes",
+        "experienced": "Expérimenté → Essayez le Triangle Sacré et le Flux Temporel",
+        "advanced": "Avancé → Utilisez la Croix Celtique pour des tirages approfondis"
+      },
+      "time": {
+        "title": "Selon le temps disponible",
+        "quick": "Guidance rapide → Carte Unique (1 minute)",
+        "regular": "Tirage classique → Trois Cartes (3 minutes)",
+        "deep": "Analyse approfondie → Croix Celtique (10+ minutes)"
+      },
+      "intuition": {
+        "title": "Selon votre intuition",
+        "trust": "Faites confiance à votre première impression",
+        "resonate": "Quel tirage résonne en vous ?",
+        "uncertain": "En cas de doute, commencez par les plus simples"
+      }
+    },
+    "cta": {
+      "button": "Commencez Votre Voyage dans le Tarot",
+      "subtitle": "10 tirages gratuits par jour • Sans inscription • Interprétation par IA"
+    }
+  }
+}

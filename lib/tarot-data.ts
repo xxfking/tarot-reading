@@ -1839,19 +1839,20 @@ export interface LocalizedCard {
 }
 
 export function getLocalizedCard(card: TarotCard, locale: string): LocalizedCard {
-  const isEnglish = locale === 'en';
+  // zh uses Chinese fields directly; all other locales use English fields with fallback
+  const useChinese = locale === 'zh';
 
   return {
     id: card.id,
-    name: isEnglish ? card.nameEn : card.name,
+    name: useChinese ? card.name : (card.nameEn || card.name),
     suit: card.suit,
     keywords: {
-      upright: isEnglish && card.keywordsEn ? card.keywordsEn.upright : card.keywords.upright,
-      reversed: isEnglish && card.keywordsEn ? card.keywordsEn.reversed : card.keywords.reversed,
+      upright: useChinese ? card.keywords.upright : (card.keywordsEn?.upright || card.keywords.upright),
+      reversed: useChinese ? card.keywords.reversed : (card.keywordsEn?.reversed || card.keywords.reversed),
     },
     description: {
-      upright: isEnglish && card.descriptionEn ? card.descriptionEn.upright : card.description.upright,
-      reversed: isEnglish && card.descriptionEn ? card.descriptionEn.reversed : card.description.reversed,
+      upright: useChinese ? card.description.upright : (card.descriptionEn?.upright || card.description.upright),
+      reversed: useChinese ? card.description.reversed : (card.descriptionEn?.reversed || card.description.reversed),
     },
     imageUrl: card.imageUrl,
   };

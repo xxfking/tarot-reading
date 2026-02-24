@@ -1,29 +1,29 @@
 // 塔罗牌牌组
 export type Suit = 'major' | 'wands' | 'cups' | 'swords' | 'pentacles';
 
+// Keyword set for a card orientation
+export interface CardKeywords {
+  upright: string[];
+  reversed: string[];
+}
+
+// Description set for a card orientation
+export interface CardDescription {
+  upright: string;
+  reversed: string;
+}
+
 // 塔罗牌数据结构
 export interface TarotCard {
-  id: number;                    // 1-78
-  name: string;                  // 中文名称
-  nameEn: string;                // 英文名称
+  id: number;
+  name: string;                    // Chinese name
+  nameEn: string;                  // English name
   suit: Suit;
-  keywords: {
-    upright: string[];           // 正位关键词（中文）
-    reversed: string[];          // 逆位关键词（中文）
-  };
-  keywordsEn?: {
-    upright: string[];           // 正位关键词（英文）
-    reversed: string[];          // 逆位关键词（英文）
-  };
-  description: {
-    upright: string;             // 正位基础含义（中文）
-    reversed: string;            // 逆位基础含义（中文）
-  };
-  descriptionEn?: {
-    upright: string;             // 正位基础含义（英文）
-    reversed: string;            // 逆位基础含义（英文）
-  };
-  imageUrl: string;              // 牌面图片路径
+  keywords: CardKeywords;          // Chinese keywords
+  keywordsEn?: CardKeywords;       // English keywords
+  description: CardDescription;    // Chinese description
+  descriptionEn?: CardDescription; // English description
+  imageUrl: string;
 }
 
 // 牌阵类型

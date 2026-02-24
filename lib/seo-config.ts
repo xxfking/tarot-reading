@@ -3,7 +3,7 @@ export const seoConfig = {
   // Basic Information
   siteName: 'AI Tarot Reading',
   siteDescription: 'Free AI-powered online tarot card reading platform. Get instant, accurate tarot predictions with 5 classic spreads and 78 complete tarot cards. Professional AI interpretation for love, career, and life guidance. 10 free readings daily.',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://tarot-reading.vercel.app',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://rndomi.space',
 
   // Keywords - Optimized for Low Competition & High Intent
   keywords: [
@@ -74,7 +74,7 @@ export const seoConfig = {
     '@type': 'WebApplication',
     name: 'AI Tarot Reading',
     description: 'Free AI-powered online tarot card reading platform with instant, accurate predictions and professional interpretations',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://tarot-reading.vercel.app',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://rndomi.space',
     applicationCategory: 'LifestyleApplication',
     offers: {
       '@type': 'Offer',
@@ -88,6 +88,28 @@ export const seoConfig = {
     },
   },
 };
+
+// Helper to generate alternates (canonical + hreflang) for a given locale and route
+export function getAlternates(locale: string, route: string = '') {
+  const siteUrl = seoConfig.siteUrl;
+  const allLocales = ['en', 'zh', 'ja', 'ko', 'fr'];
+  const defaultLocale = 'en';
+
+  // For default locale (en), canonical is without prefix
+  const canonical = locale === defaultLocale
+    ? `${siteUrl}${route || '/'}`
+    : `${siteUrl}/${locale}${route}`;
+
+  const languages: Record<string, string> = {};
+  for (const l of allLocales) {
+    languages[l] = l === defaultLocale
+      ? `${siteUrl}${route || '/'}`
+      : `${siteUrl}/${l}${route}`;
+  }
+  languages['x-default'] = `${siteUrl}${route || '/'}`;
+
+  return { canonical, languages };
+}
 
 // Page-specific SEO Configuration
 export const pageSEO = {
